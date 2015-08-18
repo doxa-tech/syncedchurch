@@ -1,0 +1,57 @@
+<h1><%= t('member.new.title') %></h1>
+
+<%= form_for @member do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :gender_id %>
+  <%= f.collection_select :gender_id, Gender.all, :id, :name %>
+
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname %>
+
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+
+  <%= f.label :birthday %>
+  <%= f.date_select :birthday, { :start_year => Date.today.year, :end_year => 110.years.ago.year } %>
+
+  <%= f.label :adress %>
+  <%= f.text_field :adress %>
+
+  <%= f.label :npa %>
+  <%= f.number_field :npa %>
+
+  <%= f.label :job %>
+  <%= f.text_field :job %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :extra %>
+  <%= f.text_area :extra %>
+
+  <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
+    <div class="fields-for">
+      <div class="phones-fields">
+        <%= phone_f.label :phone_type_id %>
+        <%= phone_f.collection_select :phone_type_id, PhoneType.all, :id, :name %>
+
+        <%= phone_f.label :number %>
+        <%= phone_f.text_field :number %>
+
+        <%= phone_f.hidden_field :_destroy, identifier: "destroy" %>
+
+        <button class="remove-fields" data-type="phones">Supprimer</button>
+      </div>
+
+      <button class="add-fields" data-type="phones" data-count="<%= @member.phones.count %>">
+        Ajouter un numéro
+      </button>
+    </div>
+
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

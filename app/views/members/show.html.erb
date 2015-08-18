@@ -1,0 +1,13 @@
+<h1><%= @member.full_name %></h1>
+
+<ul>
+  <li><%= @member.gender.name %></li>
+  <li><%= l(@member.birthday, format: :long) %></li>
+
+  <ul>
+    <% @member.phones.each do |phone| %>
+      <li><%= phone.type.name %></li>
+      <li><%= phone.number %></li>
+    <% end %>
+  </ul>
+<ul>

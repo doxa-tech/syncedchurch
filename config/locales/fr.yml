@@ -1,0 +1,29 @@
+fr:
+  application:
+    error: "erreur"
+  errors:
+    format: 'le champ "%{attribute}" %{message}'
+  member:
+    new:
+      title: "Ajouter un membre"
+      success: "Un nouveau membre a été ajouté"
+  attributes:
+    lastname: "Nom"
+    firstname: "Prénom"
+    birthday: "Date de naissance"
+    gender_id: "Sexe"
+    adress: "Adresse (Rue, n°)"
+    npa: "NPA"
+    job: "Emploi"
+  activerecord:
+    attributes:
+      member:
+        extra: "Informations supplémentaires"
+      phone:
+        number: "Numéro"
+        phone_type_id: "Type"
+  helpers:
+    submit:
+      create: Créer
+      submit: Envoyer
+      update: Enregistrer
