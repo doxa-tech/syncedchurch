@@ -9,7 +9,7 @@ class MembersController < ApplicationController
   end
 
   def new
-    @member = Member.new    
+    @member = Member.new  
   end
 
   def create
@@ -24,7 +24,7 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:firstname, :lastname, :gender_id, :birthday, phones_attributes: [:phone_type_id, :number])
+    params.require(:member).permit(:adress, :npa, :job, :email, :extra, :firstname, :lastname, :gender, :birthday, :role, family_attributes: [:lastname], phones_attributes: [:phone_type, :number, :_destroy])
   end
 
 end

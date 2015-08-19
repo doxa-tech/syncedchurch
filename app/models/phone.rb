@@ -1,4 +1,12 @@
 class Phone < ActiveRecord::Base
   belongs_to :member
-  belongs_to :type, class_name: :PhoneType, foreign_key: :phone_type_id
+
+  enum phone_type: [:home, :mobile, :work, :other]
+
+  validates :number, presence: true
+  validates :phone_type, presence: true
+
+  def type
+    phone_type
+  end
 end

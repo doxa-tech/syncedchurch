@@ -11,19 +11,39 @@ fr:
     lastname: "Nom"
     firstname: "Prénom"
     birthday: "Date de naissance"
-    gender_id: "Sexe"
+    gender: "Sexe"
     adress: "Adresse (Rue, n°)"
     npa: "NPA"
     job: "Emploi"
+    phone_type: "Type"
   activerecord:
     attributes:
       member:
         extra: "Informations supplémentaires"
+        role: "Place dans la famille"
       phone:
         number: "Numéro"
-        phone_type_id: "Type"
+      family:
+        lastname: "Famille"
   helpers:
     submit:
       create: Créer
       submit: Envoyer
       update: Enregistrer
+  genders:
+    male: "Homme"
+    female: "Femme"
+  phones:
+    home: "Domicile"
+    work: "Travail"
+    other: "Autre"
+    mobile: "Mobile"
+  roles:
+    father: "Père"
+    mother: "Mère"
+    son: "Fils"
+    daughter: "Fille"
+  views:
+    members:
+      show:
+        in_the_family: "dans la famille"
