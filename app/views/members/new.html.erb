@@ -4,8 +4,8 @@
 
   <%= render 'error_messages', object: f.object %>
 
-  <%= f.label :gender_id %>
-  <%= f.collection_select :gender_id, Gender.all, :id, :name %>
+  <%= f.label :gender %>
+  <%= f.select :gender, options_for_select(Member.genders.map {|k, v| [ t("genders.#{k}"), k ]}) %>
 
   <%= f.label :lastname %>
   <%= f.text_field :lastname %>
@@ -31,11 +31,21 @@
   <%= f.label :extra %>
   <%= f.text_area :extra %>
 
+  <%= f.fields_for :family, (@member.build_family if @member.family.nil?) do |family_f| %>
+
+    <%= family_f.label :lastname %>
+    <%= family_f.text_field :lastname %>
+
+  <% end %>
+
+  <%= f.label :role %>
+  <%= f.select :role, options_for_select(Member.roles.map {|k, v| [ t("roles.#{k}"), k ]}) %>
+
   <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
     <div class="fields-for">
       <div class="phones-fields">
-        <%= phone_f.label :phone_type_id %>
-        <%= phone_f.collection_select :phone_type_id, PhoneType.all, :id, :name %>
+        <%= phone_f.label :phone_type %>
+        <%= phone_f.select :phone_type, options_for_select(Phone.phone_types.map {|k, v| [ t("phones.#{k}"), k ]}) %>
 
         <%= phone_f.label :number %>
         <%= phone_f.text_field :number %>
