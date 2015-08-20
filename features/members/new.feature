@@ -31,3 +31,11 @@ Feature: Create a new member
     And I add the member in a new family
     And I complete the member's form with the required fields
     Then I should see the member's family
+
+  @wip
+  Scenario: I add a member with private information
+    #Given I am logged in
+    When I visit "/members/new"
+    And I mark fields as private
+    And I complete the member's form with the required fields
+    Then I should not see the private information in the public list

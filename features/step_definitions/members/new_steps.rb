@@ -19,18 +19,30 @@ When(/^I add the member in a new family$/) do
   select "Père", from: "Place dans la famille"
 end
 
+When(/^I mark fields as private$/) do
+  fill_in "Email", with: "john@son.com"
+  find(:xpath, "//input[@type='checkbox' and @value='email']").set(true)
+  find(:xpath, "//input[@type='checkbox' and @value='birthday']").set(true)
+end
+
 Then(/^I should see the member's phone numbers$/) do
   expect(page).to have_content "079 480 08 08"
   expect(page).to have_content "026 912 91 73"
 end
 
 Then(/^I should see the member's information$/) do
-  expect(page).to have_content "John"
-  expect(page).to have_content "Smith"
+  expect(page).to have_content "Smith John"
   expect(page).to have_content "12 juin 1961"
   expect(page).to have_content "Homme"
 end
 
 Then(/^I should see the member's family$/) do
   expect(page).to have_content "Père dans la famille Johnson"
+end
+
+Then(/^I should not see the private information in the public list$/) do
+  visit "/list"
+  expect(page).to have_content "Smith John"
+  expect(page).not_to have_content "john@son.com"
+  expect(page).not_to have_content "12 juin 1961"
 end

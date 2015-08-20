@@ -1,7 +1,14 @@
 class MembersController < ApplicationController
+  include MembersHelper
 
+  # admin index
   def index
 
+  end
+
+  # public index
+  def list
+    @members = Member.all
   end
 
   def show
@@ -24,7 +31,7 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:adress, :npa, :job, :email, :extra, :firstname, :lastname, :gender, :birthday, :role, family_attributes: [:lastname], phones_attributes: [:phone_type, :number, :_destroy])
+    params.require(:member).permit(:adress, :npa, :job, :email, :extra, :firstname, :lastname, :gender, :birthday, :role, family_attributes: [:lastname], phones_attributes: [:phone_type, :number, :_destroy], private: [])
   end
 
 end

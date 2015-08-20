@@ -15,18 +15,26 @@
 
   <%= f.label :birthday %>
   <%= f.date_select :birthday, { :start_year => Date.today.year, :end_year => 110.years.ago.year } %>
+  <%= check_box_tag "member[private][]", "birthday" %>
 
   <%= f.label :adress %>
   <%= f.text_field :adress %>
+  <%= check_box_tag "member[private][]", "adress" %>
 
   <%= f.label :npa %>
   <%= f.number_field :npa %>
+  <%= check_box_tag "member[private][]", "npa" %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+  <%= check_box_tag "member[private][]", "city" %>
 
   <%= f.label :job %>
   <%= f.text_field :job %>
 
   <%= f.label :email %>
   <%= f.email_field :email %>
+  <%= check_box_tag "member[private][]", "email" %>
 
   <%= f.label :extra %>
   <%= f.text_area :extra %>

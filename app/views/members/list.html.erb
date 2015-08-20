@@ -1,0 +1,7 @@
+<% @members.each do |member| %>
+
+  <%= member.full_name %>
+  <%= l(member.birthday, format: :long) if public?(member, "birthday") %>
+  <%= member.email if public?(member, "email") %>
+
+<% end %>
