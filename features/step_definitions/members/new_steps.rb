@@ -25,6 +25,10 @@ When(/^I mark fields as private$/) do
   find(:xpath, "//input[@type='checkbox' and @value='birthday']").set(true)
 end
 
+When(/^I mark a number as private$/) do
+  check "member_phones_attributes_0_private"
+end
+
 Then(/^I should see the member's phone numbers$/) do
   expect(page).to have_content "079 480 08 08"
   expect(page).to have_content "026 912 91 73"
@@ -45,4 +49,11 @@ Then(/^I should not see the private information in the public list$/) do
   expect(page).to have_content "Smith John"
   expect(page).not_to have_content "john@son.com"
   expect(page).not_to have_content "12 juin 1961"
+end
+
+Then(/^I should not see the private phone in the public list$/) do
+  visit "/list"
+  expect(page).to have_content "Smith John"
+  expect(page).to have_content "026 912 91 73"
+  expect(page).not_to have_content "079 480 08 08"
 end

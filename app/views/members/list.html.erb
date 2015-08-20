@@ -4,4 +4,13 @@
   <%= l(member.birthday, format: :long) if public?(member, "birthday") %>
   <%= member.email if public?(member, "email") %>
 
+  <% member.phones.each do |phone| %>
+
+    <% unless phone.private %>
+      <%= t("phones.#{phone.type}") %>
+      <%= phone.number %>
+    <% end %>
+
+  <% end %>
+
 <% end %>
