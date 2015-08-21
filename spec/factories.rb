@@ -6,5 +6,11 @@ FactoryGirl.define do
     birthday { 40.years.ago }
     gender "male"
   end
+
+  factory :group do
+    name "Conseil d'église"
+    group_type "concil"
+    place "church"
+  end
   
 end

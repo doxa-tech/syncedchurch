@@ -22,7 +22,7 @@ fr:
     places:
       church: "A l'église"
       member: "Chez un membre"
-      other: "Autre"
+      other: "Autre (spécifier)"
     group_types:
       concil: "Conseil"
       service: "Service"
@@ -48,6 +48,8 @@ fr:
         number: "Numéro"
       family:
         lastname: "Famille"
+      group:
+        place_other: "Spécifier le lieu"
   helpers:
     submit:
       create: Créer

@@ -21,6 +21,15 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 
+  def update
+    @group = Group.find(params[:id])
+    if @group.update_attributes(group_params)
+      flash[:success] = "Mis à jour !"
+    else
+      render 'form_error', locals: { object: @group }
+    end
+  end
+
   private
 
   def group_params

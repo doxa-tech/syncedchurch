@@ -13,6 +13,9 @@
   <%= f.label :place %>
   <%= f.select :place, options_for_enum(Group, :places) %>
 
+  <%= f.label :place_other %>
+  <%= f.text_field :place_other %>
+
   <%= f.submit %>
 
 <% end %>
