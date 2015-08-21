@@ -7,8 +7,8 @@ class Member < ActiveRecord::Base
 
   accepts_nested_attributes_for :phones, allow_destroy: true, reject_if: proc { |a| a[:number].blank? }
 
-  validates :firstname, presence: true, length: { maximum: 60 }
-  validates :lastname, presence: true, length: { maximum: 60 }
+  validates :firstname, presence: true, length: { maximum: 100 }
+  validates :lastname, presence: true, length: { maximum: 100 }
   validates :birthday, presence: true
   validates :gender, presence: true
 

@@ -5,7 +5,7 @@
   <%= render 'error_messages', object: f.object %>
 
   <%= f.label :gender %>
-  <%= f.select :gender, options_for_select(Member.genders.map {|k, v| [ t("genders.#{k}"), k ]}) %>
+  <%= f.select :gender, options_for_enum(Member, :genders)  %>
 
   <%= f.label :lastname %>
   <%= f.text_field :lastname %>
@@ -47,13 +47,13 @@
   <% end %>
 
   <%= f.label :role %>
-  <%= f.select :role, options_for_select(Member.roles.map {|k, v| [ t("roles.#{k}"), k ]}) %>
+  <%= f.select :role, options_for_enum(Member, :roles) %>
 
   <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
     <div class="fields-for">
       <div class="phones-fields">
         <%= phone_f.label :phone_type %>
-        <%= phone_f.select :phone_type, options_for_select(Phone.phone_types.map {|k, v| [ t("phones.#{k}"), k ]}) %>
+        <%= phone_f.select :phone_type, options_for_enum(Phone, :phone_types) %>
 
         <%= phone_f.label :number %>
         <%= phone_f.text_field :number %>

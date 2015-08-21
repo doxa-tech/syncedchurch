@@ -1,0 +1,18 @@
+<h1><%= t('group.new.title') %></h1>
+
+<%= form_for @group do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :group_type %>
+  <%= f.select :group_type, options_for_enum(Group, :group_types) %>
+
+  <%= f.label :place %>
+  <%= f.select :place, options_for_enum(Group, :places) %>
+
+  <%= f.submit %>
+
+<% end %>

@@ -6,8 +6,29 @@ fr:
   member:
     new:
       title: "Ajouter un membre"
-      success: "Un nouveau membre a été ajouté"
+      success: "Le nouveau membre a été ajouté !"
+    roles:
+      father: "Père"
+      mother: "Mère"
+      son: "Fils"
+      daughter: "Fille"
+    genders:
+      male: "Homme"
+      female: "Femme"
+  group:
+    new:
+      title: "Ajouter un groupe"
+      success: "Le nouveau groupe a été créé !"
+    places:
+      church: "A l'église"
+      member: "Chez un membre"
+      other: "Autre"
+    group_types:
+      concil: "Conseil"
+      service: "Service"
+      homegroup: "Groupe de maison"
   attributes:
+    name: "Nom"
     lastname: "Nom"
     firstname: "Prénom"
     birthday: "Date de naissance"
@@ -16,6 +37,8 @@ fr:
     npa: "NPA"
     job: "Emploi"
     phone_type: "Type"
+    group_type: "Type"
+    place: "Lieu"
   activerecord:
     attributes:
       member:
@@ -30,20 +53,15 @@ fr:
       create: Créer
       submit: Envoyer
       update: Enregistrer
-  genders:
-    male: "Homme"
-    female: "Femme"
-  phones:
-    home: "Domicile"
-    work: "Travail"
-    other: "Autre"
-    mobile: "Mobile"
-  roles:
-    father: "Père"
-    mother: "Mère"
-    son: "Fils"
-    daughter: "Fille"
+      group:
+        create: "Continuer"
+  phone:
+    phone_types:
+      home: "Domicile"
+      work: "Travail"
+      other: "Autre"
+      mobile: "Mobile"
   views:
     members:
       show:
-        in_the_family: "dans la famille"
+        family: "%{role} dans la famille %{family}"

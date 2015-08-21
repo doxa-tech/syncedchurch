@@ -7,7 +7,7 @@
   <% member.phones.each do |phone| %>
 
     <% unless phone.private %>
-      <%= t("phones.#{phone.type}") %>
+      <%= t("phone.phone_types.#{phone.type}") %>
       <%= phone.number %>
     <% end %>
 

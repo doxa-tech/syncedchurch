@@ -8,7 +8,7 @@ Feature: Create a new member
     #Given I am logged in
     When I visit "/members/new"
     And I complete the member's form with the required fields
-    Then I should see a flash containing "Un nouveau membre a été ajouté"
+    Then I should see a flash containing "Le nouveau membre a été ajouté !"
     And I should see the member's information
 
   Scenario: I add a member without the required fields

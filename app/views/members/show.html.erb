@@ -1,16 +1,16 @@
 <h1><%= @member.full_name %></h1>
 
 <ul>
-  <li><%= t("genders.#{@member.gender}") %></li>
+  <li><%= t("member.genders.#{@member.gender}") %></li>
   <li><%= l(@member.birthday, format: :long) %></li>
 
   <% unless @member.family.nil? %>
-    <li><%= t("roles.#{@member.role}") %> <%= t("views.members.show.in_the_family") %> <%= @member.family.lastname %></li>
+    <li><%= t("views.members.show.family", role: t("member.roles.#{@member.role}"), family: @member.family.lastname) %></li>
   <% end %>
 
   <ul>
     <% @member.phones.each do |phone| %>
-      <li><%= t("phones.#{phone.type}") %></li>
+      <li><%= t("phone.phone_types.#{phone.type}") %></li>
       <li><%= phone.number %></li>
     <% end %>
   </ul>
