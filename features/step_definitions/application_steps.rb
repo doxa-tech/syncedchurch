@@ -1,3 +1,11 @@
+Given(/^there are members in the church$/) do
+  @member = create(:member)
+end
+
+Given(/^there is a group$/) do
+  @group = create(:group)
+end
+
 When(/^I visit "(.*?)"$/) do |path|
   visit path
 end

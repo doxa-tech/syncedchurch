@@ -1,0 +1,12 @@
+<div id="members">
+  <% @group.members.each do |member| %>
+
+    <div class="member">
+      <%= member.full_name %>
+      <%= t("groupmember.statuses.#{member.status}") %>
+      <%= link_to "X", remove_group_path(@group, member_id: member.id), remote: true, method: :delete, id: "delete-member" %>
+      <%= link_to "Toggle", toggle_group_path(@group, member_id: member.id), remote: true, method: :post, id: "toggle-member-status" %>
+    </div>
+
+  <% end %>
+</div>

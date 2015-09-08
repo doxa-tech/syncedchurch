@@ -30,6 +30,32 @@ class GroupsController < ApplicationController
     end
   end
 
+  #
+  # Members
+  #
+
+  def add
+    @group = Group.find(params[:id])
+    member = Member.find(params[:member_id])
+    GroupMember.create!(group: @group, member: member, status: params[:status])
+    render 'members'
+  end
+
+  def remove
+    @group = Group.find(params[:id])
+    member = Member.find(params[:member_id])
+    GroupMember.where(group: @group, member: member).destroy_all
+    render 'members'
+  end
+
+  def toggle
+    @group = Group.find(params[:id])
+    member = Member.find(params[:member_id])
+    group_member = GroupMember.find_by(group: @group, member: member)
+    group_member.update_attribute(:status, group_member.status == "member" ? "responsable" : "member")
+    render 'members'
+  end
+
   private
 
   def group_params

@@ -53,3 +53,6 @@ end
 # i18n
 gem 'rails-i18n'
 
+# selectize.js
+gem 'selectize-rails'
+
