@@ -8,7 +8,7 @@ When(/^I change the name of the group with "(.*?)"$/) do |value|
 end
 
 When(/^I choose a member and add him$/) do
-  fill_in_selectized "selectize-member", with: "John Smith"
+  fill_in_selectized "member_id", with: "John Smith"
   select "Responsable", from: "Status"
   click_button "Ajouter"
 end

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get "/list", to: "members#list"
   
+  resources :followups
   resources :members
   resources :groups do
 

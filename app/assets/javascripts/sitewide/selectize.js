@@ -1,6 +1,6 @@
 $(document).on("ready page:load", function() {
 
-  $('#selectize-member').selectize({
+  $('.selectize-member').selectize({
     valueField: 'id',
     labelField: 'full_name',
     searchField: 'full_name',

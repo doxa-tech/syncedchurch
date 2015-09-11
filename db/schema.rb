@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823163441) do
+ActiveRecord::Schema.define(version: 20150911185259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 20150823163441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "followups", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "counselor_id"
+    t.date     "date"
+    t.integer  "duration"
+    t.text     "notes"
+    t.integer  "place"
+    t.integer  "reason"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "followups", ["counselor_id"], name: "index_followups_on_counselor_id", using: :btree
+  add_index "followups", ["member_id"], name: "index_followups_on_member_id", using: :btree
 
   create_table "group_members", force: :cascade do |t|
     t.integer  "group_id"
@@ -73,6 +88,8 @@ ActiveRecord::Schema.define(version: 20150823163441) do
 
   add_index "phones", ["member_id"], name: "index_phones_on_member_id", using: :btree
 
+  add_foreign_key "followups", "members"
+  add_foreign_key "followups", "members", name: "fk_counselors_followups"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "members"
   add_foreign_key "members", "families"

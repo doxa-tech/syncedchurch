@@ -10,6 +10,9 @@ class Member < ActiveRecord::Base
   has_many :group_members
   has_many :groups, through: :group_members
 
+  has_many :followups
+  has_many :counselings, foreign_key: :counselor_id, class_name: :Followup
+
   accepts_nested_attributes_for :phones, allow_destroy: true, reject_if: proc { |a| a[:number].blank? }
 
   validates :firstname, presence: true, length: { maximum: 100 }

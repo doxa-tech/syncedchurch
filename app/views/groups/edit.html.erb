@@ -17,7 +17,7 @@
 
 <%= form_tag add_group_path(@group), remote: true do %>
   
-  <%= select_tag :member_id, nil, prompt: t("views.members.select"), id: "selectize-member" %>
+  <%= select_tag :member_id, nil, prompt: t("views.members.select"), class: "selectize-member", id: "member_id" %>
 
   <%= label_tag :status %>
   <%= select_tag :status, options_for_enum(GroupMember, :statuses) %>
