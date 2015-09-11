@@ -19,5 +19,15 @@ FactoryGirl.define do
 
     members {[ Member.find_by_firstname("Alfred") || create(:group_member) ]}
   end
+
+  factory :followup do
+    member { Member.find_by_firstname("John") || create(:member) }
+    counselor { Member.find_by_firstname("Alfred") || create(:group_member) }
+    date { Date.today }
+    place "home"
+    reason "friendly"
+    notes "Très bon partage"
+    duration 20
+  end
   
 end
