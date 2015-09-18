@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get "/list", to: "members#list"
   
   resources :followups
-  resources :members
+  resources :members do
+    collection do
+      post "import"
+    end
+  end
   resources :groups do
 
     member do

@@ -1,0 +1,10 @@
+<h3><%= t('views.members.index.export.title') %></h3>
+<%= link_to t('views.members.index.export.link'), members_path(format: :csv) %>
+
+<h3><%= t('views.members.index.import.title') %></h3>
+<%= form_tag import_members_path, multipart: true do %>
+
+  <%= file_field_tag :file, accept: 'text/csv' %>
+  <%= submit_tag t('views.members.index.import.submit') %>
+
+<% end %>

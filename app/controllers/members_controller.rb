@@ -3,7 +3,10 @@ class MembersController < ApplicationController
 
   # admin index
   def index
-
+    respond_to do |format|
+      format.html
+      format.csv { send_data Member.to_csv, filename: "members-#{Date.today}.csv"}
+    end
   end
 
   # public index
@@ -26,6 +29,11 @@ class MembersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def import
+    Member.import(params[:file])
+    redirect_to members_path, success: t("member.import.success")
   end
 
   private
