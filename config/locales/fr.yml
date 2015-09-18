@@ -53,6 +53,10 @@ fr:
     group_type: "Type"
     place: "Lieu"
     duration: "Durée"
+    created_at: "Créé le"
+    updated_at: "Mis à jour le"
+    counselor: "Conseiller"
+    member: "Membre"
   activerecord:
     attributes:
       member:
@@ -81,6 +85,10 @@ fr:
       other: "Autre"
       mobile: "Mobile"
   views:
+    header:
+      members: "Membres"
+      followups: "Suivis"
+      groups: "Groupes"
     members:
       select: "Sélectionnez un membre"
       show:

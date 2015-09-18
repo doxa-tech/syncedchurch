@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
 
   def index
-    
+    @table = Table.new(self, Group, nil, search: true)
+    @table.respond
   end
 
   def new

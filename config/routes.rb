@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
+  root to: "pages#dashboard"
+
   get "/list", to: "members#list"
+
+  %w[dashboard].each do |page|
+    get "#{page}", to: "pages##{page}"
+  end
   
   resources :followups
   resources :members do

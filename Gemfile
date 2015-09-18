@@ -74,3 +74,5 @@ gem 'capistrano-rvm'
 gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
 
 gem 'puma'
+
+gem 'snaptable'

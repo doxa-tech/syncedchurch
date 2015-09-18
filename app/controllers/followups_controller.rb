@@ -1,6 +1,8 @@
 class FollowupsController < ApplicationController
 
   def index
+    @table = FollowupTable.new(self, nil, search: true)
+    @table.respond
   end
 
   def new

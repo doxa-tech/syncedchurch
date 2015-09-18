@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require selectize
+//= require snaptable
 //= require_tree ./sitewide

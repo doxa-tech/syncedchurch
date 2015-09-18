@@ -3,9 +3,11 @@ class MembersController < ApplicationController
 
   # admin index
   def index
+    @table = MemberTable.new(self, nil, search: true)
     respond_to do |format|
       format.html
       format.csv { send_data Member.to_csv, filename: "members-#{Date.today}.csv"}
+      format.js { render '/snaptable/sort' }
     end
   end
 
