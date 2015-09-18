@@ -50,9 +50,25 @@ group :development, :test do
   gem 'capybara-webkit'
 end
 
+group :development do
+  gem 'capistrano3-puma'
+end
+
 # i18n
 gem 'rails-i18n'
 
 # selectize.js
 gem 'selectize-rails'
 
+gem 'capistrano', '~> 3.4.0'
+
+# rails specific capistrano funcitons
+gem 'capistrano-rails', '~> 1.1.0'
+
+# integrate bundler with capistrano
+gem 'capistrano-bundler'
+
+# if you are using RBENV
+gem 'capistrano-rvm'
+
+gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
