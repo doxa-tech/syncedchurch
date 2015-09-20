@@ -3,7 +3,7 @@ upstream puma-<%= fetch(:application) %> {
 }
 
 server {
-  server_name www.gestion.eebulle.ch gestion.eebulle.ch
+  server_name www.gestion.eebulle.ch gestion.eebulle.ch;
   listen 80;
   listen [::]:80;
   root <%= fetch(:deploy_to) %>/current/public;

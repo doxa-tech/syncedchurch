@@ -229,7 +229,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.4.0)
   capistrano-bundler
-  capistrano-maintenance (~> 1.0)
+  capistrano-maintenance
   capistrano-rails (~> 1.1.0)
   capistrano-rvm
   capistrano3-puma
@@ -256,4 +256,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
