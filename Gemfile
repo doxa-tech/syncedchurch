@@ -71,7 +71,7 @@ gem 'capistrano-bundler'
 # if you are using RBENV
 gem 'capistrano-rvm'
 
-gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
+gem 'capistrano-maintenance', '~> 1.0'
 
 gem 'puma'
 

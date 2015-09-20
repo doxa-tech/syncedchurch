@@ -86,6 +86,7 @@ fr:
       mobile: "Mobile"
   views:
     header:
+      dashboard: "Dashboard"
       members: "Membres"
       followups: "Suivis"
       groups: "Groupes"
