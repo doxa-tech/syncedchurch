@@ -28,6 +28,11 @@ end
 
 Then(/^I should see the member "(.*?)" in the list$/) do |name|
   expect(find ".member:last-child").to have_content name
+  expect(find ".member:last-child").to have_content "Membre"
+end
+
+Then(/^I should see the responsable "(.*?)" in the list$/) do |name|
+  expect(find ".member:last-child").to have_content name
   expect(find ".member:last-child").to have_content "Responsable"
 end
 

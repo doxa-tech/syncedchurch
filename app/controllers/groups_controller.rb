@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     if @group.update_attributes(group_params)
       flash[:success] = t("group.edit.success")
     else
-      render 'form_error', locals: { object: @group }
+      render 'form_error', locals: { object: @group, selector: ".edit_group" }
     end
   end
 

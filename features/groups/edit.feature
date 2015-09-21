@@ -27,14 +27,14 @@ Feature: Edit a group
     When I visit the edit page of the group
     Then I should see the member "Alfred Dupont" in the list
 
-  @javascript
+  @javascript @wip
   Scenario: I add a member to the group
     #Given I am logged in
     Given there is a group
     And there are members in the church
     When I visit the edit page of the group
     And I choose a member and add him
-    Then I should see the member "John Smith" in the list
+    Then I should see the responsable "John Smith" in the list
 
   @javascript
   Scenario: I delete a member of the group
