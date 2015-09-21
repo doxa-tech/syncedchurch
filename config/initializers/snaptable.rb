@@ -1,0 +1,1 @@
+Snaptable.show_button = true

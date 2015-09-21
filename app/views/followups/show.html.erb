@@ -1,0 +1,15 @@
+<%= render 'back_button', path: followups_path %>
+
+<h1><%= t("followup.edit.title", user: @followup.member.full_name) %></h1>
+
+<%= link_to t("views.followups.show.edit"), edit_followup_path(@followup) %>
+
+<ul>
+  <li><%= @followup.member.full_name %></li>
+  <li><%= @followup.counselor.full_name %></li>
+  <li><%= @followup.duration %></li>
+  <li><%= l @followup.date, format: :long %></li>
+  <li><%= t("followup.places.#{@followup.place}") %></li>
+  <li><%= t("followup.reasons.#{@followup.reason}") %></li>
+  <li><%= @followup.notes %></li>
+<ul>

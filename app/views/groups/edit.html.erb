@@ -1,3 +1,9 @@
+<%= render 'back_button', path: groups_path %>
+
+<h1><%= @group.name %></h1>
+
+<%= link_to t("views.groups.edit.show"), group_path(@group) %>
+
 <%= form_for @group, remote: true do |f| %>
     
   <%= render 'fields', f: f %>

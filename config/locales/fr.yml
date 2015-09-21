@@ -1,6 +1,7 @@
 fr:
   application:
     error: "erreur"
+    back: "Retour"
   errors:
     format: 'le champ "%{attribute}" %{message}'
   member:
@@ -112,6 +113,9 @@ fr:
       select: "Sélectionnez un membre"
       show:
         family: "%{role} dans la famille %{family}"
+        edit: "Mettre à jour"
+      edit:
+        show: "Voir la fiche du membre"
       index:
         export:
           title: "Exporter la liste des membres" 
@@ -119,5 +123,14 @@ fr:
         import:
           title: "Importer une liste (CSV)"
           submit: "Importer"
+    followups:
+      show:
+        edit: "Mettre à jour"
+      edit:
+        show: "Voir la fiche du suivi"
     groups:
       add: "Ajouter"
+      show:
+        edit: "Mettre à jour"
+      edit:
+        show: "Voir la fiche du groupe"

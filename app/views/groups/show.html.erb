@@ -1,0 +1,17 @@
+<%= render 'back_button', path: groups_path %>
+
+<h1><%= @group.name %></h1>
+
+<%= link_to t("views.groups.show.edit"), edit_group_path(@group) %>
+
+<ul>
+  <li><%= @group.name %></li>
+  <li><%= t("group.group_types.#{@group.group_type}") %></li>
+  <li><%= t("group.places.#{@group.place}") %> <%= @group.place_other %></li>
+
+  <ul>
+    <% @group.members.each do |member| %>
+      <li><%= member.full_name %> <%= t("groupmember.statuses.#{member.status}") %></li>
+    <% end %>
+  </ul>
+<ul>

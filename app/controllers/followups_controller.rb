@@ -5,6 +5,10 @@ class FollowupsController < ApplicationController
     @table.respond
   end
 
+  def show
+    @followup = Followup.find(params[:id])
+  end
+
   def new
     @followup = Followup.new
   end

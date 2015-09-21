@@ -1,4 +1,8 @@
+<%= render 'back_button', path: members_path %>
+
 <h1><%= @member.full_name %></h1>
+
+<%= link_to t("views.members.show.edit"), edit_member_path(@member) %>
 
 <ul>
   <li><%= t("member.genders.#{@member.gender}") %></li>
