@@ -2,7 +2,7 @@ class Group < ActiveRecord::Base
   enum group_type: [:concil, :service, :homegroup]
   enum place: [:church, :member, :other]
 
-  has_many :group_members
+  has_many :group_members, dependent: :destroy
   has_many :members, through: :group_members
 
   validates :name, presence: true, length: { maximum: 100 }

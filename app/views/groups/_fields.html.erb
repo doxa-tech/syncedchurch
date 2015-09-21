@@ -1,0 +1,15 @@
+<%= render 'error_messages', object: f.object %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :group_type %>
+<%= f.select :group_type, options_for_enum(@group, :group_type) %>
+
+<%= f.label :place %>
+<%= f.select :place, options_for_enum(@group, :place) %>
+
+<%= f.label :place_other %>
+<%= f.text_field :place_other %>
+
+<%= f.submit %>

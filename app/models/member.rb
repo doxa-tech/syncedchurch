@@ -4,14 +4,14 @@ class Member < ActiveRecord::Base
 
   attr_writer :status
 
-  has_many :phones
+  has_many :phones, dependent: :destroy
   belongs_to :family
 
-  has_many :group_members
+  has_many :group_members, dependent: :destroy
   has_many :groups, through: :group_members
 
-  has_many :followups
-  has_many :counselings, foreign_key: :counselor_id, class_name: :Followup
+  has_many :followups, dependent: :destroy
+  has_many :counselings, foreign_key: :counselor_id, class_name: :Followup, dependent: :destroy
 
   accepts_nested_attributes_for :phones, allow_destroy: true, reject_if: proc { |a| a[:number].blank? }
 

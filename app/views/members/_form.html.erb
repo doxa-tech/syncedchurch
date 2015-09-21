@@ -1,0 +1,75 @@
+<%= form_for @member do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :gender %>
+  <%= f.select :gender, options_for_enum(@member, :gender)  %>
+
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname %>
+
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+
+  <%= f.label :birthday %>
+  <%= f.date_select :birthday, { :start_year => Date.today.year, :end_year => 110.years.ago.year } %>
+  <%= privatize_check_box_tag("birthday") %>
+
+  <%= f.label :adress %>
+  <%= f.text_field :adress %>
+  <%= privatize_check_box_tag("adress") %>
+
+  <%= f.label :npa %>
+  <%= f.number_field :npa %>
+  <%= privatize_check_box_tag("npa") %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+  <%= privatize_check_box_tag("city") %>
+
+  <%= f.label :job %>
+  <%= f.text_field :job %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= privatize_check_box_tag("email") %>
+
+  <%= f.label :extra %>
+  <%= f.text_area :extra %>
+
+  <%= f.fields_for :family, (@member.build_family if @member.family.nil?) do |family_f| %>
+
+    <%= family_f.label :lastname %>
+    <%= family_f.text_field :lastname %>
+
+  <% end %>
+
+  <%= f.label :role %>
+  <%= f.select :role, options_for_enum(@member, :role) %>
+
+  <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
+    <div class="fields-for">
+      <div class="phones-fields">
+        <%= phone_f.label :phone_type %>
+        <%= phone_f.select :phone_type, options_for_enum(phone_f.object, :phone_type) %>
+
+        <%= phone_f.label :number %>
+        <%= phone_f.text_field :number %>
+
+        <%= phone_f.check_box :private %>
+
+        <%= phone_f.hidden_field :_destroy, identifier: "destroy" %>
+
+        <button class="remove-fields" data-type="phones">Supprimer</button>
+      </div>
+
+      <button class="add-fields" data-type="phones" data-count="<%= @member.phones.count %>">
+        Ajouter un numéro
+      </button>
+    </div>
+
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

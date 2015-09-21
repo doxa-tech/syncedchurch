@@ -11,3 +11,9 @@ Feature: Follow up a member
     When I visit "/followups/new"
     And I complete meeting's form with the required fields
     Then I should see a flash containing "La rencontre a été enregistrée"
+
+  Scenario: I add a followup without the required fields
+    #Given I am logged in
+    When I visit "/followups/new"
+    And I do not complete the form
+    Then I should see errors for the fields "Membre, Conseiller, Durée"

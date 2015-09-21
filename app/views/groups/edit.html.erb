@@ -1,17 +1,6 @@
 <%= form_for @group, remote: true do |f| %>
     
-  <%= render 'error_messages', object: f.object %>
-
-  <%= f.label :group_type %>
-  <%= f.select :group_type, options_for_enum(Group, :group_types, @group.group_type) %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :place %>
-  <%= f.select :place, options_for_enum(Group, :places, @group.place) %>
-
-  <%= f.submit %>
+  <%= render 'fields', f: f %>
 
 <% end %>
 
@@ -20,7 +9,7 @@
   <%= select_tag :member_id, nil, prompt: t("views.members.select"), class: "selectize-member", id: "member_id" %>
 
   <%= label_tag :status %>
-  <%= select_tag :status, options_for_enum(GroupMember, :statuses) %>
+  <%= select_tag :status, options_for_enum(GroupMember.new, :status) %>
 
   <%= submit_tag t("views.groups.add") %>
 

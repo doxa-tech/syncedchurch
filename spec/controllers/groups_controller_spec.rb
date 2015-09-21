@@ -10,4 +10,13 @@ RSpec.describe GroupsController, type: :controller do
 
   end
 
+  describe "DELETE #destroy" do
+
+    it "deletes a record" do
+      group = create(:group)
+      expect { delete :destroy, id: group.id }.to change { Group.count }.by(-1)
+    end
+
+  end
+
 end

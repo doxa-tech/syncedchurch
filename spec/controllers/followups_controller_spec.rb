@@ -10,4 +10,13 @@ RSpec.describe FollowupsController, type: :controller do
 
   end
 
+  describe "DELETE #destroy" do
+
+    it "deletes a record" do
+      followup = create(:followup)
+      expect { delete :destroy, id: followup.id }.to change { Followup.count }.by(-1)
+    end
+
+  end
+
 end

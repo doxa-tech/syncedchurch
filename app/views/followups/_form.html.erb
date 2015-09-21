@@ -1,0 +1,30 @@
+<%= form_for @followup do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :member_id %>
+  <%= f.select :member_id, [@followup.member.try(:full_name), @followup.member_id], 
+    { prompt: t("views.members.select") }, { class: "selectize-member" } %>
+
+  <%= f.label :counselor_id %>
+  <%= f.select :counselor_id, [@followup.counselor.try(:full_name), @followup.counselor_id], 
+    { prompt: t("views.members.select") }, { class: "selectize-member" } %>
+
+  <%= f.label :date %>
+  <%= f.date_select :date %>
+
+  <%= f.label :reason %>
+  <%= f.select :reason, options_for_enum(@followup, :reason) %>
+
+  <%= f.label :place %>
+  <%= f.select :place, options_for_enum(@followup, :place) %>
+
+  <%= f.label :duration %>
+  <%= f.number_field :duration %>
+
+  <%= f.label :notes %>
+  <%= f.text_area :notes %>
+
+  <%= f.submit %>
+
+<% end %>

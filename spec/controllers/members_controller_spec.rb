@@ -19,4 +19,13 @@ RSpec.describe MembersController, type: :controller do
 
   end
 
+  describe "DELETE #destroy" do
+
+    it "deletes a record" do
+      member = create(:member)
+      expect { delete :destroy, id: member.id }.to change { Member.count }.by(-1)
+    end
+
+  end
+
 end

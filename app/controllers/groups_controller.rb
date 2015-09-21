@@ -25,10 +25,15 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update_attributes(group_params)
-      flash[:success] = "Mis à jour !"
+      flash[:success] = t("group.edit.success")
     else
       render 'form_error', locals: { object: @group }
     end
+  end
+
+  def destroy
+    Group.find(params[:id]).destroy
+    redirect_to groups_path, success: t("group.destroy.success")
   end
 
   #

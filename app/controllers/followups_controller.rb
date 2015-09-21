@@ -12,10 +12,28 @@ class FollowupsController < ApplicationController
   def create
     @followup = Followup.new(followup_attributes)
     if @followup.save
-      redirect_to followups_path, success: "La rencontre a été enregistrée"
+      redirect_to followups_path, success: t("followup.new.success")
     else
       render 'new'
     end
+  end
+
+  def edit
+    @followup = Followup.find(params[:id])
+  end
+
+  def update
+    @followup = Followup.find(params[:id])
+    if @followup.update_attributes(followup_attributes)
+      redirect_to edit_followup_path(@followup), success: t("followup.edit.success")
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Followup.find(params[:id]).destroy
+    redirect_to followups_path, success: t("followup.destroy.success")
   end
 
   private

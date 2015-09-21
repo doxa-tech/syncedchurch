@@ -33,9 +33,32 @@ class MembersController < ApplicationController
     end
   end
 
+  def edit
+    @member = Member.find(params[:id])
+  end
+
+  def update
+    @member = Member.find(params[:id])
+    if @member.update_attributes(member_params)
+      redirect_to edit_member_path(@member), success: t("member.edit.success")
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Member.find(params[:id]).destroy
+    redirect_to members_path, success: t("member.destroy.success")
+  end
+
   def import
-    Member.import(params[:file])
-    redirect_to members_path, success: t("member.import.success")
+    if params[:file]
+      Member.import(params[:file])
+      flash[:success] = t("member.import.success")
+    else
+      flash[:error] = t("member.import.error")
+    end
+    redirect_to members_path
   end
 
   private
