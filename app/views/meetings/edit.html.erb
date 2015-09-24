@@ -1,0 +1,6 @@
+<h1><%= t("meeting.edit.title", date: l(@meeting.date, format: :long), group: @meeting.group.name) %></h1>
+
+<%= link_to t("views.meetings.new.group"), group_path(@meeting.group) %>
+<%= link_to t("views.meetings.edit.show"), meeting_path(@meeting) %>
+
+<%= render 'form' %>

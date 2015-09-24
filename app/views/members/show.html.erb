@@ -19,3 +19,13 @@
     <% end %>
   </ul>
 <ul>
+
+<div id="followups">
+
+  <%= @member.followups.each do |followup| %>
+
+    <%= l followup.date, format: :long %>
+
+  <% end %>
+
+</div>

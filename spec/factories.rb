@@ -29,5 +29,12 @@ FactoryGirl.define do
     notes "Très bon partage"
     duration 20
   end
+
+  factory :meeting do
+    date { Date.today }
+    group { Group.find_by_name("Conseil d'église") || create(:group) }
+    attending_members {[ Member.find_by_firstname("Alfred") || create(:group_member) ]}
+    external_members {[ Member.find_by_firstname("John") || create(:member) ]}
+  end
   
 end

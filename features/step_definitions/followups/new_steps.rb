@@ -1,4 +1,4 @@
-When(/^I complete meeting's form with the required fields$/) do
+When(/^I complete followup's form with the required fields$/) do
   create(:group_member)
 
   fill_in_selectized "followup_member_id", with: "John Smith"
@@ -9,4 +9,8 @@ When(/^I complete meeting's form with the required fields$/) do
   fill_in "Durée", with: "20"
   fill_in "Notes", with: "Très bon partage"
   click_button "Créer"
+end
+
+Then(/^I should see the new followup in the member's overview$/) do
+  expect(find "#followups").to have_content "12 juin 2015"
 end

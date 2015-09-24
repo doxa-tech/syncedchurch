@@ -4,6 +4,8 @@ fr:
     back: "Retour"
   errors:
     format: 'le champ "%{attribute}" %{message}'
+    messages:
+      attending_member: "est incomplet: Veuillez sélectionner au moins un membre présent"
   member:
     new:
       title: "Ajouter un membre"
@@ -57,6 +59,15 @@ fr:
       friendly: "Rencontre fraternelle"
     places:
       home: "Domicile"
+  meeting:
+    new:
+      title: "Ajouter une réunion"
+      success: "La réunion a été enregistrée"
+    edit:
+      title: "Réunion du groupe %{group} le %{date}"
+      success: "Réunion mise à jour !"
+    choose:
+      title: "Choisissez un groupe"
   attributes:
     name: "Nom"
     lastname: "Nom"
@@ -90,6 +101,11 @@ fr:
       followup:
         reason: "Motif"
         place: "Lieu de rencontre"
+      meeting:
+        group_id: "Groupe"
+        attending_members: "Membres présents"
+        attending_member_ids: "Membres présents"
+        external_member_ids: "Participants externes"
   helpers:
     submit:
       create: Créer
@@ -97,6 +113,9 @@ fr:
       update: Enregistrer
       group:
         create: "Continuer"
+    label:
+      meeting:
+        group_id: "Groupe"
   phone:
     phone_types:
       home: "Domicile"
@@ -109,6 +128,7 @@ fr:
       members: "Membres"
       followups: "Suivis"
       groups: "Groupes"
+      meetings: "Réunions"
     members:
       select: "Sélectionnez un membre"
       show:
@@ -132,5 +152,18 @@ fr:
       add: "Ajouter"
       show:
         edit: "Mettre à jour"
+      meetings:
+        add: "Ajouter une réunion"
       edit:
         show: "Voir la fiche du groupe"
+    meetings:
+      new:
+        group: "Aller sur la fiche du groupe"
+        choose: "Changer de groupe"
+      show:
+        edit: "Mettre à jour"
+      edit:
+        show: "Voir la fiche de la réunion"
+        short_show: "Voir"
+      choose:
+        continue: "Continuer"

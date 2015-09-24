@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 
   has_many :group_members, dependent: :destroy
   has_many :members, through: :group_members
+  has_many :meetings
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :group_type, presence: true

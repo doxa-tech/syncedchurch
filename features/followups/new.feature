@@ -5,12 +5,13 @@ Feature: Follow up a member
   I want to add a new meeting
 
   @javascript
-  Scenario: I add a new meeting
+  Scenario: I add a new meeting with the required fields
     #Given I am logged in
     Given there are members in the church
     When I visit "/followups/new"
-    And I complete meeting's form with the required fields
+    And I complete followup's form with the required fields
     Then I should see a flash containing "La rencontre a été enregistrée"
+    And I should see the new followup in the member's overview
 
   Scenario: I add a followup without the required fields
     #Given I am logged in

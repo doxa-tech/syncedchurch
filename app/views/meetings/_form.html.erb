@@ -1,0 +1,16 @@
+<%= form_for [@group, @meeting] do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :date %>
+  <%= f.date_select :date %>
+
+  <%= f.label :attending_member_ids %>
+  <%= f.collection_check_boxes :attending_member_ids, @meeting.group.members, :id, :full_name %>
+
+  <%= f.label :external_member_ids %>
+  <%= f.select :external_member_ids, @meeting.external_members, {}, { multiple: true, class: "selectize-member" } %>
+
+  <%= f.submit %>
+
+<% end %>

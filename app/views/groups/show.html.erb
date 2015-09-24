@@ -14,4 +14,17 @@
       <li><%= member.full_name %> <%= t("groupmember.statuses.#{member.status}") %></li>
     <% end %>
   </ul>
-<ul>
+</ul>
+
+<div id="meetings">
+  <%= link_to t("views.groups.meetings.add"), new_group_meeting_path(@group) %>
+
+  <% @group.meetings.each do |meeting| %>
+
+    <%= l meeting.date, format: :long %>
+    <span class="member-count"><%= meeting.attending_members.size + meeting.external_members.size %></span>
+    <%= link_to t("views.meetings.show.edit"), edit_meeting_path(meeting) %>
+    <%= link_to t("views.meetings.edit.short_show"), meeting_path(meeting) %>
+
+  <% end %>
+</div>

@@ -13,6 +13,9 @@ class Member < ActiveRecord::Base
   has_many :followups, dependent: :destroy
   has_many :counselings, foreign_key: :counselor_id, class_name: :Followup, dependent: :destroy
 
+  has_many :attending_meeting_members, dependent: :destroy
+  has_many :attending_meetings, through: :attending_meeting_members, source: :meeting
+
   accepts_nested_attributes_for :phones, allow_destroy: true, reject_if: proc { |a| a[:number].blank? }
 
   validates :firstname, presence: true, length: { maximum: 100 }

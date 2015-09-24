@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: "pages#dashboard"
 
-  get "/list", to: "members#list"
+  get "list", to: "members#list"
 
   %w[dashboard].each do |page|
     get "#{page}", to: "pages##{page}"
@@ -14,6 +14,13 @@ Rails.application.routes.draw do
       post "import"
     end
   end
+
+  resources :meetings, only: :index do
+    collection do
+      get "choose"
+    end
+  end
+
   resources :groups do
 
     member do
@@ -22,9 +29,11 @@ Rails.application.routes.draw do
       delete "remove"
     end
 
+    resources :meetings, shallow: true, expect: :index
+
   end
 
   scope "api" do
-    get "/members", to: "api#members"
+    get "members", to: "api#members"
   end
 end

@@ -27,7 +27,7 @@ Feature: Edit a group
     When I visit the edit page of the group
     Then I should see the member "Alfred Dupont" in the list
 
-  @javascript @wip
+  @javascript
   Scenario: I add a member to the group
     #Given I am logged in
     Given there is a group

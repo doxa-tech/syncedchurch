@@ -16,7 +16,7 @@ class FollowupsController < ApplicationController
   def create
     @followup = Followup.new(followup_attributes)
     if @followup.save
-      redirect_to followups_path, success: t("followup.new.success")
+      redirect_to member_path(@followup.member), success: t("followup.new.success")
     else
       render 'new'
     end

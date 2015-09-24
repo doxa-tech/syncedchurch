@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911185259) do
+ActiveRecord::Schema.define(version: 20150924153159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attending_meeting_members", force: :cascade do |t|
+    t.integer  "meeting_id"
+    t.integer  "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attending_meeting_members", ["meeting_id"], name: "index_attending_meeting_members_on_meeting_id", using: :btree
+  add_index "attending_meeting_members", ["member_id"], name: "index_attending_meeting_members_on_member_id", using: :btree
+
+  create_table "external_meeting_members", force: :cascade do |t|
+    t.integer  "meeting_id"
+    t.integer  "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "external_meeting_members", ["meeting_id"], name: "index_external_meeting_members_on_meeting_id", using: :btree
+  add_index "external_meeting_members", ["member_id"], name: "index_external_meeting_members_on_member_id", using: :btree
 
   create_table "families", force: :cascade do |t|
     t.string   "lastname"
@@ -57,6 +77,15 @@ ActiveRecord::Schema.define(version: 20150911185259) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "meetings", ["group_id"], name: "index_meetings_on_group_id", using: :btree
+
   create_table "members", force: :cascade do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -88,10 +117,15 @@ ActiveRecord::Schema.define(version: 20150911185259) do
 
   add_index "phones", ["member_id"], name: "index_phones_on_member_id", using: :btree
 
+  add_foreign_key "attending_meeting_members", "meetings"
+  add_foreign_key "attending_meeting_members", "members"
+  add_foreign_key "external_meeting_members", "meetings"
+  add_foreign_key "external_meeting_members", "members"
   add_foreign_key "followups", "members"
   add_foreign_key "followups", "members", name: "fk_counselors_followups"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "members"
+  add_foreign_key "meetings", "groups"
   add_foreign_key "members", "families"
   add_foreign_key "phones", "members"
 end
