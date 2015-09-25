@@ -3,6 +3,9 @@
 
 $(document).on("ready page:load", function() {
   
-  console.log("hello world");
+  $("#choose-group-meeting").click(function() {
+    var id = $("#meeting_group_id").val();
+    window.location.href = "/groups/" + id + "/meetings/new";
+  });
 
 });
