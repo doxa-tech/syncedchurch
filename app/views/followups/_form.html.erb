@@ -4,11 +4,11 @@
 
   <%= f.label :member_id %>
   <%= f.select :member_id, [@followup.member.try(:full_name), @followup.member_id], 
-    { prompt: t("views.members.select") }, { class: "selectize-member" } %>
+    { prompt: t("members.select") }, { class: "selectize-member" } %>
 
   <%= f.label :counselor_id %>
   <%= f.select :counselor_id, [@followup.counselor.try(:full_name), @followup.counselor_id], 
-    { prompt: t("views.members.select") }, { class: "selectize-member" } %>
+    { prompt: t("members.select") }, { class: "selectize-member" } %>
 
   <%= f.label :date %>
   <%= f.date_select :date %>

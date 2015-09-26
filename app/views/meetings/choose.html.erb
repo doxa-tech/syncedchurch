@@ -1,10 +1,10 @@
 <%= render 'back_button', path: meetings_path %>
 
-<h1><%= t("meeting.choose.title") %></h1>
+<h1><%= t(".title") %></h1>
 
 <form>
   <%= label :meeting, :group_id %>
   <%= collection_select :meeting, :group_id, Group.all, :id, :name %>
 </form>
 
-<button type="button" id="choose-group-meeting"><%= t("views.meetings.choose.continue") %></button>
+<button type="button" id="choose-group-meeting"><%= t(".continue") %></button>

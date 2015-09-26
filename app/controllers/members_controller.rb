@@ -27,7 +27,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
-      redirect_to member_path(@member), success: t("member.new.success")
+      redirect_to member_path(@member), success: t("members.new.success")
     else
       render 'new'
     end
@@ -40,7 +40,7 @@ class MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update_attributes(member_params)
-      redirect_to edit_member_path(@member), success: t("member.edit.success")
+      redirect_to edit_member_path(@member), success: t("members.edit.success")
     else
       render 'edit'
     end
@@ -48,15 +48,15 @@ class MembersController < ApplicationController
 
   def destroy
     Member.find(params[:id]).destroy
-    redirect_to members_path, success: t("member.destroy.success")
+    redirect_to members_path, success: t("members.destroy.success")
   end
 
   def import
     if params[:file]
       Member.import(params[:file])
-      flash[:success] = t("member.import.success")
+      flash[:success] = t("members.import.success")
     else
-      flash[:error] = t("member.import.error")
+      flash[:error] = t("members.import.error")
     end
     redirect_to members_path
   end

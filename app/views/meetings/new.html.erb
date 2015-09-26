@@ -1,8 +1,8 @@
-<h1><%= t("meeting.new.title") %></h1>
+<h1><%= t(".title") %></h1>
 
 <div>
-  <%= link_to t("views.meetings.new.group"), group_path(@group) %>
-  <%= link_to t("views.meetings.new.choose"), choose_meetings_path %>
+  <%= link_to t(".group"), group_path(@group) %>
+  <%= link_to t(".choose"), choose_meetings_path %>
 </div>
 
 <%= render 'form' %>

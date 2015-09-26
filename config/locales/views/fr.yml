@@ -1,0 +1,60 @@
+fr:
+  header:
+    dashboard: "Dashboard"
+    members: "Membres"
+    followups: "Suivis"
+    groups: "Groupes"
+    meetings: "Réunions"
+  members:
+    select: "Sélectionnez un membre"
+    index:
+      export:
+        title: "Exporter la liste des membres" 
+        link: "Exporter"
+      import:
+        title: "Importer une liste (CSV)"
+        submit: "Importer"
+    show:
+      edit: "Mettre à jour"
+      family: "%{role} dans la famille %{family}"
+    new:
+      title: "Ajouter un membre"
+    edit:
+      title: "Mettre à jour %{user}"
+      show: "Voir la fiche du membre"
+  groups:
+    new:
+      title: "Ajouter un groupe"
+    edit:
+      add: "Ajouter"
+      show: "Voir la fiche du groupe"
+    show:
+      edit: "Mettre à jour"
+      meetings:
+        add: "Ajouter une réunion"
+        edit: "Editer"
+        show: "Voir"
+  followups:
+    new:
+      title: "Nouveau suivi"
+    edit:
+      title: "Suivi de %{user}"
+      show: "Voir la fiche du suivi"
+    show:
+      title: "Suivi de %{user}"
+      edit: "Mettre à jour"
+  meetings:
+    show:
+      title: "Réunion du groupe %{group} le %{date}"
+      edit: "Mettre à jour"
+      group: "Aller sur la fiche du groupe"
+    new:
+      title: "Ajouter une réunion"
+      group: "Aller sur la fiche du groupe"
+      choose: "Changer de groupe"
+    edit:
+      title: "Réunion du groupe %{group} le %{date}"
+      show: "Voir la fiche de la réunion"
+      group: "Aller sur la fiche du groupe"
+    choose:
+      title: "Choisissez un groupe"

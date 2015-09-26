@@ -2,7 +2,7 @@
 
 <h1><%= @group.name %></h1>
 
-<%= link_to t("views.groups.edit.show"), group_path(@group) %>
+<%= link_to t(".show"), group_path(@group) %>
 
 <%= form_for @group, remote: true do |f| %>
     
@@ -12,12 +12,12 @@
 
 <%= form_tag add_group_path(@group), remote: true do %>
   
-  <%= select_tag :member_id, nil, prompt: t("views.members.select"), class: "selectize-member", id: "member_id" %>
+  <%= select_tag :member_id, nil, prompt: t("members.select"), class: "selectize-member", id: "member_id" %>
 
   <%= label_tag :status %>
   <%= select_tag :status, options_for_enum(GroupMember.new, :status) %>
 
-  <%= submit_tag t("views.groups.add") %>
+  <%= submit_tag t(".add") %>
 
 <% end %>
 

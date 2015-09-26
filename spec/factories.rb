@@ -1,3 +1,5 @@
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
 
   factory :member do
@@ -36,5 +38,10 @@ FactoryGirl.define do
     attending_members {[ Member.find_by_firstname("Alfred") || create(:group_member) ]}
     external_members {[ Member.find_by_firstname("John") || create(:member) ]}
   end
-  
+
+  factory :meeting_file do
+    name "PV"
+    file { fixture_file_upload(File.join(Rails.root, '/spec/fixtures/files/projet.pdf'), 'text/pdf') }
+  end
+
 end

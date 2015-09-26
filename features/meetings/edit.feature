@@ -4,7 +4,6 @@ Feature: Edit a meeting
   As a administrator
   I want to edit a meeting
 
-  @wip
   Scenario: I successfully edit a meeting
     #Given I a logged in
     When I visit the meeting edit path

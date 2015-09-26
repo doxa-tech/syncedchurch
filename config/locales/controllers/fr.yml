@@ -1,0 +1,30 @@
+fr:
+  members:
+    new:
+      success: "Le nouveau membre a été ajouté !"
+    edit:
+      success: "Le membre a été mis à jour !"
+    destroy:
+      success: "Le membre a été supprimé"
+    import:
+      success: "Les données ont été importée !"
+      error: "Veuillez choisir un fichier"
+  groups:
+    new:
+      success: "Le nouveau groupe a été créé !"
+    destroy:
+      success: "Le groupe a été supprimé"
+    edit:
+      success: "Mis à jour !"
+  followups:
+    new:
+      success: "La rencontre a été enregistrée"
+    edit:
+      success: "Le suivi a été mis à jour !"
+    destroy:
+      success: "Le suivi a été supprimé"
+  meetings:
+    new:
+      success: "La réunion a été enregistrée"
+    edit:
+      success: "Réunion mise à jour !"

@@ -1,0 +1,78 @@
+fr:
+  errors:
+    messages:
+      attending_member: "est incomplet: Veuillez sélectionner au moins un membre présent"
+  attributes:
+    name: "Nom"
+    lastname: "Nom"
+    firstname: "Prénom"
+    birthday: "Date de naissance"
+    gender: "Sexe"
+    adress: "Adresse (Rue, n°)"
+    npa: "NPA"
+    job: "Emploi"
+    phone_type: "Type"
+    group_type: "Type"
+    place: "Lieu"
+    duration: "Durée"
+    created_at: "Créé le"
+    updated_at: "Mis à jour le"
+    counselor: "Conseiller"
+    counselor_id: "Conseiller"
+    member: "Membre"
+    member_id: "Membre"
+    group_id: "Groupe"
+    file: "Fichier"
+    city: "Ville"
+  activerecord:
+    attributes:
+      member:
+        extra: "Informations supplémentaires"
+        role: "Place dans la famille"
+      phone:
+        number: "Numéro"
+      family:
+        lastname: "Famille"
+      group:
+        place_other: "Spécifier le lieu"
+      followup:
+        reason: "Motif"
+        place: "Lieu de rencontre"
+      meeting:
+        group_id: "Groupe"
+        attending_members: "Membres présents"
+        attending_member_ids: "Membres présents"
+        external_member_ids: "Participants externes"
+  member:
+    roles:
+      father: "Père"
+      mother: "Mère"
+      son: "Fils"
+      daughter: "Fille"
+    genders:
+      male: "Homme"
+      female: "Femme"
+  group:
+    places:
+      church: "A l'église"
+      member: "Chez un membre"
+      other: "Autre (spécifier)"
+    group_types:
+      concil: "Conseil"
+      service: "Service"
+      homegroup: "Groupe de maison"
+  groupmember:
+    statuses:
+      member: "Membre"
+      responsable: "Responsable"
+  followup:
+    reasons:
+      friendly: "Rencontre fraternelle"
+    places:
+      home: "Domicile"
+  phone:
+    phone_types:
+      home: "Domicile"
+      work: "Travail"
+      other: "Autre"
+      mobile: "Mobile"

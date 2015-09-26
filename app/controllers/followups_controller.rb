@@ -16,7 +16,7 @@ class FollowupsController < ApplicationController
   def create
     @followup = Followup.new(followup_attributes)
     if @followup.save
-      redirect_to member_path(@followup.member), success: t("followup.new.success")
+      redirect_to member_path(@followup.member), success: t("followups.new.success")
     else
       render 'new'
     end
@@ -29,7 +29,7 @@ class FollowupsController < ApplicationController
   def update
     @followup = Followup.find(params[:id])
     if @followup.update_attributes(followup_attributes)
-      redirect_to edit_followup_path(@followup), success: t("followup.edit.success")
+      redirect_to edit_followup_path(@followup), success: t("followups.edit.success")
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class FollowupsController < ApplicationController
 
   def destroy
     Followup.find(params[:id]).destroy
-    redirect_to followups_path, success: t("followup.destroy.success")
+    redirect_to followups_path, success: t("followups.destroy.success")
   end
 
   private

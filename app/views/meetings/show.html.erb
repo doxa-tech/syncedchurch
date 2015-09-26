@@ -1,13 +1,24 @@
 <%= render 'back_button', path: meetings_path %>
 
-<h1><%= t("meeting.edit.title", date: l(@meeting.date, format: :long), group: @meeting.group.name) %></h1>
+<h1><%= t(".title", date: l(@meeting.date, format: :long), group: @meeting.group.name) %></h1>
 
-<%= link_to t("views.meetings.show.edit"), edit_meeting_path(@meeting) %>
+<%= link_to t(".group"), group_path(@meeting.group) %>
+<%= link_to t(".edit"), edit_meeting_path(@meeting) %>
 
 <%= l @meeting.date, format: :long %>
+
+<span class="member-count"><%= @meeting.attending_members.size + @meeting.external_members.size %></span>
+
 <% @meeting.attending_members.each do |member| %>
   <%= member.full_name %>
 <% end %>
+
 <% @meeting.external_members.each do |member| %>
   <%= member.full_name %>
 <% end %>
+
+<div id="files">
+  <% @meeting.files.each do |file| %>
+    <%= file.name %>
+  <% end %>
+</div>

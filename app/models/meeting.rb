@@ -11,4 +11,8 @@ class Meeting < ActiveRecord::Base
 
   has_many :external_meeting_members, dependent: :destroy
   has_many :external_members, through: :external_meeting_members, source: :member
+
+  has_many :files, class_name: :MeetingFile
+
+  accepts_nested_attributes_for :files, allow_destroy: true, reject_if: proc { |a| a[:file].blank? && a[:name].blank? }
 end

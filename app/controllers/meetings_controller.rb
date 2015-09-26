@@ -18,7 +18,7 @@ class MeetingsController < ApplicationController
     @group = Group.find(params[:group_id])
     @meeting = @group.meetings.new(meeting_params)
     if @meeting.save
-      redirect_to group_path(@group), success: t("meeting.new.success")
+      redirect_to meeting_path(@meeting), success: t("meetings.new.success")
     else 
       render 'new'
     end
@@ -31,7 +31,7 @@ class MeetingsController < ApplicationController
   def update
     @meeting = Meeting.find(params[:id])
     if @meeting.update_attributes(meeting_params)
-      redirect_to edit_meeting_path(@meeting), success: t("meeting.edit.success")
+      redirect_to edit_meeting_path(@meeting), success: t("meetings.edit.success")
     else
       render 'edit'
     end
@@ -43,7 +43,7 @@ class MeetingsController < ApplicationController
   private
 
   def meeting_params
-    params.require(:meeting).permit(:date, attending_member_ids: [], external_member_ids: [])
+    params.require(:meeting).permit(:date, attending_member_ids: [], external_member_ids: [], files_attributes: [:name, :file, :_destroy])
   end
 
 end

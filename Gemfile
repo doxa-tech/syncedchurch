@@ -76,3 +76,5 @@ gem 'capistrano-maintenance', :require => false
 gem 'puma'
 
 gem 'snaptable'
+
+gem 'carrierwave'

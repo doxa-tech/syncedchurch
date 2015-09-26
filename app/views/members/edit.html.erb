@@ -1,7 +1,7 @@
 <%= render 'back_button', path: members_path %>
 
-<h1><%= t("member.edit.title", user: @member.full_name) %></h1>
+<h1><%= t(".title", user: @member.full_name) %></h1>
 
-<%= link_to t("views.members.edit.show"), member_path(@member) %>
+<%= link_to t(".show"), member_path(@member) %>
 
 <%= render 'form' %>

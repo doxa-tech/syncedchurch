@@ -2,14 +2,14 @@
 
 <h1><%= @member.full_name %></h1>
 
-<%= link_to t("views.members.show.edit"), edit_member_path(@member) %>
+<%= link_to t(".edit"), edit_member_path(@member) %>
 
 <ul>
   <li><%= t("member.genders.#{@member.gender}") %></li>
   <li><%= l(@member.birthday, format: :long) %></li>
 
   <% unless @member.family.nil? %>
-    <li><%= t("views.members.show.family", role: t("member.roles.#{@member.role}"), family: @member.family.lastname) %></li>
+    <li><%= t(".family", role: t("member.roles.#{@member.role}"), family: @member.family.lastname) %></li>
   <% end %>
 
   <ul>
@@ -22,7 +22,7 @@
 
 <div id="followups">
 
-  <%= @member.followups.each do |followup| %>
+  <% @member.followups.each do |followup| %>
 
     <%= l followup.date, format: :long %>
 

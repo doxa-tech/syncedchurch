@@ -1,0 +1,16 @@
+fr:
+  application:
+    error: "erreur"
+    back: "Retour"
+  errors:
+    format: 'le champ "%{attribute}" %{message}'
+  helpers:
+    submit:
+      create: Créer
+      submit: Envoyer
+      update: Enregistrer
+      group:
+        create: "Continuer"
+    label:
+      meeting:
+        group_id: "Groupe"

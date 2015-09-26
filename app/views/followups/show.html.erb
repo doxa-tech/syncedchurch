@@ -1,8 +1,8 @@
 <%= render 'back_button', path: followups_path %>
 
-<h1><%= t("followup.edit.title", user: @followup.member.full_name) %></h1>
+<h1><%= t(".title", user: @followup.member.full_name) %></h1>
 
-<%= link_to t("views.followups.show.edit"), edit_followup_path(@followup) %>
+<%= link_to t(".edit"), edit_followup_path(@followup) %>
 
 <ul>
   <li><%= @followup.member.full_name %></li>
