@@ -28,3 +28,5 @@ fr:
       success: "La réunion a été enregistrée"
     edit:
       success: "Réunion mise à jour !"
+    destroy:
+      success: "La réunion a été supprimée"

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       delete "remove"
     end
 
-    resources :meetings, shallow: true, expect: :index
+    resources :meetings, shallow: true, except: :index
 
   end
 

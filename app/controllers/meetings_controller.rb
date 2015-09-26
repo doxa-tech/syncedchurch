@@ -37,6 +37,11 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def destroy
+    Meeting.find(params[:id]).destroy
+    redirect_to meetings_path, success: t("meetings.destroy.success")
+  end
+
   def choose
   end
 
