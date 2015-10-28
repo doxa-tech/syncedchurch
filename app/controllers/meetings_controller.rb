@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
 
   def index
-    @table = MeetingTable.new(self, nil, { search: true, buttons: false })
+    @table = MeetingTable.new(self, nil, { search: true })
     @table.respond
   end
 
