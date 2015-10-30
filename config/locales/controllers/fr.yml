@@ -30,3 +30,9 @@ fr:
       success: "Réunion mise à jour !"
     destroy:
       success: "La réunion a été supprimée"
+  users:
+    new:
+      success: "Le membre est à présent un utilisateur !"
+      error: "Veuillez ajouter un email au membre avant de la convertir !"
+    destroy:
+      success: "L'utilisateur est à nouveau un simple membre !"

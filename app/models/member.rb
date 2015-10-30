@@ -4,6 +4,8 @@ class Member < ActiveRecord::Base
 
   attr_writer :status
 
+  has_one :user, dependent: :destroy
+
   has_many :phones, dependent: :destroy
   belongs_to :family
 

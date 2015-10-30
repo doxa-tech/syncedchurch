@@ -7,13 +7,25 @@ Rails.application.routes.draw do
   %w[dashboard].each do |page|
     get "#{page}", to: "pages##{page}"
   end
+
+  get "user/password/edit", to: "users#edit"
+
+  resources :sessions, only: :create
+  delete "logout", to: "sessions#destroy"
+  get "login", to: "sessions#new"
   
   resources :followups
+
+  resources :users, only: :index
+
   resources :members do
     collection do
       post "import"
     end
+
+    resources :users, shallow: true, except: [:index, :new]
   end
+
 
   resources :meetings, only: :index do
     collection do

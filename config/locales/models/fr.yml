@@ -30,6 +30,9 @@ fr:
       member:
         extra: "Informations supplémentaires"
         role: "Place dans la famille"
+      user:
+        password_digest: "Mot de passe"
+        confirmed: "Confirmé"
       phone:
         number: "Numéro"
       family:

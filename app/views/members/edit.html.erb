@@ -4,4 +4,27 @@
 
 <%= link_to t(".show"), member_path(@member) %>
 
-<%= render 'form' %>
+<%= render 'members/form' %>
+
+<div id="user">
+
+  <% if @member.user.nil? %>
+
+    <%= link_to t(".user.new"), member_users_path(@member), method: :post %>
+
+    <% if @user %>
+
+      <p><%= t(".user.instruction") %></p>
+
+      <p><%= t(".user.password") %>: <%= @password %></p>
+      <p><%= t(".user.username") %>: <%= @member.email %></p>
+
+    <% end %>
+
+  <% else %>
+
+    <%= link_to t(".user.destroy"), user_path(@member.user), method: :delete %>
+
+  <% end %>
+
+</div>

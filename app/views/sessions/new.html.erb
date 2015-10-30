@@ -1,0 +1,22 @@
+<div>
+  <%= form_for :session, url: sessions_path do |f| %>
+    <div>
+      <p>
+        <%= f.label :email %><br>
+        <%= f.text_field :email, placeholder: :email %>
+      </p>
+    </div>
+    <div>
+      <p>
+        <%= f.label :password %><br>
+        <%= f.password_field :password, placeholder: :password %>
+      </p>
+    </div>
+    <div>
+      <%= f.label :remember_me %>
+      <%= f.check_box :remember_me %>
+    </div>
+    <%= f.submit %>
+
+  <% end %>
+</div>

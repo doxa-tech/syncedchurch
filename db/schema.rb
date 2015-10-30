@@ -11,10 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926093231) do
+ActiveRecord::Schema.define(version: 20151030232757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adeia_action_permissions", force: :cascade do |t|
+    t.integer  "adeia_action_id"
+    t.integer  "adeia_permission_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "adeia_action_permissions", ["adeia_action_id"], name: "index_adeia_action_permissions_on_adeia_action_id", using: :btree
+  add_index "adeia_action_permissions", ["adeia_permission_id"], name: "index_adeia_action_permissions_on_adeia_permission_id", using: :btree
+
+  create_table "adeia_actions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "adeia_elements", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "adeia_group_users", force: :cascade do |t|
+    t.integer  "adeia_group_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "adeia_group_users", ["adeia_group_id"], name: "index_adeia_group_users_on_adeia_group_id", using: :btree
+  add_index "adeia_group_users", ["user_id"], name: "index_adeia_group_users_on_user_id", using: :btree
+
+  create_table "adeia_groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "adeia_permissions", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "adeia_element_id"
+    t.integer  "permission_type"
+    t.boolean  "read_right"
+    t.boolean  "create_right"
+    t.boolean  "update_right"
+    t.boolean  "destroy_right"
+    t.integer  "resource_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "adeia_permissions", ["adeia_element_id"], name: "index_adeia_permissions_on_adeia_element_id", using: :btree
+  add_index "adeia_permissions", ["owner_type", "owner_id"], name: "index_adeia_permissions_on_owner_type_and_owner_id", using: :btree
+
+  create_table "adeia_tokens", force: :cascade do |t|
+    t.string   "token"
+    t.boolean  "is_valid"
+    t.integer  "adeia_permission_id"
+    t.date     "exp_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "adeia_tokens", ["adeia_permission_id"], name: "index_adeia_tokens_on_adeia_permission_id", using: :btree
 
   create_table "attending_meeting_members", force: :cascade do |t|
     t.integer  "meeting_id"
@@ -129,6 +195,25 @@ ActiveRecord::Schema.define(version: 20150926093231) do
 
   add_index "phones", ["member_id"], name: "index_phones_on_member_id", using: :btree
 
+  create_table "users", force: :cascade do |t|
+    t.string   "password_digest"
+    t.string   "reset_token"
+    t.string   "reset_send_at"
+    t.string   "remember_token"
+    t.boolean  "confirmed"
+    t.integer  "member_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "users", ["member_id"], name: "index_users_on_member_id", using: :btree
+
+  add_foreign_key "adeia_action_permissions", "adeia_actions"
+  add_foreign_key "adeia_action_permissions", "adeia_permissions"
+  add_foreign_key "adeia_group_users", "adeia_groups"
+  add_foreign_key "adeia_group_users", "users"
+  add_foreign_key "adeia_permissions", "adeia_elements"
+  add_foreign_key "adeia_tokens", "adeia_permissions"
   add_foreign_key "attending_meeting_members", "meetings"
   add_foreign_key "attending_meeting_members", "members"
   add_foreign_key "external_meeting_members", "meetings"
@@ -141,4 +226,5 @@ ActiveRecord::Schema.define(version: 20150926093231) do
   add_foreign_key "meetings", "groups"
   add_foreign_key "members", "families"
   add_foreign_key "phones", "members"
+  add_foreign_key "users", "members"
 end

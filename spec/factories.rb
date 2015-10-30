@@ -7,10 +7,18 @@ FactoryGirl.define do
     lastname "Smith"
     birthday { 40.years.ago }
     gender "male"
+    email { "#{firstname.downcase}@#{lastname.downcase}.com" }
 
     factory :group_member do
       firstname "Alfred"
       lastname "Dupont"
+    end
+
+    factory :user do
+      after(:create) do |member| 
+        password = SecureRandom.hex(8)
+        User.create!(member: member, password: password, password_confirmation: password)
+      end
     end
   end
 

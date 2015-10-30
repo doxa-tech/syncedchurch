@@ -1,10 +1,14 @@
 fr:
   header:
+    user:
+      logout: "Déconnection"
+      login: "Connection"
     dashboard: "Dashboard"
     members: "Membres"
     followups: "Suivis"
     groups: "Groupes"
     meetings: "Réunions"
+    users: "Utilisateurs"
   members:
     select: "Sélectionnez un membre"
     index:
@@ -22,6 +26,12 @@ fr:
     edit:
       title: "Mettre à jour %{user}"
       show: "Voir la fiche du membre"
+      user: 
+        new: "Convertir en utilisateur"
+        destroy: "Reconvertir en membre"
+        instruction: "L'utilisateur a bien été crée. Il peut désormais se connecter avec son nom d'utilisateur et son mot de passe provisire qu'il devra changer lors de sa première connection."
+        password: "Mot de passe provisoire"
+        username: "Nom d'utilisateur"
   groups:
     new:
       title: "Ajouter un groupe"
@@ -58,3 +68,9 @@ fr:
       group: "Aller sur la fiche du groupe"
     choose:
       title: "Choisissez un groupe"
+  sessions:
+    new:
+      success: "Vous êtes à présent connecté !"
+      error: "Nom d'utilisateur et/ou mot de passe incorrect"
+    destroy:
+      success: "Vous êtes déconnecté !"
