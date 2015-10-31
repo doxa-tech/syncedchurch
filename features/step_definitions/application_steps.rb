@@ -15,6 +15,11 @@ Given(/^I am logged in$/) do
   create_cookie(:remember_token, @user.remember_token)
 end
 
+Given(/^I am authorized to manage (.*?)$/) do |element|
+  step "I am logged in"
+  Adeia::Permission.add(owner: @user, element: element, read: true, create: true, update: true, destroy: true)
+end
+
 When(/^I logout$/) do
   delete_cookie(:remember_token)
 end

@@ -12,7 +12,7 @@ namespace :seeds do
     email = $stdin.gets.chomp
     puts "Gender (type 'male' or 'female'):"
     gender = $stdin.gets.chomp
-    puts "Birthday (mm/dd/yy):"
+    puts "Birthday (dd/mm/yy):"
     birthday = $stdin.gets.chomp
     puts "Password:"
     password = $stdin.gets.chomp
