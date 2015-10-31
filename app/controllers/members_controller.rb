@@ -1,9 +1,11 @@
 class MembersController < ApplicationController
   include MembersHelper
 
+  load_and_authorize except: :list
+
   # admin index
   def index
-    @table = MemberTable.new(self, nil, search: true)
+    @table = MemberTable.new(self, @members, search: true)
     respond_to do |format|
       format.html
       format.csv { send_data Member.to_csv, filename: "members-#{Date.today}.csv"}
@@ -17,7 +19,6 @@ class MembersController < ApplicationController
   end
 
   def show
-    @member = Member.find(params[:id])
   end
 
   def new
@@ -34,11 +35,9 @@ class MembersController < ApplicationController
   end
 
   def edit
-    @member = Member.find(params[:id])
   end
 
   def update
-    @member = Member.find(params[:id])
     if @member.update_attributes(member_params)
       redirect_to edit_member_path(@member), success: t("members.edit.success")
     else
@@ -47,7 +46,7 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    Member.find(params[:id]).destroy
+    @member.destroy
     redirect_to members_path, success: t("members.destroy.success")
   end
 

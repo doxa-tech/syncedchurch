@@ -1,4 +1,9 @@
-<%= form_for current_user do |f| %>
+<%= form_for @user do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :current_password %>
+  <%= f.password_field :current_password %>
 
   <%= f.label :password %>
   <%= f.password_field :password %>

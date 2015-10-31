@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :reset_token
       t.string :reset_send_at
       t.string :remember_token
-      t.boolean :confirmed
+      t.boolean :confirmed, default: false
       t.references :member, index: true, foreign_key: true
 
       t.timestamps null: false

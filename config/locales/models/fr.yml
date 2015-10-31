@@ -25,6 +25,9 @@ fr:
     group: "Groupe"
     file: "Fichier"
     city: "Ville"
+    password: "Mot de passe"
+    password_confirmation: "Confirmation"
+    current_password: "Mot de passe actuel"
   activerecord:
     attributes:
       member:
@@ -80,3 +83,7 @@ fr:
       work: "Travail"
       other: "Autre"
       mobile: "Mobile"
+  user:
+    errors:
+      messages:
+        does_not_match: "ne correspond pas"

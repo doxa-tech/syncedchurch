@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_action :require_confirmed_user, only: [:edit, :update]
+  load_and_authorize except: [:edit, :update]
 
   def index
-    @table = UserTable.new(self)
+    @table = UserTable.new(self, @users)
     @table.respond
   end
 
@@ -18,25 +20,29 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
-  # def edit
-  #   @user = User.find(params[:id])
-  # end
-
-  # def create
-  #   @user = User.new(user_params)
-  #   if @user.save
-  #     redirect_to user_path(@user), success: t("users.new.success")
-  #   else
-  #     render 'new'
-  #   end
-  # end
+  def update
+    @user = current_user
+    if @user.update_with_password(user_params)
+      @user.update_attribute(:confirmed, true) unless @user.confirmed
+      sign_in @user
+      redirect_to user_password_edit_path, success: t("users.edit.success")
+    else
+      render 'edit'
+    end
+  end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to edit_member_path(@user.member_id), success: t("users.destroy.success")
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
 end

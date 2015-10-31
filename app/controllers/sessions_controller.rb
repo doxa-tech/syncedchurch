@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.joins(:member).where("lower(members.email) = ?", params[:session][:email].strip.downcase).first
-    puts @user.to_yaml
     if @user && @user.authenticate(params[:session][:password])
       sign_in @user, permanent: params[:session][:remember_me] == "1"
       redirect_back_or dashboard_path, success: t('sessions.new.success')
@@ -18,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_path, success: t('sessions.destroy.success')
+    redirect_to login_path, success: t('sessions.destroy.success')
   end
 
   private

@@ -6,11 +6,17 @@ fr:
     format: 'le champ "%{attribute}" %{message}'
   helpers:
     submit:
-      create: Créer
-      submit: Envoyer
-      update: Enregistrer
+      create: "Créer"
+      submit: "Envoyer"
+      update: "Enregistrer"
       group:
         create: "Continuer"
+      session:
+        submit: "Se connecter"
     label:
       meeting:
         group_id: "Groupe"
+      session:
+        email: "Email"
+        password: "Mot de passe"
+        remember_me: "Rester connecté"

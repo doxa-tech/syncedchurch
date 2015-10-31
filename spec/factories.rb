@@ -14,12 +14,12 @@ FactoryGirl.define do
       lastname "Dupont"
     end
 
-    factory :user do
-      after(:create) do |member| 
-        password = SecureRandom.hex(8)
-        User.create!(member: member, password: password, password_confirmation: password)
-      end
-    end
+  end
+
+  factory :user do
+    password "12341"
+    password_confirmation "12341"
+    association :member, firstname: "Bruce", lastname: "Wayne"
   end
 
   factory :group do

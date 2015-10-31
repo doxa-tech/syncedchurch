@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessor :current_password
+
   belongs_to :member
 
   has_secure_password
@@ -11,6 +13,18 @@ class User < ActiveRecord::Base
 
   def name
     member.full_name
+  end
+
+  def update_with_password(params)
+    authenticated = authenticate(params[:current_password])
+    assign_attributes(params)
+    if valid? && authenticated
+      save
+      true
+    else
+      errors.add(:current_password, I18n.t("user.errors.messages.does_not_match")) unless authenticated
+      false
+    end
   end
 
   private

@@ -4,7 +4,7 @@ When(/^I visit the edit path of a member without an email$/) do
 end
 
 When(/^I visit edit path of a member who is an user$/) do
-  @member = create(:user)
+  @member = create(:user).member
   visit edit_member_path(@member)
 end
 

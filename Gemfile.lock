@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    adeia (0.5.3)
+    adeia (0.7.1)
       rails (~> 4.2.4)
       snaptable
     arel (6.0.3)
@@ -196,6 +196,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     selectize-rails (0.12.1)
+    show_me_the_cookies (3.0.0)
+      capybara (~> 2.0)
     snaptable (0.9.2)
       jquery-rails
       rails (~> 4.2.1)
@@ -261,6 +263,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selectize-rails
+  show_me_the_cookies
   snaptable
   spring
   turbolinks

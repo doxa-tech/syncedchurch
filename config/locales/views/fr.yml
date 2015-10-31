@@ -1,7 +1,7 @@
 fr:
   header:
     user:
-      logout: "Déconnection"
+      logout: "Se déconnecter"
       login: "Connection"
     dashboard: "Dashboard"
     members: "Membres"
@@ -9,6 +9,7 @@ fr:
     groups: "Groupes"
     meetings: "Réunions"
     users: "Utilisateurs"
+    permissions: "Permissions"
   members:
     select: "Sélectionnez un membre"
     index:

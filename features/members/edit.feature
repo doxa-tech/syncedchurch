@@ -4,6 +4,7 @@ Feature: Edit a member
   As an administrator
   I want to update a member
 
+  @wip
   Scenario: I successfully edit a member
     #Given I a logged in
     When I visit the member edit path

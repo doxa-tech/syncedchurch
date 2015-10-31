@@ -1,4 +1,8 @@
 fr:
+  application:
+    require_confirmed_user: "Merci de changer votre mot de passe avant de continuer"
+    login_required: "Merci de vous connecter d'abord"
+    unauthorized: "Vous n'êtes pas autorisé !"
   members:
     new:
       success: "Le nouveau membre a été ajouté !"
@@ -34,5 +38,7 @@ fr:
     new:
       success: "Le membre est à présent un utilisateur !"
       error: "Veuillez ajouter un email au membre avant de la convertir !"
+    edit:
+      success: "Mot de passe mis à jour"
     destroy:
       success: "L'utilisateur est à nouveau un simple membre !"

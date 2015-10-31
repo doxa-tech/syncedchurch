@@ -13,7 +13,7 @@ RSpec.describe UsersController, type: :controller do
   describe "DELETE #destroy" do
 
     it "destroys an user" do
-      user = create(:user).user
+      user = create(:user)
       expect { delete :destroy, id: user.id }.to change { User.count }.by(-1)
     end
 
