@@ -20,6 +20,11 @@ FactoryGirl.define do
     password "12341"
     password_confirmation "12341"
     association :member, firstname: "Bruce", lastname: "Wayne"
+    confirmed true
+
+    factory :unconfirmed_user do
+      confirmed false
+    end
   end
 
   factory :group do

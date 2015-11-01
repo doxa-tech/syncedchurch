@@ -1,3 +1,8 @@
+Given(/^I am an unconfirmed user logged in$/) do
+  @user = create(:unconfirmed_user)
+  create_cookie(:remember_token, @user.remember_token)
+end
+
 When(/^I complete the form with a new password$/) do
   fill_in "Mot de passe actuel", with: "12341"
   fill_in "Mot de passe", with: "rainbow_dash"

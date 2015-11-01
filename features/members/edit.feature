@@ -4,9 +4,8 @@ Feature: Edit a member
   As an administrator
   I want to update a member
 
-  @wip
   Scenario: I successfully edit a member
-    #Given I a logged in
+    Given I am authorized to manage members
     When I visit the member edit path
     And I change the firstname of the member
     Then I should see a flash containing "Le membre a été mis à jour !"

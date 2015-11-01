@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030232757) do
+ActiveRecord::Schema.define(version: 20151031230450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 20151030232757) do
     t.string   "owner_type"
     t.integer  "adeia_element_id"
     t.integer  "permission_type"
-    t.boolean  "read_right"
-    t.boolean  "create_right"
-    t.boolean  "update_right"
-    t.boolean  "destroy_right"
+    t.boolean  "read_right",       default: false
+    t.boolean  "create_right",     default: false
+    t.boolean  "update_right",     default: false
+    t.boolean  "destroy_right",    default: false
     t.integer  "resource_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "adeia_permissions", ["adeia_element_id"], name: "index_adeia_permissions_on_adeia_element_id", using: :btree
