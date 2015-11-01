@@ -200,10 +200,10 @@ ActiveRecord::Schema.define(version: 20151030232757) do
     t.string   "reset_token"
     t.string   "reset_send_at"
     t.string   "remember_token"
-    t.boolean  "confirmed"
+    t.boolean  "confirmed",       default: false
     t.integer  "member_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "users", ["member_id"], name: "index_users_on_member_id", using: :btree
