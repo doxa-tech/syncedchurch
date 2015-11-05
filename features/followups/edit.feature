@@ -5,7 +5,7 @@ Feature: Edit a followup
   I want to edit a followup
 
   Scenario: I successfully edit a followup
-    #Given I a logged in
+    Given I am authorized to manage followups
     When I visit the followup edit path
     And I change the duration of the meeting
     Then I should see a flash containing "Le suivi a été mis à jour !"

@@ -2,7 +2,7 @@
 
 <h1><%= t(".title", user: @followup.member.full_name) %></h1>
 
-<%= link_to t(".edit"), edit_followup_path(@followup) %>
+<%= link_to t(".edit"), edit_followup_path(@followup) if can? :update, "followups", @followup %>
 
 <ul>
   <li><%= @followup.member.full_name %></li>

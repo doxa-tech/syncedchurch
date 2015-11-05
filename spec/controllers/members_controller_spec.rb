@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MembersController, type: :controller do
+RSpec.describe MembersController, type: :controller, permission: "members" do
 
   describe "POST #create" do
 

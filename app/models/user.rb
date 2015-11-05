@@ -7,10 +7,6 @@ class User < ActiveRecord::Base
 
   before_save :create_remember_token
 
-  def self.human_name
-    model_name.i18n_key
-  end
-
   def name
     member.full_name
   end

@@ -1,12 +1,12 @@
 class GroupsController < ApplicationController
+  load_and_authorize
 
   def index
-    @table = Table.new(self, Group, nil, search: true)
+    @table = Table.new(self, Group, @groups, search: true)
     @table.respond
   end
 
   def show
-    @group = Group.find(params[:id])
   end
 
   def new
@@ -23,11 +23,9 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
     if @group.update_attributes(group_params)
       flash[:success] = t("groups.edit.success")
     else
@@ -36,7 +34,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    Group.find(params[:id]).destroy
+    @group.destroy
     redirect_to groups_path, success: t("groups.destroy.success")
   end
 

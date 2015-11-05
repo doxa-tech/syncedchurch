@@ -1,7 +1,4 @@
 <p><%= t("table.buttons.title") %></p>
 <p>
-  <a class="delete" href="#" data-method="delete" 
-  rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">
-    <%= t("table.buttons.delete") %>
-  </a>
+  <%= link_to t("table.buttons.delete"), "#", method: :delete, class: "delete", data: { confirm: "Etes-vous sûr de vouloir supprimer cette entrée ?" } if rights? :destroy, "users" %>
 </p>

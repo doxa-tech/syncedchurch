@@ -1,6 +1,6 @@
 <h1><%= t(".title", date: l(@meeting.date, format: :long), group: @meeting.group.name) %></h1>
 
 <%= link_to t(".group"), group_path(@meeting.group) %>
-<%= link_to t(".show"), meeting_path(@meeting) %>
+<%= link_to t(".show"), meeting_path(@meeting) if can? :update, "meetings", @meeting %>
 
 <%= render 'form' %>

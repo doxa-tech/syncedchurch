@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe FollowupsController, type: :controller do
+RSpec.describe FollowupsController, type: :controller, permission: "followups" do
 
   describe "POST #create" do
 

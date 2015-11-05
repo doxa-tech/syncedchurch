@@ -7,17 +7,21 @@ Given(/^there is a group$/) do
 end
 
 Given(/^there is an user$/) do
-  @user = create(:user)
+  @user = create(:user) if @user.nil?
 end
 
 Given(/^I am logged in$/) do
   step "there is an user"
-  create_cookie(:remember_token, @user.remember_token)
+  create_cookie("remember_token", @user.remember_token) if get_me_the_cookie("remember_token").nil?
 end
 
 Given(/^I am authorized to manage (.*?)$/) do |element|
   step "I am logged in"
-  Adeia::Permission.add(owner: @user, element: element, read: true, create: true, update: true, destroy: true)
+  @permission = Adeia::Permission.add!(owner: @user, element: element, full: true)
+end
+
+Given(/^I am authorized to access the (.*?) action$/) do |action|
+  @permission.actions << Adeia::Action.find_or_create_by!(name: action)
 end
 
 When(/^I logout$/) do

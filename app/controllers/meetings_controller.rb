@@ -1,12 +1,12 @@
 class MeetingsController < ApplicationController
+  load_and_authorize
 
   def index
-    @table = MeetingTable.new(self, nil, { search: true })
+    @table = MeetingTable.new(self, @meetings, { search: true })
     @table.respond
   end
 
   def show
-    @meeting = Meeting.find(params[:id])
   end
 
   def new
@@ -25,11 +25,9 @@ class MeetingsController < ApplicationController
   end
 
   def edit
-    @meeting = Meeting.find(params[:id])
   end
 
   def update
-    @meeting = Meeting.find(params[:id])
     if @meeting.update_attributes(meeting_params)
       redirect_to edit_meeting_path(@meeting), success: t("meetings.edit.success")
     else
@@ -38,7 +36,7 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
-    Meeting.find(params[:id]).destroy
+    @meeting.destroy
     redirect_to meetings_path, success: t("meetings.destroy.success")
   end
 

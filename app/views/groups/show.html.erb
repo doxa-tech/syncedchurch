@@ -1,29 +1,27 @@
-<%= render 'back_button', path: groups_path %>
+<%= render 'back_button', path: groups_path if rights? :read, "groups" %>
 
 <h1><%= @group.name %></h1>
 
-<%= link_to t(".edit"), edit_group_path(@group) %>
+<%= link_to t(".edit"), edit_group_path(@group) if can? :update, "groups", @group %>
 
 <ul>
   <li><%= @group.name %></li>
   <li><%= t("group.group_types.#{@group.group_type}") %></li>
   <li><%= t("group.places.#{@group.place}") %> <%= @group.place_other %></li>
-
-  <ul>
-    <% @group.members.each do |member| %>
-      <li><%= member.full_name %> <%= t("groupmember.statuses.#{member.status}") %></li>
-    <% end %>
-  </ul>
 </ul>
 
+<%= render 'members' %>
+
 <div id="meetings">
-  <%= link_to t(".meetings.add"), new_group_meeting_path(@group) %>
+  <%= link_to t(".meetings.add"), new_group_meeting_path(@group) if can? :create, "meetings" %>
 
-  <% @group.meetings.each do |meeting| %>
+  <% if rights? :read, "meetings" %>
+    <% @group.meetings.each do |meeting| %>
 
-    <%= l meeting.date, format: :long %>
-    <%= link_to t(".meetings.edit"), edit_meeting_path(meeting) %>
-    <%= link_to t(".meetings.show"), meeting_path(meeting) %>
+      <%= l meeting.date, format: :long %>
+      <%= link_to t(".meetings.edit"), edit_meeting_path(meeting) if rights? :update, "meetings" %>
+      <%= link_to t(".meetings.show"), meeting_path(meeting) %>
 
+    <% end %>
   <% end %>
 </div>
