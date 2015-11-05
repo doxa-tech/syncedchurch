@@ -24,8 +24,12 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
 
 set :server_files, [
   {
-    name: 'nginx.conf.erb',
-    path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
+    name: "nginx.conf.erb",
+    path: "/etc/nginx/sites-enabled/#{fetch(:application)}"
+  },
+  {
+    name: "puma.rb.erb",
+    path: "#{shared_path}/puma.rb"
   }
 ]
 
@@ -40,12 +44,6 @@ set :bundle_binstubs, nil
 
 set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
 
-# puma
-set :puma_threads, [4, 16]
-set :puma_workers, 0
-set :puma_init_active_record, true
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
@@ -57,16 +55,18 @@ namespace :deploy do
   before :deploy, "deploy:check_revision"
 
   # cleanup
-  after :finishing, 'deploy:cleanup'
+  after :finishing, "deploy:cleanup"
 
-  before :started, 'deploy:setup_config'
+  # before :started, "deploy:setup_config"
+  before :setup_config, "puma:stop"
+  after :setup_config, "puma:start"
 
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
-  after :setup_config, 'nginx:reload'
+  after :setup_config, "nginx:reload"
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
-  after :publishing, 'deploy:restart'
+  after :publishing, "puma:restart"
   
 end
