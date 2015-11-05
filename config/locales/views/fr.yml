@@ -2,7 +2,7 @@ fr:
   header:
     user:
       logout: "Se déconnecter"
-      login: "Connection"
+      login: "Se connecter"
     dashboard: "Dashboard"
     members: "Membres"
     followups: "Suivis"
