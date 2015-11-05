@@ -1,16 +1,20 @@
-<%= form_for @user do |f| %>
-
-  <%= render 'error_messages', object: f.object %>
-
-  <%= f.label :current_password %>
-  <%= f.password_field :current_password %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit %>
-
-<% end %>
+<div class="form">
+  <%= form_for @user do |f| %>
+    <%= render 'error_messages', object: f.object %>
+    <%= f.label :current_password do %>
+      <span class="label">Mot de passe actuel</span>
+      <%= f.password_field :current_password %>
+    <% end %>
+    <%= f.label :password do %>
+      <span class="label">Nouveau mot de passe</span>
+      <%= f.password_field :password %>
+    <% end %>
+    <%= f.label :password_confirmation do %>
+      <span class="label">Confirmation du mot de passe</span>
+      <%= f.password_field :password_confirmation %>
+    <% end %>
+  <div class="buttons">
+    <%= f.button %>
+  </div>
+  <% end %>
+</div>

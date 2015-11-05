@@ -1,0 +1,25 @@
+#sidenav {
+  width: 256px;
+  min-width: 256px;
+  max-width: 256px;
+  border-right: 1.1px solid #d3d3d3;
+  font-size: 13px;
+  color: rgba(0,0,0,.54);
+
+  #tool-title {
+    border-bottom: 1.1px solid #d3d3d3;
+    padding: 0 16px;
+    height: 64px;
+    align-items: center;
+  }
+
+  #tool-content {
+    .list-items {
+      a {
+        display: flex;
+        flex: 1;
+        margin: 0 0 0 9px;
+      }
+    }
+  }
+}

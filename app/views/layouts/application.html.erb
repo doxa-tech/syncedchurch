@@ -6,15 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="layout layout-col">
 
+  <%= render 'layouts/topbar' %>
+  <div id="layout-content" class="flex layout layout-row">
+    <%= render 'layouts/sidenav' %>
+    <%= render 'layouts/content_container' %>
+  </div>
+<!--
   <%= render 'layouts/flash' %>
 
   <%= render 'layouts/sidebar' %>
 
-  <%= yield %>
-
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/footer' %> -->
 
 </body>
 </html>

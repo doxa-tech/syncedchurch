@@ -1,0 +1,25 @@
+<div id="sidenav" class="layout layout-col">
+  <div id="tool-title" class="layout">
+    <div>
+      sdf
+    </div>
+  </div>
+  <div id="tool-content" class="flex">
+    <div id="sidebar" class="list-items">
+      <% if signed_in? %>
+        <%= current_user.name %>
+        <%= link_to t("header.user.logout"), logout_path, method: :delete %>
+      <% else %>
+        <%= link_to t("header.user.login"), login_path %>
+      <% end %>
+
+      <%= link_to t("header.dashboard"), dashboard_path %>
+      <%= link_to t("header.members"), members_path if can? :read, "members" %>
+      <%= link_to t("header.followups"), followups_path %>
+      <%= link_to t("header.groups"), groups_path %>
+      <%= link_to t("header.meetings"), meetings_path %>
+      <%= link_to t("header.users"), users_path if can? :read, "users" %>
+      <%= link_to t("header.permissions"), "/adeia/permissions" %>
+    </div>
+  </div>
+</div>
