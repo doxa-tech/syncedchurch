@@ -2,7 +2,7 @@
 
 <h1><%= @group.name %></h1>
 
-<%= link_to t(".show"), group_path(@group) if can? :read, "groups", @group %>
+<%= link_to t(".show"), group_path(@group) if can? :read, @group %>
 
 <%= form_for @group, remote: true do |f| %>
     

@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    adeia (0.9.2)
+    adeia (0.10.0)
       rails (~> 4.2.4)
       snaptable
     arel (6.0.3)

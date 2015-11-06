@@ -2,7 +2,7 @@
 
 <h1><%= t(".title", user: @member.full_name) %></h1>
 
-<%= link_to t(".show"), member_path(@member) if can? :read, "members", @member %>
+<%= link_to t(".show"), member_path(@member) if can? :read, @member %>
 
 <%= render 'members/form' %>
 

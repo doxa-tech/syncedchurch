@@ -2,8 +2,8 @@
 
 <h1><%= t(".title", date: l(@meeting.date, format: :long), group: @meeting.group.name) %></h1>
 
-<%= link_to t(".group"), group_path(@meeting.group) if can? :read, "groups", @meeting.group %>
-<%= link_to t(".edit"), edit_meeting_path(@meeting) if can? :update, "meetings", @meeting %>
+<%= link_to t(".group"), group_path(@meeting.group) if can? :read, @meeting.group %>
+<%= link_to t(".edit"), edit_meeting_path(@meeting) if can? :update, @meeting %>
 
 <%= l @meeting.date, format: :long %>
 

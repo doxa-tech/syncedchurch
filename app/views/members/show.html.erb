@@ -2,7 +2,7 @@
 
 <h1><%= @member.full_name %></h1>
 
-<%= link_to t(".edit"), edit_member_path(@member) if can? :update, "members", @member %>
+<%= link_to t(".edit"), edit_member_path(@member) if can? :update, @member %>
 
 <ul>
   <li><%= t("member.genders.#{@member.gender}") %></li>

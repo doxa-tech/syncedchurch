@@ -2,7 +2,7 @@
 
 <h1><%= @group.name %></h1>
 
-<%= link_to t(".edit"), edit_group_path(@group) if can? :update, "groups", @group %>
+<%= link_to t(".edit"), edit_group_path(@group) if can? :update, @group %>
 
 <ul>
   <li><%= @group.name %></li>
