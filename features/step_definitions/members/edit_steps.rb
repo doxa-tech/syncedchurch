@@ -4,7 +4,6 @@ When(/^I visit the member edit path$/) do
 end
 
 When(/^I change the firstname of the member$/) do
-  save_and_open_page
   fill_in "Prénom", with: "George"
   click_button "Enregistrer"
 end
