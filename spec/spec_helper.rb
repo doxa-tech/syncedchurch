@@ -54,4 +54,12 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:example) do |example|
+    if example.metadata[:permission].present?
+      @user = create(:user)
+      sign_in @user
+      Adeia::Permission.add!(element: example.metadata[:permission], owner: @user, full: true)
+    end
+  end
+
 end

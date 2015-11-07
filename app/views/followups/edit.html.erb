@@ -1,7 +1,7 @@
-<%= render 'back_button', path: followups_path %>
+<%= render 'back_button', path: followups_path if rights? :read, "followups" %>
 
 <h1><%= t(".title", user: @followup.member.full_name) %></h1>
 
-<%= link_to t(".show"), followup_path(@followup) %>
+<%= link_to t(".show"), followup_path(@followup) if can? :read, @followup %>
 
 <%= render 'form' %>

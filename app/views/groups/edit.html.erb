@@ -1,8 +1,8 @@
-<%= render 'back_button', path: groups_path %>
+<%= render 'back_button', path: groups_path if rights? :read, "groups" %>
 
 <h1><%= @group.name %></h1>
 
-<%= link_to t(".show"), group_path(@group) %>
+<%= link_to t(".show"), group_path(@group) if can? :read, @group %>
 
 <%= form_for @group, remote: true do |f| %>
     
@@ -10,14 +10,18 @@
 
 <% end %>
 
-<%= form_tag add_group_path(@group), remote: true do %>
-  
-  <%= select_tag :member_id, nil, prompt: t("members.select"), class: "selectize-member", id: "member_id" %>
+<% if can? :add, "groups" %>
 
-  <%= label_tag :status %>
-  <%= select_tag :status, options_for_enum(GroupMember.new, :status) %>
+  <%= form_tag add_group_path(@group), remote: true do %>
+    
+    <%= select_tag :member_id, nil, prompt: t("members.select"), class: "selectize-member", id: "member_id" %>
 
-  <%= submit_tag t(".add") %>
+    <%= label_tag :status %>
+    <%= select_tag :status, options_for_enum(GroupMember.new, :status) %>
+
+    <%= submit_tag t(".add") %>
+
+  <% end %>
 
 <% end %>
 

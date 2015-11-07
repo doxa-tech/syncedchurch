@@ -1,12 +1,16 @@
 <h3><%= t('.export.title') %></h3>
 <%= link_to t('.export.link'), members_path(format: :csv) %>
 
-<h3><%= t('.import.title') %></h3>
-<%= form_tag import_members_path, multipart: true do %>
+<% if can? :import, "members" %>
+  <div>
+    <h3><%= t('.import.title') %></h3>
+    <%= form_tag import_members_path, multipart: true do %>
 
-  <%= file_field_tag :file, accept: 'text/csv' %>
-  <%= submit_tag t('.import.submit') %>
+      <%= file_field_tag :file, accept: 'text/csv' %>
+      <%= submit_tag t('.import.submit') %>
 
+    <% end %>
+  </div>
 <% end %>
 
 <%= @table.present %>

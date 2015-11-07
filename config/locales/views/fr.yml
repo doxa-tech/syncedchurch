@@ -2,7 +2,7 @@ fr:
   header:
     user:
       logout: "Se déconnecter"
-      login: "Connection"
+      login: "Se connecter"
     dashboard: "Dashboard"
     members: "Membres"
     followups: "Suivis"
@@ -22,6 +22,8 @@ fr:
     show:
       edit: "Mettre à jour"
       family: "%{role} dans la famille %{family}"
+      followups:
+        edit: "Editer"
     new:
       title: "Ajouter un membre"
     edit:
@@ -69,6 +71,7 @@ fr:
       group: "Aller sur la fiche du groupe"
     choose:
       title: "Choisissez un groupe"
+      continue: "Continuer"
   sessions:
     new:
       success: "Vous êtes à présent connecté !"

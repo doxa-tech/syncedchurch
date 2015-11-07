@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MeetingsController, type: :controller do
+RSpec.describe MeetingsController, type: :controller, permission: "meetings" do
 
   describe "DELETE #destroy" do
 

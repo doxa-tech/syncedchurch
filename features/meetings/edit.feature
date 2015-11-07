@@ -5,7 +5,7 @@ Feature: Edit a meeting
   I want to edit a meeting
 
   Scenario: I successfully edit a meeting
-    #Given I a logged in
+    Given I am authorized to manage meetings
     When I visit the meeting edit path
     And I change the date of the meeting
     Then I should see a flash containing "Réunion mise à jour !"

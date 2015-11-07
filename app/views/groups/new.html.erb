@@ -1,4 +1,4 @@
-<%= render 'back_button', path: groups_path %>
+<%= render 'back_button', path: groups_path if rights? :read, "groups" %>
 
 <h1><%= t('.title') %></h1>
 

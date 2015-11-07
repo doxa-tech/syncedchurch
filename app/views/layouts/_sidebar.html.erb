@@ -2,15 +2,13 @@
   <% if signed_in? %>
     <%= current_user.name %>
     <%= link_to t("header.user.logout"), logout_path, method: :delete %>
-  <% else %>
-    <%= link_to t("header.user.login"), login_path %>
   <% end %>
 
-  <%= link_to t("header.dashboard"), dashboard_path %>
-  <%= link_to t("header.members"), members_path if can? :read, "members" %>
-  <%= link_to t("header.followups"), followups_path %>
-  <%= link_to t("header.groups"), groups_path %>
-  <%= link_to t("header.meetings"), meetings_path %>
-  <%= link_to t("header.users"), users_path if can? :read, "users" %>
-  <%= link_to t("header.permissions"), "/adeia/permissions" %>
+  <%= link_to t("header.dashboard"), dashboard_path if signed_in? %>
+  <%= link_to t("header.members"), members_path if rights? :read, "members" %>
+  <%= link_to t("header.followups"), followups_path if rights? :read, "followups" %>
+  <%= link_to t("header.groups"), groups_path if rights? :read, "groups" %>
+  <%= link_to t("header.meetings"), meetings_path if rights? :read, "meetings" %>
+  <%= link_to t("header.users"), users_path if rights? :read, "users" %>
+  <%= link_to t("header.permissions"), "/adeia/permissions" if rights? :read, "adeia/permissions" %>
 </div>

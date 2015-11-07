@@ -1,8 +1,8 @@
-<%= render 'back_button', path: members_path %>
+<%= render 'back_button', path: members_path if rights? :read, "members" %>
 
 <h1><%= @member.full_name %></h1>
 
-<%= link_to t(".edit"), edit_member_path(@member) %>
+<%= link_to t(".edit"), edit_member_path(@member) if can? :update, @member %>
 
 <ul>
   <li><%= t("member.genders.#{@member.gender}") %></li>
@@ -20,12 +20,14 @@
   </ul>
 <ul>
 
-<div id="followups">
+<% if rights? :read, "followups" %>
+  <div id="followups">
 
-  <% @member.followups.each do |followup| %>
+    <% @member.followups.each do |followup| %>
 
-    <%= l followup.date, format: :long %>
+      <%= l followup.date, format: :long %>
+      <%= link_to ".followups.edit", edit_followup_path(followup) if rights? :edit, "followups" %>
 
-  <% end %>
-
-</div>
+    <% end %>
+  </div>
+<% end %>

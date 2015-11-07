@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    adeia (0.8.0)
+    adeia (0.10.0)
       rails (~> 4.2.4)
       snaptable
     arel (6.0.3)
@@ -44,7 +44,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (6.0.2)
+    byebug (8.0.0)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -60,9 +60,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (1.2.1)
-      capistrano (~> 3.0)
-      puma (>= 2.6)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -245,7 +242,6 @@ DEPENDENCIES
   capistrano-maintenance
   capistrano-rails (~> 1.1.0)
   capistrano-rvm
-  capistrano3-puma
   capybara
   capybara-webkit
   carrierwave

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GroupsController, type: :controller do
+RSpec.describe GroupsController, type: :controller, permission: "groups" do
 
   describe "POST #create" do
 

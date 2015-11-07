@@ -1,7 +1,7 @@
 <div class="table_buttons">
   <p>Actions</p>
   <p>
-    <%= link_to "Ajouter", request.path + "/choose", class: "add" %>
+    <%= link_to "Ajouter", request.path + "/choose", class: "add" if can? :create, "meetings" %>
     <a class="edit" href="#">Editer</a>
     <a class="show" href="#">Voir</a>
     <a class="delete" href="#" data-method="delete" 

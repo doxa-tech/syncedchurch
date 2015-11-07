@@ -51,10 +51,6 @@ group :development, :test do
   gem 'show_me_the_cookies'
 end
 
-group :development do
-  gem 'capistrano3-puma'
-end
-
 # i18n
 gem 'rails-i18n'
 

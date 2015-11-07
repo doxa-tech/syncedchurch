@@ -1,16 +1,18 @@
-<%= render 'back_button', path: members_path %>
+<%= render 'back_button', path: members_path if rights? :read, "members" %>
 
 <h1><%= t(".title", user: @member.full_name) %></h1>
 
-<%= link_to t(".show"), member_path(@member) %>
+<%= link_to t(".show"), member_path(@member) if can? :read, @member %>
 
 <%= render 'members/form' %>
 
 <div id="user">
 
-  <% if @member.user.nil? %>
+  <% if @member.user.nil? && can?(:create, "users") %>
 
     <%= link_to t(".user.new"), member_users_path(@member), method: :post %>
+
+  <% elsif %>
 
     <% if @user %>
 
@@ -21,9 +23,7 @@
 
     <% end %>
 
-  <% else %>
-
-    <%= link_to t(".user.destroy"), user_path(@member.user), method: :delete %>
+    <%= link_to t(".user.destroy"), user_path(@member.user), method: :delete if can? :destroy, "users" %>
 
   <% end %>
 

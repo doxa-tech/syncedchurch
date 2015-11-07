@@ -1,9 +1,9 @@
-<%= render 'back_button', path: meetings_path %>
+<%= render 'back_button', path: meetings_path if rights? :read, "meetings" %>
 
 <h1><%= t(".title", date: l(@meeting.date, format: :long), group: @meeting.group.name) %></h1>
 
-<%= link_to t(".group"), group_path(@meeting.group) %>
-<%= link_to t(".edit"), edit_meeting_path(@meeting) %>
+<%= link_to t(".group"), group_path(@meeting.group) if can? :read, @meeting.group %>
+<%= link_to t(".edit"), edit_meeting_path(@meeting) if can? :update, @meeting %>
 
 <%= l @meeting.date, format: :long %>
 

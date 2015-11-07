@@ -11,6 +11,8 @@ When(/^I complete followup's form with the required fields$/) do
   click_button "Créer"
 end
 
-Then(/^I should see the new followup in the member's overview$/) do
-  expect(find "#followups").to have_content "12 juin 2015"
+Then(/^I should see the new followup's overview$/) do
+  expect(page).to have_content "John Smith"
+  expect(page).to have_content "Alfred Dupont"
+  expect(page).to have_content "12 juin 2015"
 end

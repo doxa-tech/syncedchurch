@@ -1,12 +1,12 @@
 class FollowupsController < ApplicationController
+  load_and_authorize
 
   def index
-    @table = FollowupTable.new(self, nil, search: true)
+    @table = FollowupTable.new(self, @followups, search: true)
     @table.respond
   end
 
   def show
-    @followup = Followup.find(params[:id])
   end
 
   def new
@@ -16,18 +16,16 @@ class FollowupsController < ApplicationController
   def create
     @followup = Followup.new(followup_attributes)
     if @followup.save
-      redirect_to member_path(@followup.member), success: t("followups.new.success")
+      redirect_to followup_path(@followup), success: t("followups.new.success")
     else
       render 'new'
     end
   end
 
   def edit
-    @followup = Followup.find(params[:id])
   end
 
   def update
-    @followup = Followup.find(params[:id])
     if @followup.update_attributes(followup_attributes)
       redirect_to edit_followup_path(@followup), success: t("followups.edit.success")
     else
@@ -36,7 +34,7 @@ class FollowupsController < ApplicationController
   end
 
   def destroy
-    Followup.find(params[:id]).destroy
+    @followup.destroy
     redirect_to followups_path, success: t("followups.destroy.success")
   end
 
