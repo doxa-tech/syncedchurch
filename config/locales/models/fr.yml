@@ -28,6 +28,7 @@ fr:
     password: "Mot de passe"
     password_confirmation: "Confirmation"
     current_password: "Mot de passe actuel"
+    description: "Description"
   activerecord:
     attributes:
       member:

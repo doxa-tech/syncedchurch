@@ -1,3 +1,5 @@
+<%= render 'back_button', path: followups_path if rights? :read, "followups" %>
+
 <h1><%= t(".title") %></h1>
 
 <%= render 'form' %>

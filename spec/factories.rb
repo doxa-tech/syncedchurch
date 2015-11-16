@@ -57,4 +57,10 @@ FactoryGirl.define do
     file { fixture_file_upload(File.join(Rails.root, '/spec/fixtures/files/projet.pdf'), 'text/pdf') }
   end
 
+  factory :event do
+    description "Soirée vision"
+    dtstart { DateTime.parse("26 novembre 2015 20h00") }
+    dtend { DateTime.parse("26 novembre 2015 22h00") }
+  end
+
 end

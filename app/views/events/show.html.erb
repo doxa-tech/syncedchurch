@@ -1,0 +1,7 @@
+<%= render 'back_button', path: events_path if rights? :read, "events" %>
+
+<h1><%= t(".title") %></h1>
+
+<ul>
+  <li><%= @event.description %></li>
+<ul>

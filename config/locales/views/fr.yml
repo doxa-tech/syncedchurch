@@ -72,6 +72,11 @@ fr:
     choose:
       title: "Choisissez un groupe"
       continue: "Continuer"
+  events:
+    new:
+      title: "Ajouter un événement"
+    show:
+      title: "Evénement"
   sessions:
     new:
       success: "Vous êtes à présent connecté !"

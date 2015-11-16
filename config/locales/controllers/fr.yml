@@ -42,3 +42,6 @@ fr:
       success: "Mot de passe mis à jour"
     destroy:
       success: "L'utilisateur est à nouveau un simple membre !"
+  events:
+    new:
+      success: "L'événement a été ajouté à l'agenda"
