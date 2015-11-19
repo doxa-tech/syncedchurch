@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    require_login
     sign_out
     redirect_to login_path, success: t('sessions.destroy.success')
   end

@@ -2,7 +2,7 @@ Feature: Edit a followup
 
   So that I can correct the information of a followup
   As a qualified person
-  I want to edit a followup
+  I want to update a followup
 
   Scenario: I successfully edit a followup
     Given I am authorized to manage followups

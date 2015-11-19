@@ -2,6 +2,12 @@
 
 <h1><%= t(".title") %></h1>
 
+<%= link_to t(".edit"), edit_event_path(@event) if can? :update, @event %>
+
 <ul>
   <li><%= @event.description %></li>
+  <li>
+    <%= t("events.frequences.#{@event.recurrence.frequence}") %>, 
+    <%= t(".recurrence.count", count: "#{@event.recurrence.count}") %>
+  </li>
 <ul>

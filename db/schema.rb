@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20151116171644) do
     t.string   "uid"
     t.string   "location"
     t.string   "url"
-    t.string   "recurrence"
+    t.string   "rrule"
     t.string   "image"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

@@ -45,3 +45,5 @@ fr:
   events:
     new:
       success: "L'événement a été ajouté à l'agenda"
+    edit:
+      success: "L'événement a été mis à jour"

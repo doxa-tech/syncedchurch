@@ -1,0 +1,42 @@
+<%= form_for @event do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :dtstart %>
+  <%= f.datetime_select :dtstart %>
+
+  <%= f.label :dtend %>
+  <%= f.datetime_select :dtend %>
+
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.fields_for @event.recurrence do |recurrence_f| %>
+
+    <%= recurrence_f.label :frequence %>
+    <%= recurrence_f.select :frequence, Recurrence::FREQUENCES.map{ |e| [t("events.frequences.#{e}"), e] }, 
+      { include_blank: true } %>
+
+    <%= recurrence_f.label :monthly %>
+    <%= recurrence_f.select :monthly, %w(1 2 3 4 5), { include_blank: true } %>
+
+    <%= recurrence_f.label :count %>
+    <%= recurrence_f.number_field :count %>
+
+    <%= recurrence_f.label :until %>
+    <%= recurrence_f.datetime_select :until, { include_blank: true, default: nil } %>
+
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

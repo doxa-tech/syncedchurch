@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :uid, index: true
       t.string :location
       t.string :url
-      t.string :recurrence
+      t.string :rrule
       t.string :image
 
       t.timestamps null: false

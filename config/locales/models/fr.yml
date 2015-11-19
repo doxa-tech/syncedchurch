@@ -29,6 +29,10 @@ fr:
     password_confirmation: "Confirmation"
     current_password: "Mot de passe actuel"
     description: "Description"
+    count: "Nombre de fois"
+    frequence: "Fréquence"
+    monthly: "Le * du mois"
+    until: "Jusqu'à"
   activerecord:
     attributes:
       member:
@@ -51,6 +55,10 @@ fr:
         attending_members: "Membres présents"
         attending_member_ids: "Membres présents"
         external_member_ids: "Participants externes"
+      event:
+        dtstart: "Début"
+        dtend: "Fin"
+        location: "Lieu"
   member:
     roles:
       father: "Père"

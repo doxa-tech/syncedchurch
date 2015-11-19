@@ -1,11 +1,25 @@
 class Event < ActiveRecord::Base
+  attr_writer :recurrence
 
   validates :description, presence: true
   validates :dtstart, presence: true
   validates :dtend, presence: true
-  validates :uid, uniqueness: true 
+  validates :uid, uniqueness: true
+
+  include ActiveModel::Validations
+  validates_with RecurrenceValidator
 
   before_validation :create_uid, on: :create
+
+  def recurrence_attributes=(attributes)
+    attributes = attributes.to_h.symbolize_keys!
+    self.recurrence = Recurrence.create(self, **attributes)
+    self.rrule = recurrence.to_rule
+  end
+
+  def recurrence
+    @recurrence ||= Recurrence.build(self)
+  end
 
   private
 

@@ -77,6 +77,17 @@ fr:
       title: "Ajouter un événement"
     show:
       title: "Evénement"
+      edit: "Mettre à jour"
+      recurrence:
+        count: "%{count} fois"
+    edit:
+      title: "Mettre à jour un événement"
+      show: "Voir la fiche de l'événement"
+    frequences:
+      DAILY: "Chaque jour"
+      WEEKLY: "Chaque semaine"
+      MONTHLY: "Chaque mois"
+      YEARLY: "Chaque année"
   sessions:
     new:
       success: "Vous êtes à présent connecté !"
