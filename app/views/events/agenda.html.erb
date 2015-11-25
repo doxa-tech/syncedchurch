@@ -1,0 +1,27 @@
+<div class="header">
+  <div class="month">
+    Octobre
+  </div>
+  <ul>
+    <li>lundi</li>
+    <li>mardi</li>
+    <li>mercredi</li>
+    <li>jeudi</li>
+    <li>vendredi</li>
+    <li>samedi</li>
+    <li>dimanche</li>
+  </ul>
+</div>
+
+<div class="week-container">
+  <div ng-repeat="week in [] | range:1:weeksNumber" class="week">
+    <ul>
+      <li ng-repeat="(date, event) in events[week]">
+        <p class="day-number">{{ date.split("-")[2] }}</p>
+        <p class="event">
+          {{ event.description }}
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  load_and_authorize
+  load_and_authorize except: :agenda
 
   def index
     @table = Table.new(self, Event, @events)
@@ -37,6 +37,10 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     redirect_to events_path
+  end
+
+  def agenda
+    render layout: "agenda"
   end
 
   private

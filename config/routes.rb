@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "pages#dashboard"
 
   get "list", to: "members#list"
+  get "agenda", to: "events#agenda"
 
   %w[dashboard].each do |page|
     get "#{page}", to: "pages##{page}"

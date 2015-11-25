@@ -10,10 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require selectize
- *= require selectize.default
+ *= require_tree ./agenda
  *= require_tree ./base
  *= require_tree ./components
- *= require_tree ./themes
  *= require_self
  */

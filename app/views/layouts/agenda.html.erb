@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agenda</title>
+  <%= stylesheet_link_tag    'agenda', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'agenda', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="Agenda">
+
+<div id="agenda" ng-controller="MainController">
+  <%= yield %>
+</div>
+
+</body>
+</html>

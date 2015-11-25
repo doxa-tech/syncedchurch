@@ -1,9 +1,9 @@
 class RecurrenceValidator < ActiveModel::Validator
   def validate(record)
     @recurrence = record.recurrence
-    record.errors.add(:recurrence, "is not valid") if monthly_without_frequence?
-    record.errors.add(:recurrence, "is not valid") if count_without_frequence?
-    record.errors.add(:recurrence, "is not valid") if until_without_frequence?
+    record.errors.add(:frequence, I18n.t("errors.messages.recurrence.monthly_without_frequence")) if monthly_without_frequence?
+    record.errors.add(:frequence, I18n.t("errors.messages.recurrence.count_without_frequence")) if count_without_frequence?
+    record.errors.add(:frequence, I18n.t("errors.messages.recurrence.until_without_frequence")) if until_without_frequence?
   end
 
   private

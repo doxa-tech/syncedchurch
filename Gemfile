@@ -77,3 +77,5 @@ gem 'snaptable'
 gem 'carrierwave'
 
 gem 'adeia'
+
+gem 'angularjs-rails'

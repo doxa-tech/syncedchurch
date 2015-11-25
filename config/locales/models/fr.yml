@@ -2,6 +2,10 @@ fr:
   errors:
     messages:
       attending_member: "est incomplet: Veuillez sélectionner au moins un membre présent"
+      recurrence:
+        monthly_without_frequence: doit être mis sur "chaque mois" lorsque qu'on utilise l'option "le * jour du mois"
+        count_without_frequence: doit être sélectionné lorsqu'on utilise l'option "Nombre de fois"
+        until_without_frequence: doit être sélectionné lorsqu'on utilise l'option "Jusqu'à"
   attributes:
     name: "Nom"
     lastname: "Nom"
@@ -33,6 +37,9 @@ fr:
     frequence: "Fréquence"
     monthly: "Le * du mois"
     until: "Jusqu'à"
+    title: "Titre"
+    uid: "uid"
+    recurrence: "Récurrence"
   activerecord:
     attributes:
       member:
