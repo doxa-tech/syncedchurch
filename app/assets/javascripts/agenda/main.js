@@ -3,57 +3,58 @@
 
 var app = angular.module("Agenda", []);
 
-app.filter("range", function() {
-  return function(input, min, max) {
-    min = parseInt(min);
-    max = parseInt(max) + 1;
-    for (var i=min; i<max; i++)
-      input.push(i);
-    return input;
+app.filter("dayFromDate", function() {
+  return function(input) {
+    return input.split("-")[2];
   };
 });
 
 app.controller("MainController", ["$scope", function($scope) {
 
-  var currentDate = new Date(),
-      currentYear = currentDate.getFullYear(),
-      currentMonth = currentDate.getMonth();
-
-  var events = {
+  $scope.events = {
     "2015-11-16": { "description": "Soirée vision" },
     "2015-11-22": { "description": "Conseil d'église" }
   };
 
-  $scope.events = {};
+  var today = Date.today();
+  $scope.previousWeeks = [];
+  $scope.nextWeeks = [];
 
-  var week = 1;
-  $scope.events[week] = {};
+  generateMonth();
 
-  var weekModulo = (9 - new Date(currentYear, currentMonth, 1).getDay()) % 7;
-  for(var iDay=1; iDay <= daysInMonth(currentMonth, currentYear); iDay ++) {
+  console.log($scope.nextWeeks);
 
-    if(iDay % 7 === weekModulo) { 
-      week++; 
-      $scope.events[week] = {};
-    }
-
-    var day = String(iDay);
-    day = day.length < 2 ? "0" + day : day;
-    var key = currentYear + "-" + (currentMonth + 1) + "-" + day;
-
-    if(events[key] === undefined) {
-      $scope.events[week][key] = null;
-    } else {
-      $scope.events[week][key] = events[key];
+  function generateMonth() {
+    $scope.nextMonday = new Date(today.getFullYear(), today.getMonth(), 1).last().monday();
+    $scope.lastMonday = angular.copy($scope.nextMonday).last().monday();
+    for(var i=0;i<5;i++) {
+      nextWeek();
     }
   }
 
-  $scope.weeksNumber = Object.keys($scope.events).length
+  function generateWeek(day) {
+    var week = {},
+        day = angular.copy(day);
+    for(var i=1; i <= 7; i++) {
+      var key = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+      if($scope.events[key] === undefined) {
+        week[key] = null;
+      } else {
+        week[key] = $scope.events[key];
+      }
+      day.next().day()
+    }
+    return week
+  }
 
-  console.log($scope.events)
+  function nextWeek() {
+    $scope.nextWeeks.push(generateWeek($scope.nextMonday));
+    $scope.nextMonday.next().monday()
+  }
+
+  function previousWeek() {
+    $scope.previousWeeks.push(generateWeek($scope.lastMonday));
+    $scope.lastMonday.last().monday();
+  }
 
 }]);
-
-function daysInMonth(month, year) {
-  return new Date(year, month, 0).getDate();
-}
