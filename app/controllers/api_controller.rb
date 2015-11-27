@@ -11,4 +11,7 @@ class ApiController < ApplicationController
     render json: members
   end
 
+  def events
+  end
+
 end

@@ -16,9 +16,9 @@
 <div class="week-container">
   <div ng-repeat="week in weeks" class="week">
     <ul>
-      <li ng-repeat="(date, day) in week">
+      <li ng-repeat="(date, day) in week" ng-class="{current: day.current_day}">
         <p class="day-number">{{ date | dayFromDate }}</p>
-        <p ng-repeat="event in day" class="event">
+        <p ng-repeat="event in day.events" class="event">
           {{ event.description }}
         </p>
       </li>

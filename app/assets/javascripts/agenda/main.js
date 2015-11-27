@@ -8,6 +8,8 @@ angular.module("filters", []);
 app.controller("MainController", ["$scope", function($scope) {
 
   $scope.events = {
+    "2015-11-2": [{ "description": "Groupe de maison" }],
+    "2015-11-13": [{ "description": "Séminaire prophétique" }, {"description": "Groupe de maison"}],
     "2015-11-16": [{ "description": "Soirée vision" }],
     "2015-11-22": [{ "description": "Conseil d'église" }]
   };
@@ -32,18 +34,22 @@ app.controller("MainController", ["$scope", function($scope) {
 
     while(lastMonday.getMonth() !== today.getMonth() + 1) {
       nextWeek();
+      try {
+        $scope.weeks[$scope.weeks.length - 1][dateKey(today)]["current_day"] = "true";
+      } catch(err) {}
     }
   }
-
+   
   function generateWeek(day) {
     var week = {},
         day = angular.copy(day);
     for(var i=1; i <= 7; i++) {
-      var key = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+      var key = dateKey(day);
+      week[key] = {};
       if($scope.events[key] === undefined) {
-        week[key] = null;
+        week[key]["events"] = [];
       } else {
-        week[key] = $scope.events[key];
+        week[key]["events"] = $scope.events[key];
       }
       day.next().day();
     }
@@ -58,6 +64,10 @@ app.controller("MainController", ["$scope", function($scope) {
   function previousWeek() {
     $scope.weeks.unshift(generateWeek(firstMonday));
     firstMonday.last().monday();
+  }
+
+  function dateKey(day) {
+    return day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
   }
 
 }]);
