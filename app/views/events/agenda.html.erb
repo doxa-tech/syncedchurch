@@ -14,12 +14,12 @@
 </div>
 
 <div class="week-container">
-  <div ng-repeat="week in nextWeeks" class="week">
+  <div ng-repeat="week in weeks" class="week">
     <ul>
       <li ng-repeat="(date, day) in week">
         <p class="day-number">{{ date | dayFromDate }}</p>
-        <p class="event">
-          {{ day.description }}
+        <p ng-repeat="event in day" class="event">
+          {{ event.description }}
         </p>
       </li>
     </ul>

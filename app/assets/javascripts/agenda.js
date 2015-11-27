@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require angular
+//= require agenda/main.js
 //= require_tree ./agenda

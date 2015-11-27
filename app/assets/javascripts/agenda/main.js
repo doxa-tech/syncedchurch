@@ -1,33 +1,36 @@
 /* global angular */
 "use strict";
 
-var app = angular.module("Agenda", []);
+var app = angular.module("Agenda", ["filters"]);
 
-app.filter("dayFromDate", function() {
-  return function(input) {
-    return input.split("-")[2];
-  };
-});
+angular.module("filters", []);
 
 app.controller("MainController", ["$scope", function($scope) {
 
   $scope.events = {
-    "2015-11-16": { "description": "Soirée vision" },
-    "2015-11-22": { "description": "Conseil d'église" }
+    "2015-11-16": [{ "description": "Soirée vision" }],
+    "2015-11-22": [{ "description": "Conseil d'église" }]
   };
 
-  var today = Date.today();
-  $scope.previousWeeks = [];
-  $scope.nextWeeks = [];
+  var today = Date.today(),
+      lastMonday = null,
+      firstMonday = null;
+
+  $scope.weeks = [];
 
   generateMonth();
 
-  console.log($scope.nextWeeks);
-
   function generateMonth() {
-    $scope.nextMonday = new Date(today.getFullYear(), today.getMonth(), 1).last().monday();
-    $scope.lastMonday = angular.copy($scope.nextMonday).last().monday();
-    for(var i=0;i<5;i++) {
+    var firstOfTheMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    if(firstOfTheMonth.is().monday()) { 
+      lastMonday = firstOfTheMonth;
+    } else {
+      lastMonday = firstOfTheMonth.last().monday();
+    }
+
+    firstMonday = angular.copy(lastMonday).last().monday();
+
+    while(lastMonday.getMonth() !== today.getMonth() + 1) {
       nextWeek();
     }
   }
@@ -42,19 +45,19 @@ app.controller("MainController", ["$scope", function($scope) {
       } else {
         week[key] = $scope.events[key];
       }
-      day.next().day()
+      day.next().day();
     }
-    return week
+    return week;
   }
 
   function nextWeek() {
-    $scope.nextWeeks.push(generateWeek($scope.nextMonday));
-    $scope.nextMonday.next().monday()
+    $scope.weeks.push(generateWeek(lastMonday));
+    lastMonday.next().monday();
   }
 
   function previousWeek() {
-    $scope.previousWeeks.push(generateWeek($scope.lastMonday));
-    $scope.lastMonday.last().monday();
+    $scope.weeks.unshift(generateWeek(firstMonday));
+    firstMonday.last().monday();
   }
 
 }]);
