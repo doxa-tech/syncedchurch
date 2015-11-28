@@ -10,7 +10,7 @@ $(document).on("ready page:load", function() {
     load: function(query, callback) {
       if (!query.length) return callback();
       $.ajax({
-        url: "/api/members",
+        url: "/api/members.json",
         type: "GET",
         data: "query=" + query,
         dataType: "json",

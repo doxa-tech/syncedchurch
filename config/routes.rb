@@ -50,5 +50,6 @@ Rails.application.routes.draw do
 
   scope "api" do
     get "members", to: "api#members"
+    get "events", to: "api#events"
   end
 end

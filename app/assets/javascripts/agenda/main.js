@@ -5,14 +5,14 @@ var app = angular.module("Agenda", ["filters"]);
 
 angular.module("filters", []);
 
-app.controller("MainController", ["$scope", function($scope) {
+app.controller("MainController", ["$scope", "$http", function($scope, $http) {
 
-  $scope.events = {
-    "2015-11-2": [{ "description": "Groupe de maison" }],
-    "2015-11-13": [{ "description": "Séminaire prophétique" }, {"description": "Groupe de maison"}],
-    "2015-11-16": [{ "description": "Soirée vision" }],
-    "2015-11-22": [{ "description": "Conseil d'église" }]
-  };
+  // $scope.events = {
+  //   "2015-11-2": [{ "description": "Groupe de maison" }],
+  //   "2015-11-13": [{ "description": "Séminaire prophétique" }, {"description": "Groupe de maison"}],
+  //   "2015-11-16": [{ "description": "Soirée vision" }],
+  //   "2015-11-22": [{ "description": "Conseil d'église" }]
+  // };
 
   var today = Date.today(),
       lastMonday = null,
@@ -20,7 +20,11 @@ app.controller("MainController", ["$scope", function($scope) {
 
   $scope.weeks = [];
 
-  generateMonth();
+  $http.get("api/events.json").success(function(events) {
+    $scope.events = events;
+
+    generateMonth();
+  });
 
   function generateMonth() {
     var firstOfTheMonth = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -39,7 +43,7 @@ app.controller("MainController", ["$scope", function($scope) {
       } catch(err) {}
     }
   }
-   
+
   function generateWeek(day) {
     var week = {},
         day = angular.copy(day);
