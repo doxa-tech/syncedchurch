@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       post "import"
     end
 
-    resources :users, shallow: true, except: [:index, :new]
+    resources :users, shallow: true, except: [:index, :new, :edit]
   end
 
 

@@ -4,11 +4,11 @@
 
 <%= link_to t(".show"), group_path(@group) if can? :read, @group %>
 
-<%= form_for @group, remote: true do |f| %>
-    
-  <%= render 'fields', f: f %>
-
-<% end %>
+<div class="form">
+  <%= form_for @group, remote: true do |f| %>
+    <%= render 'fields', f: f %>
+  <% end %>
+</div>
 
 <% if can? :add, "groups" %>
 

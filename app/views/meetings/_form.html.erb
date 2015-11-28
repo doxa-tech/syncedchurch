@@ -1,37 +1,60 @@
-<%= form_for [@group, @meeting] do |f| %>
+<div class="form">
+  <%= form_for [@group, @meeting] do |f| %>
 
-  <%= render 'error_messages', object: f.object %>
+    <%= render 'error_messages', object: f.object %>
 
-  <%= f.label :date %>
-  <%= f.date_select :date %>
+    <div>
+      <%= f.label :date do |label| %>
+        <%= label %>
+        <%= f.date_select :date %>
+      <% end %>
+    </div>
 
-  <%= f.label :attending_member_ids %>
-  <%= f.collection_check_boxes :attending_member_ids, @meeting.group.members, :id, :full_name %>
+    <div>
+      <%= f.label :attending_member_ids do |label| %>
+        <%= label %>
+        <%= f.collection_check_boxes :attending_member_ids, @meeting.group.members, :id, :full_name %>
+        <% end %>
+    </div>
+    <div>
+      <%= f.label :external_member_ids do |label| %>
+        <%= label %>
+        <%= f.select :external_member_ids, @meeting.external_members, { prompt: t("members.select") }, { multiple: true, class: "selectize-member" } %>
+      <% end %>
+    </div>
 
-  <%= f.label :external_member_ids %>
-  <%= f.select :external_member_ids, @meeting.external_members, { prompt: t("members.select") }, { multiple: true, class: "selectize-member" } %>
+    <%= f.fields_for :files, (@meeting.files.build unless @meeting.files.any?) do |file_f| %>
+      <div class="fields-for">
+        <div class="files-fields">
 
-  <%= f.fields_for :files, (@meeting.files.build unless @meeting.files.any?) do |file_f| %>
-    <div class="fields-for">
-      <div class="files-fields">
-        <%= file_f.label :name %>
-        <%= file_f.text_field :name %>
+          <div>
+            <%= file_f.label :name do |label| %>
+              <%= label %>
+              <%= file_f.text_field :name %>
+            <% end %>
+          </div>
+          <div>
+            <%= file_f.label :file do |label| %>
+              <%= label %>
+              <%= file_f.file_field :file %>
+            <% end %>
+          </div>
 
-        <%= file_f.label :file %>
-        <%= file_f.file_field :file %>
+          <%= file_f.hidden_field :_destroy, identifier: "destroy" %>
 
-        <%= file_f.hidden_field :_destroy, identifier: "destroy" %>
+          <button class="remove-fields" data-type="files">Supprimer</button>
+        </div>
 
-        <button class="remove-fields" data-type="files">Supprimer</button>
+        <button class="add-fields" data-type="files" data-count="<%= @meeting.files.count %>">
+          Ajouter un fichier
+        </button>
       </div>
 
-      <button class="add-fields" data-type="files" data-count="<%= @meeting.files.count %>">
-        Ajouter un fichier
-      </button>
+    <% end %>
+
+    <div class="buttons">
+      <%= f.button %>
     </div>
 
   <% end %>
-
-  <%= f.submit %>
-
-<% end %>
+</div>

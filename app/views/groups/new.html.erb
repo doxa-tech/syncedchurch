@@ -2,10 +2,10 @@
 
 <h1><%= t('.title') %></h1>
 
-<%= form_for @group do |f| %>
+<div class="form">
+  <%= form_for @group do |f| %>
 
-  <%= render 'error_messages', object: f.object %>
+    <%= render 'fields', f: f %>
 
-  <%= render 'fields', f: f %>
-
-<% end %>
+  <% end %>
+</div>

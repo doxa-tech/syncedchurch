@@ -1,30 +1,56 @@
-<%= form_for @followup do |f| %>
+<div class="form">
+  <%= form_for @followup do |f| %>
 
-  <%= render 'error_messages', object: f.object %>
+    <%= render 'error_messages', object: f.object %>
 
-  <%= f.label :member_id %>
-  <%= f.select :member_id, [@followup.member.try(:full_name), @followup.member_id], 
-    { prompt: t("members.select") }, { class: "selectize-member" } %>
+    <div>
+      <%= f.label :member_id do |label| %>
+        <%= label %>
+        <%= f.select :member_id, [@followup.member.try(:full_name), @followup.member_id], 
+        { prompt: t("members.select") }, { class: "selectize-member" } %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :counselor_id do |label| %>
+        <%= label %>
+        <%= f.select :counselor_id, [@followup.counselor.try(:full_name), @followup.counselor_id], 
+        { prompt: t("members.select") }, { class: "selectize-member" } %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :date do |label| %>
+        <%= label %>
+        <%= f.date_select :date %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :reason do |label| %>
+        <%= label %>
+        <%= f.select :reason, options_for_enum(@followup, :reason) %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :place do |label| %>
+        <%= label %>
+        <%= f.select :place, options_for_enum(@followup, :place) %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :duration do |label| %>
+        <%= label %>
+        <%= f.number_field :duration %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :notes do |label| %>
+        <%= label %>
+        <%= f.text_area :notes %>
+      <% end %>
+    </div>
 
-  <%= f.label :counselor_id %>
-  <%= f.select :counselor_id, [@followup.counselor.try(:full_name), @followup.counselor_id], 
-    { prompt: t("members.select") }, { class: "selectize-member" } %>
+    <div class="buttons">
+      <%= f.button %>
+    </div>
 
-  <%= f.label :date %>
-  <%= f.date_select :date %>
-
-  <%= f.label :reason %>
-  <%= f.select :reason, options_for_enum(@followup, :reason) %>
-
-  <%= f.label :place %>
-  <%= f.select :place, options_for_enum(@followup, :place) %>
-
-  <%= f.label :duration %>
-  <%= f.number_field :duration %>
-
-  <%= f.label :notes %>
-  <%= f.text_area :notes %>
-
-  <%= f.submit %>
-
-<% end %>
+  <% end %>
+</div>

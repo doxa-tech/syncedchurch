@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :redirect_if_connected, except: :destroy
+  layout 'login'
 
   def new
   end
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    require_login
+    require_login!
     sign_out
     redirect_to login_path, success: t('sessions.destroy.success')
   end

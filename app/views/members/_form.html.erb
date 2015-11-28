@@ -1,75 +1,136 @@
-<%= form_for @member do |f| %>
+<div class="form">
+  <%= form_for @member do |f| %>
 
-  <%= render 'error_messages', object: f.object %>
+    <%= render 'error_messages', object: f.object %>
 
-  <%= f.label :gender %>
-  <%= f.select :gender, options_for_enum(@member, :gender)  %>
+    <div>
+      <%= f.label :gender do |label| %>
+        <%= label %>
+        <%= f.select :gender, options_for_enum(@member, :gender)  %>
+      <% end %>
+    </div>
 
-  <%= f.label :lastname %>
-  <%= f.text_field :lastname %>
+    <div>
+      <%= f.label :lastname do |label| %>
+        <%= label %>
+        <%= f.text_field :lastname %>
+      <% end %>
+    </div>
 
-  <%= f.label :firstname %>
-  <%= f.text_field :firstname %>
+    <div>
+      <%= f.label :firstname do |label| %>
+        <%= label %>
+        <%= f.text_field :firstname %>
+      <% end %>
+    </div>
 
-  <%= f.label :birthday %>
-  <%= f.date_select :birthday, { :start_year => Date.today.year, :end_year => 110.years.ago.year } %>
-  <%= privatize_check_box_tag("birthday") %>
+    <div>
+      <%= f.label :birthday do |label| %>
+        <%= label %>
+        <%= f.date_select :birthday, { :start_year => Date.today.year, :end_year => 110.years.ago.year } %>
+        <%= privatize_check_box_tag("birthday") %>
+      <% end %>
+    </div>
 
-  <%= f.label :adress %>
-  <%= f.text_field :adress %>
-  <%= privatize_check_box_tag("adress") %>
+    <div>
+      <%= f.label :adress do |label| %>
+        <%= label %>
+        <%= f.text_field :adress %>
+        <%= privatize_check_box_tag("adress") %>
+      <% end %>
+    </div>
 
-  <%= f.label :npa %>
-  <%= f.number_field :npa %>
-  <%= privatize_check_box_tag("npa") %>
+    <div>
+      <%= f.label :npa do |label| %>
+        <%= label %>
+        <%= f.number_field :npa %>
+        <%= privatize_check_box_tag("npa") %>
+      <% end %>
+    </div>
 
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-  <%= privatize_check_box_tag("city") %>
+    <div>
+      <%= f.label :city do |label| %>
+        <%= label %>
+        <%= f.text_field :city %>
+        <%= privatize_check_box_tag("city") %>
+      <% end %>
+    </div>
 
-  <%= f.label :job %>
-  <%= f.text_field :job %>
+    <div>
+      <%= f.label :job do |label| %>
+        <%= label %>
+        <%= f.text_field :job %>
+      <% end %>
+    </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= privatize_check_box_tag("email") %>
+    <div>
+      <%= f.label :email do |label| %>
+        <%= label %>
+        <%= f.email_field :email %>
+        <%= privatize_check_box_tag("email") %>
+      <% end %>
+    </div>
 
-  <%= f.label :extra %>
-  <%= f.text_area :extra %>
+    <div>
+      <%= f.label :extra do |label| %>
+        <%= label %>
+        <%= f.text_area :extra %>
+      <% end %>
+    </div>
 
-  <%= f.fields_for :family, (@member.build_family if @member.family.nil?) do |family_f| %>
+    <%= f.fields_for :family, (@member.build_family if @member.family.nil?) do |family_f| %>
 
-    <%= family_f.label :lastname %>
-    <%= family_f.text_field :lastname %>
-
-  <% end %>
-
-  <%= f.label :role %>
-  <%= f.select :role, options_for_enum(@member, :role) %>
-
-  <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
-    <div class="fields-for">
-      <div class="phones-fields">
-        <%= phone_f.label :phone_type %>
-        <%= phone_f.select :phone_type, options_for_enum(phone_f.object, :phone_type) %>
-
-        <%= phone_f.label :number %>
-        <%= phone_f.text_field :number %>
-
-        <%= phone_f.check_box :private %>
-
-        <%= phone_f.hidden_field :_destroy, identifier: "destroy" %>
-
-        <button class="remove-fields" data-type="phones">Supprimer</button>
+      <div>
+        <%= family_f.label :lastname do |label| %>
+          <%= label %>
+          <%= family_f.text_field :lastname %>
+        <% end %>
       </div>
 
-      <button class="add-fields" data-type="phones" data-count="<%= @member.phones.count %>">
-        Ajouter un numéro
-      </button>
+    <% end %>
+
+    <div>
+      <%= f.label :role do |label| %>
+        <%= label %>
+        <%= f.select :role, options_for_enum(@member, :role) %>
+      <% end %>
+    </div>
+
+    <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
+      <div class="fields-for">
+        <div class="phones-fields">
+
+          <div>
+            <%= phone_f.label :phone_type do |label| %>
+              <%= label %>
+              <%= phone_f.select :phone_type, options_for_enum(phone_f.object, :phone_type) %>
+            <% end %>
+          </div>
+
+          <div>
+            <%= phone_f.label :number do |label| %>
+              <%= label %>
+              <%= phone_f.text_field :number %>
+            <% end %>
+          </div>
+
+          <%= phone_f.check_box :private %>
+
+          <%= phone_f.hidden_field :_destroy, identifier: "destroy" %>
+
+          <button class="remove-fields" data-type="phones">Supprimer</button>
+        </div>
+
+        <button class="add-fields" data-type="phones" data-count="<%= @member.phones.count %>">
+          Ajouter un numéro
+        </button>
+      </div>
+
+    <% end %>
+
+    <div class="buttons">
+      <%= f.button %>
     </div>
 
   <% end %>
-
-  <%= f.submit %>
-
-<% end %>
+</div>

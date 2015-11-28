@@ -1,13 +1,33 @@
-<%= f.label :name %>
-<%= f.text_field :name %>
+<div class="errors"><%= render 'error_messages', object: f.object %></div>
 
-<%= f.label :group_type %>
-<%= f.select :group_type, options_for_enum(@group, :group_type) %>
+<div>
+  <%= f.label :name do |label| %>
+    <%= label %>
+    <%= f.text_field :name %>
+  <% end %>
+</div>
 
-<%= f.label :place %>
-<%= f.select :place, options_for_enum(@group, :place) %>
+<div>
+  <%= f.label :group_type do |label| %>
+    <%= label %>
+    <%= f.select :group_type, options_for_enum(@group, :group_type) %>
+  <% end %>
+</div>
 
-<%= f.label :place_other %>
-<%= f.text_field :place_other %>
+<div>
+  <%= f.label :place do |label| %>
+    <%= label %>
+    <%= f.select :place, options_for_enum(@group, :place) %>
+  <% end %>
+</div>
 
-<%= f.submit %>
+<div>
+  <%= f.label :place_other do |label| %>
+    <%= label %>
+    <%= f.text_field :place_other %>
+  <% end %>
+</div>
+
+<div class="buttons">
+  <%= f.button %>
+</div>

@@ -7,6 +7,7 @@ fr:
         count_without_frequence: doit être sélectionné lorsqu'on utilise l'option "Nombre de fois"
         until_without_frequence: doit être sélectionné lorsqu'on utilise l'option "Jusqu'à"
   attributes:
+    date: "Date"
     name: "Nom"
     lastname: "Nom"
     firstname: "Prénom"
@@ -39,6 +40,7 @@ fr:
     until: "Jusqu'à"
     title: "Titre"
     uid: "uid"
+    number: "Numéro"
     recurrence: "Récurrence"
   activerecord:
     attributes:
@@ -48,8 +50,6 @@ fr:
       user:
         password_digest: "Mot de passe"
         confirmed: "Confirmé"
-      phone:
-        number: "Numéro"
       family:
         lastname: "Famille"
       group:
