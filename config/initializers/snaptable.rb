@@ -1,1 +1,1 @@
-Snaptable.show_button = true
+Snaptable.use_permission = true

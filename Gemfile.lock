@@ -198,7 +198,7 @@ GEM
     selectize-rails (0.12.1)
     show_me_the_cookies (3.0.0)
       capybara (~> 2.0)
-    snaptable (0.9.3)
+    snaptable (1.1.0)
       jquery-rails
       rails (~> 4.2.1)
       sass-rails

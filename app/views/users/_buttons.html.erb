@@ -1,4 +1,2 @@
 <p><%= t("table.buttons.title") %></p>
-<p>
-  <%= link_to t("table.buttons.delete"), "#", method: :delete, class: "delete", data: { confirm: "Etes-vous sûr de vouloir supprimer cette entrée ?" } if rights? :destroy, "users" %>
-</p>
+<p><%= delete_button if delete_button? %></p>
