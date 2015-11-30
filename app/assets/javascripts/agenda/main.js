@@ -5,7 +5,40 @@ var app = angular.module("Agenda", ["filters"]);
 
 angular.module("filters", []);
 
+app.directive('infiniteScrollDown', function() {
+  return function(scope, element, attr) {
+    var $element = element[0]
+    element.bind('scroll', function() {
+      if ($element.scrollTop + $element.offsetHeight >= $element.scrollHeight - 150) {
+        scope.$apply(attr.infiniteScrollDown);
+      }
+    });
+  };
+});
+
+app.directive('infiniteScrollUp', ["$timeout", function($timeout) {
+  return function(scope, element, attr) {
+    //scope.$eval(attr.infiniteScrollUp);
+
+    var $element = element[0]
+    $timeout(function() {
+      $element.scrollTop = $element.scrollHeight;          
+    });  
+
+    element.bind('scroll', function() {
+      if ($element.scrollTop <= 150) {
+        var scrollHeight = $element.scrollHeight
+        scope.$apply(attr.infiniteScrollUp);
+        $element.scrollTop = $element.scrollHeight - scrollHeight;
+      }
+    });
+  };
+}]);
+
 app.controller("MainController", ["$scope", "$http", function($scope, $http) {
+
+  $scope.nextWeek = function() { nextWeek(); };
+  $scope.previousWeek = function() { previousWeek(); };
 
   // $scope.events = {
   //   "2015-11-2": [{ "description": "Groupe de maison" }],

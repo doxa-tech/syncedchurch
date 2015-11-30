@@ -1,27 +1,29 @@
-<div class="header">
-  <div class="month">
-    Octobre
-  </div>
-  <ul>
-    <li>lundi</li>
-    <li>mardi</li>
-    <li>mercredi</li>
-    <li>jeudi</li>
-    <li>vendredi</li>
-    <li>samedi</li>
-    <li>dimanche</li>
-  </ul>
-</div>
-
-<div class="week-container">
-  <div ng-repeat="week in weeks" class="week">
+<div id="fixed" infinite-scroll-up="previousWeek()" infinite-scroll-down="nextWeek()">
+  <div class="header">
+    <div class="month">
+      Octobre
+    </div>
     <ul>
-      <li ng-repeat="(date, day) in week" ng-class="{current: day.current_day}">
-        <p class="day-number">{{ date | dayFromDate }}</p>
-        <p ng-repeat="event in day.events" class="event">
-          {{ event.description }}
-        </p>
-      </li>
+      <li>lundi</li>
+      <li>mardi</li>
+      <li>mercredi</li>
+      <li>jeudi</li>
+      <li>vendredi</li>
+      <li>samedi</li>
+      <li>dimanche</li>
     </ul>
+  </div>
+
+  <div class="week-container">
+    <div ng-repeat="week in weeks" class="week">
+      <ul>
+        <li ng-repeat="(date, day) in week" ng-class="{current: day.current_day}">
+          <p class="day-number">{{ date | dayFromDate }}</p>
+          <p ng-repeat="event in day.events" class="event">
+            {{ event.description }}
+          </p>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
