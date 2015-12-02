@@ -1,4 +1,4 @@
-<div id="fixed" infinite-scroll-up="previousWeek()" infinite-scroll-down="nextWeek()">
+<div id="fixed" infinite-scroll-up infinite-scroll-down>
   <div class="header">
     <div class="month">
       Octobre
@@ -17,9 +17,9 @@
   <div class="week-container">
     <div ng-repeat="week in weeks" class="week">
       <ul>
-        <li ng-repeat="(date, day) in week" ng-class="{current: day.current_day}">
+        <li ng-repeat="(date, day) in week" ng-class="{current: (date == today)}">
           <p class="day-number">{{ date | dayFromDate }}</p>
-          <p ng-repeat="event in day.events" class="event">
+          <p ng-repeat="event in day" class="event">
             {{ event.description }}
           </p>
         </li>
