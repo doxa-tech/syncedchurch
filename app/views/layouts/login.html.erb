@@ -8,11 +8,9 @@
 </head>
 <body class="layout layout-col">
 
-  <%= render 'layouts/flash' %>
-
-  <%= render 'layouts/topbar' %>
-  <div id="layout-content" class="flex layout layout-row">
-    <%= render 'layouts/content_container' %>
+  <div id="main-login" class="<%=yield(:id)%>">
+    <%= render 'layouts/flash' %>
+    <%= yield %>
   </div>
 
 </body>

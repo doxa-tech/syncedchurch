@@ -11,7 +11,7 @@
   <%= render 'layouts/flash' %>
 
   <%= render 'layouts/topbar' %>
-  <div id="layout-content" class="flex layout layout-row">
+  <div id="layout-content" class="flex layout layout-row <%=yield(:id)%>" >
     <%= render 'layouts/sidenav' %>
     <%= render 'layouts/content_container' %>
   </div>
