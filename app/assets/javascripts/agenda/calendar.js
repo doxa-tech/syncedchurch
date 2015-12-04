@@ -23,10 +23,14 @@ module.factory("Calendar", ["$http", function($http) {
           day = angular.copy(day);
       for(var i=1; i <= 7; i++) {
         var key = dateKey(day);
+        week[key] = {}
         if(events[key] === undefined) {
-          week[key] = [];
+          week[key]["events"] = [];
         } else {
-          week[key] = events[key];
+          week[key]["events"] = events[key];
+        }
+        if(day.getDate() <= 7 && day.is().sunday()) { 
+          week["month"] = monthNames[day.getMonth()];
         }
         day.next().day();
       }
@@ -66,6 +70,11 @@ module.factory("Calendar", ["$http", function($http) {
 
     this.weeks = [];
     this.todayKey = dateKey(today);
+
+    var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+    this.currentMonth = monthNames[today.getMonth()];
   };
   return Calendar;
 }]);

@@ -1,7 +1,7 @@
-<div id="fixed" infinite-scroll-up infinite-scroll-down>
+<div id="fixed" infinite-scroll-up infinite-scroll-down month-name>
   <div class="header">
     <div class="month">
-      Octobre
+      {{ currentMonth }}
     </div>
     <ul>
       <li>lundi</li>
@@ -15,15 +15,17 @@
   </div>
 
   <div class="week-container">
-    <div ng-repeat="week in weeks" class="week">
+    <div ng-repeat="week in weeks" ng-attr-id="{{week.month == currentMonth && 'current-month' || '' }}" 
+      ng-class="{'has-month': week.month}" class="week">
       <ul>
         <li ng-repeat="(date, day) in week" ng-class="{current: (date == today)}">
           <p class="day-number">{{ date | dayFromDate }}</p>
-          <p ng-repeat="event in day" class="event">
+          <p ng-repeat="event in day.events" class="event">
             {{ event.description }}
           </p>
         </li>
       </ul>
+      <div class="month-name">{{ week.month }}</div>
     </div>
   </div>
 </div>

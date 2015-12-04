@@ -3,13 +3,13 @@
 
 var module = angular.module("directives");
 
-module.directive('infiniteScrollDown', function() {
+module.directive("infiniteScrollDown", function() {
   return function(scope, element, attr) {
-    var $element = element[0]
-    element.bind('scroll', function() {
+    var $element = element[0];
+    element.bind("scroll", function() {
       if ($element.scrollTop + $element.offsetHeight >= $element.scrollHeight - 150) {
         scope.calendar.loadEvents(function() { 
-          scope.calendar.nextWeek()
+          scope.calendar.nextWeek();
           scope.weeks = scope.calendar.weeks;
         });
       }
@@ -17,10 +17,10 @@ module.directive('infiniteScrollDown', function() {
   };
 });
 
-module.directive('infiniteScrollUp', ["$timeout", function($timeout) {
+module.directive("infiniteScrollUp", ["$timeout", function($timeout) {
   return function(scope, element, attr) {
     var $element = element[0];
-    element.bind('scroll', function() {
+    element.bind("scroll", function() {
       if ($element.scrollTop <= 150 && !scope.loading) {
         scope.loading = true;        
         scope.calendar.loadEvents(function() {
