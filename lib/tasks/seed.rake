@@ -1,4 +1,4 @@
-namespace :seeds do
+namespace :seed do
 
   desc "Setup the environment"
   task :all => []
