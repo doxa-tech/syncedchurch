@@ -15,14 +15,8 @@ app.controller("MainController", ["$scope", "Calendar", "$timeout", function($sc
 
   $scope.currentMonth = $scope.calendar.currentMonth;
 
-  $scope.calendar.loadEvents(function() {
-    $scope.calendar.generateFirstMonth();
+  $scope.calendar.loadNextEvents(function() {
+    $scope.calendar.nextWeek(6);
     $scope.weeks = $scope.calendar.weeks;
-
-    $timeout(function() {
-      var currentMonth = document.getElementById("current-month");
-      nextMonthElement(currentMonth).setAttribute("id", "next-month");
-    });
-
-  });
+  }, 6);
 }]);

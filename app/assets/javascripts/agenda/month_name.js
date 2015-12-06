@@ -47,28 +47,28 @@ function offset(element) {
   return {
     top: rect.top + bodyElt .scrollTop,
     left: rect.left + bodyElt .scrollLeft
-  }
+  };
 }
 
 function nextMonthElement(element) {
   var nextElement = element.nextElementSibling;
-  return findMonthElement(nextElement, nextMonthElement)
+  return findMonthElement(nextElement, nextMonthElement);
 }
 
 function previousMonthElement(element) {
   var previousElement = element.previousElementSibling;
-  return findMonthElement(previousElement, previousMonthElement)
+  return findMonthElement(previousElement, previousMonthElement);
 }
 
 function findMonthElement(element, callback) {
   if(element !== null) {
-    if(element.classList.contains('has-month')) {
+    if(element.classList.contains("has-month")) {
       element.setAttribute("id", "previous-month");
       return element;
     } else {
       return callback(element);
     }
   } else {
-    return null
+    return null;
   }
 }

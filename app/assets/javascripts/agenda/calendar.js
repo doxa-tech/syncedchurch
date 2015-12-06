@@ -11,11 +11,25 @@ module.factory("Calendar", ["$http", function($http) {
       return day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
     };
 
-    this.loadEvents = function(callback) {
-      return $http.get("api/events.json").then(function(response) {
+    var loadEvents = function(callback, from, to) {
+      $http.get("api/events.json", { params: { from: from, to: to }}).then(function(response) {
         events = response.data;
         callback();
       });
+    };
+
+    this.loadPreviousEvents = function(callback, n) {
+      var n = n || -4,
+          to = dateKey(firstMonday),
+          from = dateKey(angular.copy(firstMonday).add(n).weeks());
+      loadEvents(callback, from, to);
+    };
+
+    this.loadNextEvents = function(callback, n) {
+      var n = n || 4,
+          from = dateKey(lastMonday),
+          to = dateKey(angular.copy(lastMonday).add(n).weeks());
+      loadEvents(callback, from, to);
     };
 
     var generateWeek = function(day) {
@@ -23,14 +37,14 @@ module.factory("Calendar", ["$http", function($http) {
           day = angular.copy(day);
       for(var i=1; i <= 7; i++) {
         var key = dateKey(day);
-        week[key] = {}
+        week[key] = {};
         if(events[key] === undefined) {
-          week[key]["events"] = [];
+          week[key].events = [];
         } else {
-          week[key]["events"] = events[key];
+          week[key].events = events[key];
         }
         if(day.getDate() <= 7 && day.is().sunday()) { 
-          week["month"] = monthNames[day.getMonth()];
+          week.month = monthNames[day.getMonth()];
         }
         day.next().day();
       }
@@ -38,25 +52,18 @@ module.factory("Calendar", ["$http", function($http) {
     };
 
     this.nextWeek = function(n) {
-      n = n || 4; 
-      for(var i=1; i <=n; i++) {
+      var n = n || 4;
+      for(var i=1; i <= n; i++) {
         this.weeks.push(generateWeek(lastMonday));
         lastMonday.add(1).weeks();
       }
     };
 
     this.previousWeek = function(n) {
-      n = n || 4; 
+      var n = n || 4;
       for(var i = 1; i <= n; i++) {
         this.weeks.unshift(generateWeek(firstMonday));
         firstMonday.add(-1).weeks();
-      }
-    };
-
-    this.generateFirstMonth = function() {
-      var nextMonth = today.next().month().getMonth();
-      while(lastMonday.getMonth() !== nextMonth) {
-        this.nextWeek(1);
       }
     };
 
