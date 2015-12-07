@@ -4,7 +4,7 @@
 var module = angular.module("directives");
 
 module.directive("infiniteScrollDown", function() {
-  return function(scope, element, attr) {
+  return function(scope, element) {
     var $element = element[0];
     element.bind("scroll", function() {
       if(!scope.loading && $element.scrollTop + $element.offsetHeight >= $element.scrollHeight - 150) {
@@ -20,7 +20,7 @@ module.directive("infiniteScrollDown", function() {
 });
 
 module.directive("infiniteScrollUp", function() {
-  return function(scope, element, attr) {
+  return function(scope, element) {
     var $element = element[0];
     element.bind("scroll", function() {
       if (!scope.loading && $element.scrollTop <= 150) {
@@ -28,7 +28,7 @@ module.directive("infiniteScrollUp", function() {
         scope.calendar.loadPreviousEvents(function() {
           var scrollHeight = $element.scrollHeight,
               scrollTop = $element.scrollTop;
-          scope.$watch('weeks', function() {
+          scope.$watch("weeks", function() {
             $element.scrollTop = $element.scrollHeight - scrollHeight + scrollTop;
             scope.loading = false;
           });

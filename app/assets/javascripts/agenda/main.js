@@ -7,7 +7,7 @@ angular.module("filters", []);
 angular.module("services", []);
 angular.module("directives", []);
 
-app.controller("MainController", ["$scope", "Calendar", "$timeout", function($scope, Calendar, $timeout) {
+app.controller("MainController", ["$scope", "Calendar", function($scope, Calendar) {
 
   $scope.calendar = new Calendar();
 

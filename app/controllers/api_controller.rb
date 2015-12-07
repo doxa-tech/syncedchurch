@@ -14,7 +14,9 @@ class ApiController < ApplicationController
   end
 
   def events
-    @events = Event.all.group_by { |e| I18n.l e.dtstart, format: :api }
+    from = Date.parse(params[:from])
+    to = Date.parse(params[:to])
+    @events =Event.where(dtstart: from..to).group_by { |e| I18n.l e.dtstart, format: :api }
     respond_with @events
   end
 

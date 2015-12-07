@@ -5,7 +5,7 @@ var module = angular.module("directives");
 
 module.directive("monthName", [function() {
 
-  return function(scope, element, attrs) {
+  return function(scope, element) {
     var $ = { "currentMonth": null, "nextMonth": null, "previousMonth": null };
 
     element.bind("scroll", function() {

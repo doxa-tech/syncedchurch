@@ -19,15 +19,15 @@ module.factory("Calendar", ["$http", function($http) {
     };
 
     this.loadPreviousEvents = function(callback, n) {
-      var n = n || -4,
-          to = dateKey(angular.copy(firstMonday).add(1).week()),
+      n = n || -4;
+      var to = dateKey(angular.copy(firstMonday).add(1).week()),
           from = dateKey(angular.copy(firstMonday).add(n + 1).weeks());
       loadEvents(callback, from, to);
     };
 
     this.loadNextEvents = function(callback, n) {
-      var n = n || 4,
-          from = dateKey(lastMonday),
+      n = n || 4;
+      var from = dateKey(lastMonday),
           to = dateKey(angular.copy(lastMonday).add(n).weeks());
       loadEvents(callback, from, to);
     };
@@ -38,14 +38,14 @@ module.factory("Calendar", ["$http", function($http) {
         calendar.nextWeek(6);
         callback();
         angular.element(document).ready(function () {
-          document.getElementById("fixed").dispatchEvent(new Event('scroll'));
+          document.getElementById("fixed").dispatchEvent(new Event("scroll"));
         });
       }, 6);
     };
 
     var generateWeek = function(day) {
-      var week = {},
-          day = angular.copy(day);
+      var week = {};
+      day = angular.copy(day);
       for(var i=1; i <= 7; i++) {
         var key = dateKey(day);
         week[key] = {};
@@ -63,7 +63,7 @@ module.factory("Calendar", ["$http", function($http) {
     };
 
     this.nextWeek = function(n) {
-      var n = n || 4;
+      n = n || 4;
       for(var i=1; i <= n; i++) {
         this.weeks.push(generateWeek(lastMonday));
         lastMonday.add(1).weeks();
@@ -71,7 +71,7 @@ module.factory("Calendar", ["$http", function($http) {
     };
 
     this.previousWeek = function(n) {
-      var n = n || 4;
+      n = n || 4;
       for(var i = 1; i <= n; i++) {
         this.weeks.unshift(generateWeek(firstMonday));
         firstMonday.add(-1).weeks();
