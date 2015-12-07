@@ -26,33 +26,29 @@
 
     <div>
       <%= f.label :birthday do |label| %>
-        <%= label %>
+        <%= privatize_check_box_tag("birthday") %> <%= label %>
         <%= f.date_select :birthday, { :start_year => Date.today.year, :end_year => 110.years.ago.year } %>
-        <%= privatize_check_box_tag("birthday") %>
       <% end %>
     </div>
 
     <div>
       <%= f.label :adress do |label| %>
-        <%= label %>
+        <%= privatize_check_box_tag("adress") %> <%= label %>
         <%= f.text_field :adress %>
-        <%= privatize_check_box_tag("adress") %>
       <% end %>
     </div>
 
     <div>
       <%= f.label :npa do |label| %>
-        <%= label %>
+        <%= privatize_check_box_tag("npa") %> <%= label %>
         <%= f.number_field :npa %>
-        <%= privatize_check_box_tag("npa") %>
       <% end %>
     </div>
 
     <div>
       <%= f.label :city do |label| %>
-        <%= label %>
+        <%= privatize_check_box_tag("city") %> <%= label %>
         <%= f.text_field :city %>
-        <%= privatize_check_box_tag("city") %>
       <% end %>
     </div>
 
@@ -65,9 +61,8 @@
 
     <div>
       <%= f.label :email do |label| %>
-        <%= label %>
+        <%= privatize_check_box_tag("email") %> <%= label %>
         <%= f.email_field :email %>
-        <%= privatize_check_box_tag("email") %>
       <% end %>
     </div>
 
