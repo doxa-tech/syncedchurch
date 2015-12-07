@@ -19,7 +19,7 @@ module.directive("infiniteScrollDown", function() {
   };
 });
 
-module.directive("infiniteScrollUp", ["$timeout", function($timeout) {
+module.directive("infiniteScrollUp", function() {
   return function(scope, element, attr) {
     var $element = element[0];
     element.bind("scroll", function() {
@@ -38,4 +38,4 @@ module.directive("infiniteScrollUp", ["$timeout", function($timeout) {
       }
     });
   };
-}]);
+});

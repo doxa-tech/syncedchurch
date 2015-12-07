@@ -3,7 +3,8 @@
     <div class="month">
       {{ currentMonth }}
     </div>
-    <!-- <div id="loading" ng-show="loading">Loading...</div> -->
+    <!-- <div id="loading" ng-hide="weeks.length">Loading...</div> -->
+    <!-- <div id="loading-events" ng-show="loading">Loading...</div> -->
     <ul>
       <li>lundi</li>
       <li>mardi</li>
@@ -16,7 +17,7 @@
   </div>
 
   <div class="week-container">
-    <div ng-repeat="week in weeks" ng-attr-id="{{week.month == currentMonth && 'current-month' || '' }}" 
+    <div ng-repeat="week in weeks" ng-attr-id="{{week.month == currentMonth ? 'current-month' : '' }}" 
       ng-class="{'has-month': week.month}" class="week">
       <ul>
         <li ng-repeat="(date, day) in week" ng-class="{current: (date == today)}">

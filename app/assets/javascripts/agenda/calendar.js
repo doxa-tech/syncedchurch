@@ -20,8 +20,8 @@ module.factory("Calendar", ["$http", function($http) {
 
     this.loadPreviousEvents = function(callback, n) {
       var n = n || -4,
-          to = dateKey(firstMonday),
-          from = dateKey(angular.copy(firstMonday).add(n).weeks());
+          to = dateKey(angular.copy(firstMonday).add(1).week()),
+          from = dateKey(angular.copy(firstMonday).add(n + 1).weeks());
       loadEvents(callback, from, to);
     };
 
@@ -30,6 +30,17 @@ module.factory("Calendar", ["$http", function($http) {
           from = dateKey(lastMonday),
           to = dateKey(angular.copy(lastMonday).add(n).weeks());
       loadEvents(callback, from, to);
+    };
+
+    this.generateFirstMonth = function(callback) {
+      var calendar = this;
+      this.loadPreviousEvents(function() {
+        calendar.nextWeek(6);
+        callback();
+        angular.element(document).ready(function () {
+          document.getElementById("fixed").dispatchEvent(new Event('scroll'));
+        });
+      }, 6);
     };
 
     var generateWeek = function(day) {

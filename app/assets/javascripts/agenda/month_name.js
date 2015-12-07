@@ -52,18 +52,18 @@ function offset(element) {
 
 function nextMonthElement(element) {
   var nextElement = element.nextElementSibling;
-  return findMonthElement(nextElement, nextMonthElement);
+  return findMonthElement(nextElement, "next-month", nextMonthElement);
 }
 
 function previousMonthElement(element) {
   var previousElement = element.previousElementSibling;
-  return findMonthElement(previousElement, previousMonthElement);
+  return findMonthElement(previousElement, "previous-month", previousMonthElement);
 }
 
-function findMonthElement(element, callback) {
+function findMonthElement(element, id, callback) {
   if(element !== null) {
     if(element.classList.contains("has-month")) {
-      element.setAttribute("id", "previous-month");
+      element.setAttribute("id", id);
       return element;
     } else {
       return callback(element);
