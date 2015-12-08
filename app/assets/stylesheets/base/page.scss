@@ -16,10 +16,37 @@ a {
   color: #417099;
 }
 
-table {
-  tr {
-    td {
-      padding: 10px;
+#snaptable {
+  table {
+    tr {
+      td {
+        padding: 10px;
+      }
+    }
+  }
+  .table_buttons {
+    display: inline-block;
+    a {
+        padding: 7px 10px;
+        border-radius: 3px;
+        color: #fff;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        background: #aaa;
+        pointer-events: none;
+        cursor: default;
+        display: inline-block;
+        margin: 5px 0;
+      &.on {
+        background: #7f72f5;
+        pointer-events: auto;
+        cursor: auto;
+      }
+      &.add {
+        background: #7f72f5;
+        pointer-events: auto;
+        cursor: auto;
+      }
     }
   }
 }

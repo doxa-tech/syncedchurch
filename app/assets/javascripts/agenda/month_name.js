@@ -18,7 +18,7 @@ module.directive("monthName", [function() {
         $ = updateSelectors($, "nextMonth", "previousMonth", nextMonthElement);
       }
 
-      if($.previousMonth !== null && offset($.previousMonth).top > -100) {
+      if($.previousMonth !== null && offset($.previousMonth).top > -200) {
         updateMonthName(scope, $.previousMonth);
         $ = updateSelectors($, "previousMonth", "nextMonth", previousMonthElement);
       }
