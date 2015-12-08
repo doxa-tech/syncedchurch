@@ -92,8 +92,15 @@
     </div>
 
     <%= f.fields_for :phones, (@member.phones.build unless @member.phones.any?) do |phone_f| %>
-      <div class="fields-for">
-        <div class="phones-fields">
+      <div class="fields-for wrap">
+        <div class="phones-fields wrap">
+
+          <div>
+            <%= phone_f.label :number do |label| %>
+              <%= phone_f.check_box :private, class: "inline" %> <%= label %>
+              <%= phone_f.text_field :number %>
+            <% end %>
+          </div>
 
           <div>
             <%= phone_f.label :phone_type do |label| %>
@@ -102,21 +109,12 @@
             <% end %>
           </div>
 
-          <div>
-            <%= phone_f.label :number do |label| %>
-              <%= label %>
-              <%= phone_f.text_field :number %>
-            <% end %>
-          </div>
-
-          <%= phone_f.check_box :private %>
-
           <%= phone_f.hidden_field :_destroy, identifier: "destroy" %>
 
-          <button class="remove-fields" data-type="phones">Supprimer</button>
+          <button class="remove-fields grey-button" data-type="phones">Supprimer</button>
         </div>
 
-        <button class="add-fields" data-type="phones" data-count="<%= @member.phones.count %>">
+        <button class="add-fields grey-button" data-type="phones" data-count="<%= @member.phones.count %>">
           Ajouter un numéro
         </button>
       </div>

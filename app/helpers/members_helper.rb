@@ -5,7 +5,7 @@ module MembersHelper
   end
 
   def privatize_check_box_tag(field)
-    check_box_tag "member[private][]", field, !public?(@member, field)
+    check_box_tag "member[private][]", field, !public?(@member, field), class: "inline"
   end
 
 end

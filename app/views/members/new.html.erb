@@ -1,5 +1,6 @@
-<%= render 'back_button', path: members_path if rights? :read, "members" %>
-
-<h1><%= t('.title') %></h1>
+<% content_for :toolbox do %>
+  <%= render 'back_button', path: members_path if rights? :read, "members" %>
+  <h1><%= t('.title') %></h1>
+<% end %>
 
 <%= render 'form' %>

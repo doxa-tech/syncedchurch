@@ -22,7 +22,7 @@ class MembersController < ApplicationController
   end
 
   def new
-    @member = Member.new  
+    @member = Member.new
   end
 
   def create
