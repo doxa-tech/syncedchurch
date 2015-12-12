@@ -15,10 +15,23 @@
     padding: 10px 0;
     background-color: #fff;
     z-index: 99;
-    .month {
-      text-align: right;
-      font-size: 30px;
-      padding: 10px 7px 10px 10px;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.2),0 1px 8px 0 rgba(0,0,0,.12);
+    .first-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      #loading-events {
+        flex: 1;
+        text-align: center;
+        img {
+          height: 32px;
+        }
+      }
+      .month {
+        text-align: right;
+        font-size: 30px;
+        padding: 10px 7px 10px 10px;
+      }
     }
     ul {
       display: flex;
@@ -33,6 +46,8 @@
   .week-container {
     color: #464646;
     .week {
+      display: flex;
+      flex-direction: row;
       height: 150px;
       border-top: 1px solid #C7C7C7;
       position: relative;
@@ -40,6 +55,7 @@
         display: flex;
         flex-direction: row;
         text-align: right;
+        flex:1;
         li {
           flex: 1;
           padding: 5px 7px;
@@ -54,11 +70,30 @@
             border-radius: 3px;
             font-size: 12px;
           }
+          &.first {
+
+          }
+
         }
         li.current {
-          background-color: black;
+          border: 2px solid #6D99C1;
+          border-radius: 10px;
         }
+      }
+      .month-name {
+        position: absolute;
+        left: 5px;
+        top: 5px;
       }
     }
   }
+}
+
+#loading {
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.75);
 }
