@@ -1,10 +1,13 @@
 <div id="fixed" infinite-scroll-up infinite-scroll-down month-name>
   <div class="header">
-    <div class="month">
-      {{ currentMonth }}
+    <div class="first-row">
+      <div id="loading-events" ng-show="loading">
+        <%= image_tag image_url "layout/loading_gears.svg" %>
+      </div>
+      <div class="month">
+        {{ currentMonth }}
+      </div>
     </div>
-    <!-- <div id="loading" ng-hide="weeks.length">Loading...</div> -->
-    <!-- <div id="loading-events" ng-show="loading">Loading...</div> -->
     <ul>
       <li>lundi</li>
       <li>mardi</li>
@@ -29,4 +32,8 @@
       <div class="month-name">{{ week.month }}</div>
     </div>
   </div>
+</div>
+
+<div id="loading" ng-hide="weeks.length">
+  <%= image_tag image_url "layout/loading_gears.svg" %>
 </div>
