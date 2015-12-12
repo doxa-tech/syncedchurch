@@ -24,6 +24,9 @@ a {
       }
     }
   }
+  tr.selected {
+    background: #F0BEBE;
+  }
   .table_buttons {
     display: inline-block;
     a {

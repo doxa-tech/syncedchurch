@@ -6,6 +6,10 @@
 <% if can? :import, "members" %>
   <div>
     <h3><%= t('.import.title') %></h3>
+    <p>
+      Champs obligatoires: nom, prénom, date de naissance, genre<br>
+      Fichier d'exemple: <a href="/example.csv">example.csv</a>
+    </p>
     <%= form_tag import_members_path, multipart: true do %>
 
       <%= file_field_tag :file, accept: 'text/csv' %>
