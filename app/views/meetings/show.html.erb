@@ -5,17 +5,26 @@
 <%= link_to t(".group"), group_path(@meeting.group) if can? :read, @meeting.group %>
 <%= link_to t(".edit"), edit_meeting_path(@meeting) if can? :update, @meeting %>
 
-<%= l @meeting.date, format: :long %>
+<ul>
+  <li>Date: <%= l @meeting.date, format: :long %></li>
 
-<span class="member-count"><%= @meeting.attending_members.size + @meeting.external_members.size %></span>
+  <li>
+    <span class="member-count">
+      Nombre de participants: <%= @meeting.attending_members.size + @meeting.external_members.size %>
+    </span>
+  </li>
 
-<% @meeting.attending_members.each do |member| %>
-  <%= member.full_name %>
-<% end %>
+  <ul>
+    <% @meeting.attending_members.each do |member| %>
+      <li><%= member.full_name %></li>
+    <% end %>
+  </ul>
 
-<% @meeting.external_members.each do |member| %>
-  <%= member.full_name %>
-<% end %>
+  <ul>
+    <% @meeting.external_members.each do |member| %>
+      <li><%= member.full_name %></li>
+    <% end %>
+  </ul>
 
 <div id="files">
   <% @meeting.files.each do |file| %>
