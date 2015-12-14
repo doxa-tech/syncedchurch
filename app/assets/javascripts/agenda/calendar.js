@@ -48,7 +48,7 @@ module.factory("Calendar", ["$http", function($http) {
       day = angular.copy(day);
       for(var i=1; i <= 7; i++) {
         var key = dateKey(day);
-        week[key] = {};
+        week[key] = { "number": key.split("-")[2] };
         if(events[key] === undefined) {
           week[key].events = [];
         } else {

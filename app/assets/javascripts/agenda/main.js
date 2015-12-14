@@ -17,5 +17,7 @@ app.controller("MainController", ["$scope", "Calendar", function($scope, Calenda
 
   $scope.calendar.generateFirstMonth(function() {
     $scope.weeks = $scope.calendar.weeks;
+
+    console.log($scope.weeks)
   });
 }]);

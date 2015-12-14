@@ -22,8 +22,9 @@
   <div class="week-container">
     <div ng-repeat="week in weeks" month-attributes="{{ week.month }}" class="week">
       <ul>
-        <li ng-repeat="(date, day) in week" ng-class="{current: (date == today)}" ng-if="$index < 7">
-          <p class="day-number">{{ date | dayFromDate }}</p>
+        <li ng-repeat="(date, day) in week" ng-if="$index < 7" day-attributes 
+          day="{{ day.number }}" date="{{ date }}" month="{{ week.month }}">
+          <p class="day-number">{{ day.number }}</p>
           <p ng-repeat="event in day.events" class="event">
             {{ event.description }}
           </p>
