@@ -71,14 +71,20 @@
             border-radius: 3px;
             font-size: 12px;
           }
-          &.first {
-
+          &.first-of-month {
+            border-left: 3px solid #BFE1FF;
+          }
+          &.start-of-month {
+            border-top: 2px solid #BFE1FF;
+          }
+          &.end-of-month {
+            border-bottom: 2px solid #BFE1FF;
           }
 
         }
         li.current {
           border: 2px solid #6D99C1;
-          border-radius: 10px;
+          //border-radius: 10px;
         }
       }
       .month-name {

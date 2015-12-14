@@ -26,6 +26,9 @@ module.directive("dayAttributes", function() {
         element[0].classList.add("start-of-month");
       }
     }
+    if(attrs.day === "1") {
+      element[0].classList.add("first-of-month");
+    }
     if(attrs.date == scope.today) {
       element[0].classList.add("current");
     }
