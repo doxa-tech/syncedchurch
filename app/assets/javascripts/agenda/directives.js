@@ -20,14 +20,13 @@ module.directive("dayAttributes", function() {
 
   return function(scope, element, attrs) {
     if(attrs.month !== "") {
-      if(attrs.day > 7) {
+      if(attrs.day === "1") {
+        element[0].classList.add("first-of-month");
+      } else if(attrs.day > 7) {
         element[0].classList.add("end-of-month");
       } else {
         element[0].classList.add("start-of-month");
       }
-    }
-    if(attrs.day === "1") {
-      element[0].classList.add("first-of-month");
     }
     if(attrs.date == scope.today) {
       element[0].classList.add("current");
