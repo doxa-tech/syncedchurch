@@ -1,4 +1,16 @@
-<div id="topbar" class="layout layout-raw">
-  <%= image_tag image_url 'layout/menu_hamburger.jpg' %>
-  <%= link_to(image_tag(image_url('layout/logo_main.jpg'), class: 'logo'),'/') %>
+<div id="topbar" class="layout layout-row">
+  <div class="left">
+    <%= image_tag image_url 'layout/menu_hamburger.jpg' %>
+    <%= link_to(image_tag(image_url('layout/logo_main.jpg'), class: 'logo'),'/') %>
+  </div>
+  <div class="center">
+  </div>
+  <div class="right">
+    <% if signed_in? %>
+      <%= current_user.name %>
+      <%= link_to t("header.user.logout"), logout_path, method: :delete %>
+    <% else %>
+      <%= link_to t("header.user.login"), login_path %>
+    <% end %>
+  </div>
 </div>

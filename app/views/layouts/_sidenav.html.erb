@@ -6,13 +6,6 @@
   </div>
   <div id="tool-content" class="flex">
     <div id="sidebar" class="list-items">
-      <% if signed_in? %>
-        <%= current_user.name %>
-        <%= link_to t("header.user.logout"), logout_path, method: :delete %>
-      <% else %>
-        <%= link_to t("header.user.login"), login_path %>
-      <% end %>
-
       <%= link_to t("header.dashboard"), dashboard_path if signed_in? %>
       <%= link_to t("header.members"), members_path if rights? :read, "members" %>
       <%= link_to t("header.followups"), followups_path if rights? :read, "followups" %>
