@@ -1,6 +1,6 @@
 <% content_for :toolbox do %>
-  <h3><%= t('.export.title') %></h3>
 <% end %>
+<h3><%= t('.export.title') %></h3>
 <%= link_to t('.export.link'), members_path(format: :csv) %>
 
 <% if can? :import, "members" %>
