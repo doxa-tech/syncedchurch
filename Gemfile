@@ -70,6 +70,8 @@ gem 'capistrano-rvm'
 
 gem 'capistrano-maintenance', :require => false
 
+gem 'capistrano-server', github: 'JS-Tech/capistrano-server'
+
 gem 'puma'
 
 gem 'snaptable'
