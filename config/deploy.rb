@@ -4,6 +4,8 @@ lock '3.4.0'
 set :application, 'syncedchurch'
 set :deploy_user, 'eebulle'
 
+set :url, 'gestion.eebulle.ch'
+
 set :side_app, true
 
 set :scm, "git"
