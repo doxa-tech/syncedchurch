@@ -41,7 +41,7 @@ class Member < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w[id firstname lastname birthday job adress npa city email extra created_at updated_at gender] 
+    attributes = %w[id firstname lastname birthday job adress npa city email extra created_at updated_at gender]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :dtstart, :dtend, :location, :url)
+    params.require(:event).permit(:title, :description, :dtstart, :dtend, :location, :url, :visibility)
   end
 
   def recurrence_params

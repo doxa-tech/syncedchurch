@@ -1,10 +1,12 @@
 class Event < ActiveRecord::Base
   attr_writer :recurrence
+  enum visibility: [:everyone, :leaders]
 
   validates :description, presence: true
   validates :dtstart, presence: true
   validates :dtend, presence: true
   validates :uid, uniqueness: true
+  validates :visibility, presence: true
 
   include ActiveModel::Validations
   validates_with RecurrenceValidator

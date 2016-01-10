@@ -4,6 +4,13 @@
     <%= render 'error_messages', object: f.object %>
 
     <div>
+      <%= f.label :visibility do |label| %>
+        <%= label %>
+        <%= f.select :visibility, options_for_enum(@event, :visibility)  %>
+      <% end %>
+    </div>
+
+    <div>
       <%= f.label :title do |label| %>
         <%= label %>
         <%= f.text_field :title %>
@@ -50,7 +57,7 @@
       <div>
         <%= recurrence_f.label :frequence do |label| %>
           <%= label %>
-          <%= recurrence_f.select :frequence, Recurrence::FREQUENCES.map{ |e| [t("events.frequences.#{e}"), e] }, 
+          <%= recurrence_f.select :frequence, Recurrence::FREQUENCES.map{ |e| [t("events.frequences.#{e}"), e] },
           { include_blank: true } %>
         <% end %>
       </div>

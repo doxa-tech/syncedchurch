@@ -42,6 +42,7 @@ fr:
     uid: "uid"
     number: "Numéro"
     recurrence: "Récurrence"
+    visibility: "Visibilité"
   activerecord:
     attributes:
       member:
@@ -103,3 +104,7 @@ fr:
     errors:
       messages:
         does_not_match: "ne correspond pas"
+  event:
+    visibilities:
+      everyone: "Public"
+      leaders: "Leaders"
