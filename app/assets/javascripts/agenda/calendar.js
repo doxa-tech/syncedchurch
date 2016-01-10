@@ -34,7 +34,7 @@ module.factory("Calendar", ["$http", function($http) {
 
     this.generateFirstMonth = function(callback) {
       var calendar = this;
-      this.loadPreviousEvents(function() {
+      this.loadNextEvents(function() {
         calendar.nextWeek(6);
         callback();
         angular.element(document).ready(function () {
@@ -54,7 +54,7 @@ module.factory("Calendar", ["$http", function($http) {
         } else {
           week[key].events = events[key];
         }
-        if(day.getDate() <= 7 && day.is().sunday()) { 
+        if(day.getDate() <= 7 && day.is().sunday()) {
           week.month = monthNames[day.getMonth()];
         }
         day.next().day();
