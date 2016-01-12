@@ -60,7 +60,7 @@ FactoryGirl.define do
   factory :event do
     description "Soirée vision"
     dtstart { DateTime.parse("26 novembre 2015 20h00") }
-    dtend { DateTime.parse("26 novembre 2015 22h00") }
+    dtend { dtstart + 2.hours }
   end
 
 end

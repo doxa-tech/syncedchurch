@@ -6,8 +6,10 @@
 
 <ul>
   <li><%= @event.description %></li>
+  <% unless @event.recurrence.blank? %>
   <li>
-    <%= t("events.frequences.#{@event.recurrence.frequence}") %>, 
+    <%= t("events.frequences.#{@event.recurrence.frequence}") %>,
     <%= t(".recurrence.count", count: "#{@event.recurrence.count}") %>
   </li>
+  <% end %>
 <ul>

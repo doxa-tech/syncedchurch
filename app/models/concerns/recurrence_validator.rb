@@ -9,7 +9,7 @@ class RecurrenceValidator < ActiveModel::Validator
   private
 
   def monthly_without_frequence?
-    @recurrence.monthly.present? && @recurrence.frequence != "monthly"
+    @recurrence.monthly.present? && @recurrence.frequence != "MONTHLY"
   end
 
   def count_without_frequence?

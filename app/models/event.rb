@@ -23,6 +23,11 @@ class Event < ActiveRecord::Base
     @recurrence ||= Recurrence.build(self)
   end
 
+  def self.between(from, to)
+    events = Event.where(dtstart: from..to)
+    RecurrenceFinder.new(from, to).filter(events)
+  end
+
   private
 
   def create_uid

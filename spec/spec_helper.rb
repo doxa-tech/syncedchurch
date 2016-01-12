@@ -44,8 +44,8 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
 
-    Rails.application.load_tasks
-    Rake::Task['seeds:all'].invoke
+    # Rails.application.load_tasks
+    # Rake::Task['seeds:all'].invoke
   end
 
   config.around(:each) do |example|

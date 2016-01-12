@@ -29,7 +29,7 @@ class Recurrence
 
   def build
     @frequence = value_from_option("FREQ")
-    @monthly = value_from_option("BYDAY")
+    @monthly = value_from_option_byday
     @count = value_from_option("COUNT")
     @until = datetime_to_select value_from_option("UNTIL")
     self
@@ -42,6 +42,14 @@ class Recurrence
     values << "COUNT=#{count}" unless count.nil?
     values << "UNTIL=#{until_value}Z" unless until_value.nil?
     values.join(";")
+  end
+
+  def byday
+    { n: @monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless @monthly.blank?
+  end
+
+  def blank?
+    @event.rrule.blank?
   end
 
   private
@@ -73,5 +81,10 @@ class Recurrence
   def value_from_option(option)
     match = event.rrule.match(/#{option}=([A-Z0-9]*)/) if event.rrule
     match[1] unless match.nil?
+  end
+
+  def value_from_option_byday
+    match = event.rrule.match(/BYDAY=([0-9])/) if event.rrule
+    match[1].to_i unless match.nil?
   end
 end
