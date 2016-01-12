@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
   validates_with RecurrenceValidator
 
   before_validation :create_uid, on: :create
+  before_save :set_max_date
 
   def recurrence_attributes=(attributes)
     attributes = attributes.to_h.symbolize_keys!
@@ -23,8 +24,12 @@ class Event < ActiveRecord::Base
     @recurrence ||= Recurrence.build(self)
   end
 
+  def max_date
+    recurrence.get_max_date
+  end
+
   def self.between(from, to)
-    events = Event.where(dtstart: from..to)
+    events = Event.where("dtstart <= ? AND max_date >= ?", to, from)
     RecurrenceFinder.new(from, to).filter(events)
   end
 
@@ -32,6 +37,10 @@ class Event < ActiveRecord::Base
 
   def create_uid
     self.uid = SecureRandom.uuid
+  end
+
+  def set_max_date
+    self.max_date = recurrence.new_max_date
   end
 
 end

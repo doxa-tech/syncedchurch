@@ -4,6 +4,7 @@ class Recurrence
   include ActiveModel::Conversion
 
   FREQUENCES = ["DAILY", "WEEKLY", "MONTHLY", "YEARLY"]
+  FREQUENCES_METHODS = { "DAILY" => "days", "WEEKLY" => "weeks", "MONTHLY" => "months", "YEARLY" => "years" }
 
   attr_reader :event, :frequence, :monthly, :until, :count
 
@@ -15,6 +16,7 @@ class Recurrence
     new(event).create(opts)
   end
 
+  # create a recurrence from a form
   def create(opts)
     @frequence = opts[:frequence] if opts[:frequence].in? Recurrence::FREQUENCES
     @monthly = opts[:monthly] if opts[:monthly].in? %w(1 2 3 4 5)
@@ -27,6 +29,7 @@ class Recurrence
     new(event).build
   end
 
+  # build a recurrence from an existing rrule
   def build
     @frequence = value_from_option("FREQ")
     @monthly = value_from_option_byday
@@ -44,12 +47,36 @@ class Recurrence
     values.join(";")
   end
 
+  ## Handy attributes
+
   def byday
     { n: @monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless @monthly.blank?
   end
 
+  ## Handy methods
+
   def blank?
     @event.rrule.blank?
+  end
+
+  ## Max date
+
+  def get_max_date
+    if self.blank?
+      event.dtend.to_date
+    elsif event.read_attribute(:max_date).nil?
+      Date::Infinity.new
+    else
+      event.read_attribute(:max_date)
+    end
+  end
+
+  def new_max_date
+    if @count.present?
+      event.dtstart + @count.send(FREQUENCES_METHODS[@frequence])
+    elsif @until.present?
+      @until
+    end
   end
 
   private
@@ -80,7 +107,9 @@ class Recurrence
 
   def value_from_option(option)
     match = event.rrule.match(/#{option}=([A-Z0-9]*)/) if event.rrule
-    match[1] unless match.nil?
+    unless match.nil?
+      Integer(match[1]) rescue match[1]
+    end
   end
 
   def value_from_option_byday
