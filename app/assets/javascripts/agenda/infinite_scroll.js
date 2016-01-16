@@ -9,8 +9,7 @@ module.directive("infiniteScrollDown", function() {
     element.bind("scroll", function() {
       if(!scope.loading && $element.scrollTop + $element.offsetHeight >= $element.scrollHeight - 150) {
         scope.loading = true;
-        scope.calendar.loadNextEvents(function() { 
-          scope.calendar.nextWeek();
+        scope.calendar.loadNextEvents(function() {
           scope.weeks = scope.calendar.weeks;
           scope.loading = false;
         });
@@ -24,15 +23,15 @@ module.directive("infiniteScrollUp", function() {
     var $element = element[0];
     element.bind("scroll", function() {
       if (!scope.loading && $element.scrollTop <= 150) {
-        scope.loading = true;        
+        scope.loading = true;
         scope.calendar.loadPreviousEvents(function() {
           var scrollHeight = $element.scrollHeight,
               scrollTop = $element.scrollTop;
-          scope.$watch("weeks", function() {
+          var watcher = scope.$watch("weeks", function() {
             $element.scrollTop = $element.scrollHeight - scrollHeight + scrollTop;
             scope.loading = false;
+            watcher(); // destroy the watch
           });
-          scope.calendar.previousWeek();
           scope.weeks = scope.calendar.weeks;
         });
       }

@@ -16,8 +16,7 @@ class ApiController < ApplicationController
   def events
     from = Date.parse(params[:from])
     to = Date.parse(params[:to])
-    @events = Event.between(from, to)
-    @events = @events.group_by { |e| I18n.l e.dtstart, format: :api }
+    @events = Event.calendar(from, to)
     respond_with @events
   end
 

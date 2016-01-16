@@ -62,9 +62,7 @@ class Recurrence
   ## Max date
 
   def get_max_date
-    if self.blank?
-      event.dtend.to_date
-    elsif event.read_attribute(:max_date).nil?
+    if event.read_attribute(:max_date).nil?
       Date::Infinity.new
     else
       event.read_attribute(:max_date)
@@ -72,7 +70,9 @@ class Recurrence
   end
 
   def new_max_date
-    if @count.present?
+    if self.blank?
+      event.dtend.to_date
+    elsif @count.present?
       event.dtstart + @count.send(FREQUENCES_METHODS[@frequence])
     elsif @until.present?
       @until

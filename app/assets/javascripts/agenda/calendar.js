@@ -13,69 +13,41 @@ module.factory("Calendar", ["$http", function($http) {
 
     var loadEvents = function(callback, from, to) {
       $http.get("api/events.json", { params: { from: from, to: to }}).then(function(response) {
-        events = response.data;
-        callback();
+        callback(response.data);
       });
     };
 
     this.loadPreviousEvents = function(callback, n) {
       n = n || -4;
-      var to = dateKey(angular.copy(firstMonday).add(1).week()),
+      var to = dateKey(angular.copy(firstMonday).add(6).days()),
           from = dateKey(angular.copy(firstMonday).add(n + 1).weeks());
-      loadEvents(callback, from, to);
+
+      firstMonday.add(n).weeks();
+      loadEvents(function(events) {
+        calendar.weeks = events.concat(calendar.weeks);
+        callback();
+      }, from, to);
     };
 
     this.loadNextEvents = function(callback, n) {
       n = n || 4;
       var from = dateKey(lastMonday),
-          to = dateKey(angular.copy(lastMonday).add(n).weeks());
-      loadEvents(callback, from, to);
+          to = dateKey(angular.copy(lastMonday).add(n*7 - 1).days());
+
+      lastMonday.add(n).weeks();
+      loadEvents(function(events) {
+        calendar.weeks = calendar.weeks.concat(events);
+        callback();
+      }, from, to);
     };
 
     this.generateFirstMonth = function(callback) {
-      var calendar = this;
       this.loadNextEvents(function() {
-        calendar.nextWeek(6);
         callback();
         angular.element(document).ready(function () {
           document.getElementById("fixed").dispatchEvent(new Event("scroll"));
         });
       }, 6);
-    };
-
-    var generateWeek = function(day) {
-      var week = {};
-      day = angular.copy(day);
-      for(var i=1; i <= 7; i++) {
-        var key = dateKey(day);
-        week[key] = { "number": key.split("-")[2] };
-        if(events[key] === undefined) {
-          week[key].events = [];
-        } else {
-          week[key].events = events[key];
-        }
-        if(day.getDate() <= 7 && day.is().sunday()) {
-          week.month = monthNames[day.getMonth()];
-        }
-        day.next().day();
-      }
-      return week;
-    };
-
-    this.nextWeek = function(n) {
-      n = n || 4;
-      for(var i=1; i <= n; i++) {
-        this.weeks.push(generateWeek(lastMonday));
-        lastMonday.add(1).weeks();
-      }
-    };
-
-    this.previousWeek = function(n) {
-      n = n || 4;
-      for(var i = 1; i <= n; i++) {
-        this.weeks.unshift(generateWeek(firstMonday));
-        firstMonday.add(-1).weeks();
-      }
     };
 
     var today = Date.today();
@@ -85,6 +57,7 @@ module.factory("Calendar", ["$http", function($http) {
         firstMonday = angular.copy(lastMonday).add(-1).weeks();
 
     var events = [];
+    var calendar = this;
 
     this.weeks = [];
     this.todayKey = dateKey(today);

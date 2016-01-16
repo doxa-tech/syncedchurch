@@ -28,9 +28,9 @@ class Event < ActiveRecord::Base
     recurrence.get_max_date
   end
 
-  def self.between(from, to)
+  def self.calendar(from, to)
     events = Event.where("dtstart <= ? AND max_date >= ?", to, from)
-    RecurrenceFinder.new(from, to).filter(events)
+    Calendar.new(from, to).generate(events)
   end
 
   private

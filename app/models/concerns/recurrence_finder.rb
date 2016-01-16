@@ -1,90 +1,65 @@
 class RecurrenceFinder
 
+  MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
   def initialize(from, to)
     @from, @to = from, to
+    @dates = (from..to).to_a
+    @events = Hash.new
   end
 
-  def filter(events)
-    events.select do |event|
-      recurrence = event.recurrence
-      recurrence.blank? || send("#{recurrence.frequence.downcase}?", event)
+  def add(event, **opts)
+    year, month, day = key_params(opts, event)
+    date = Date.new(year, month, day)
+    if @dates.include?(date) && date <= event.max_date
+      insert(event, date)
     end
+  end
+
+  def each_week(event, byday: false)
+    wday = event.dtstart.wday
+    date = @from.beginning_of_week(:sunday) + wday.days
+    while date <= @to && date <= event.max_date
+      if date.wday == wday && (!byday || (date.day - 1) / 7 == (event.recurrence.monthly - 1))
+        insert(event, date)
+      end
+      date = date + 7.days
+    end
+  end
+
+  def each_day(event)
+    @dates.each do |date|
+      break if date >= event.max_date
+      insert(event, date)
+    end
+  end
+
+  def generate
+    calendar, n = Array.new, 0
+    @dates.each_with_index do |date, i|
+      key = date.strftime("%Y-%-m-%-d")
+      n = n + 1 if date.wday == 1 && i != 0
+      calendar[n] ||= Hash.new
+      calendar[n][key] ||= { number: date.day, events: [] }
+      calendar[n][key][:events] = @events[date] if @events[date]
+      calendar[n][:month] = MONTHS[date.month - 1] if date.day <= 7 && date.wday == 0
+    end
+    return calendar
   end
 
   private
 
-  def yearly?(event)
-    DayRange.new(@from, @to).include?(event.dtstart) &&
-    MonthRange.new(@from, @to).include?(event.dtstart)
+  def key_params(opts, event)
+    year = opts.fetch(:year, event.dtstart.year)
+    month = opts.fetch(:month, event.dtstart.month)
+    day = opts.fetch(:day, event.dtstart.day)
+    return year, month, day
   end
 
-  def monthly?(event)
-    recurrence = event.recurrence
-    if recurrence.byday.blank?
-      DayRange.new(@from, @to).include? event.dtstart
-    else
-      ByDay.new(recurrence.byday[:n], recurrence.byday[:wday]).in?(@from, @to)
-    end
-  end
-
-  def weekly?(event)
-    return true
-  end
-
-  def daily?(event)
-    return true
-  end
-
-end
-
-class DayRange
-
-  def initialize(start_date, end_date)
-    @start_day = start_date.day
-    @month = start_date.month
-    @year = start_date.year
-    @end_day = end_date.day
-  end
-
-  def include?(date)
-    if @start_day > @end_day
-      days_in_month = Time.days_in_month(@month, @year)
-      date.day.between?(@start_day, days_in_month) || date.day.between?(1, @end_day)
-    else
-      date.day.between?(@start_day, @end_day)
-    end
-  end
-
-end
-
-class MonthRange
-
-  def initialize(start_date, end_date)
-    @start_month = start_date.month
-    @end_month = end_date.month
-  end
-
-  def include?(date)
-    if @start_month > @end_month
-      date.month.between?(@start_month, 12) || date.month.between?(1, @end_month)
-    else
-      date.month.between?(@start_month, @end_month)
-    end
-  end
-
-end
-
-class ByDay
-
-  def initialize(n, wday)
-    @n = n
-    @wday = wday
-  end
-
-  def in?(start_date, end_date)
-    (start_date..end_date).to_a.select do |date|
-      date.wday == @wday && (date.day - 1) / 7 == (@n - 1)
-    end.any?
+  def insert(event, date)
+    @events[date] ||= []
+    @events[date] << event
   end
 
 end
