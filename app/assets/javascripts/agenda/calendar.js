@@ -66,6 +66,7 @@ module.factory("Calendar", ["$http", function($http) {
       "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
     this.currentMonth = monthNames[today.getMonth()];
+    this.currentYear = today.getFullYear();
   };
   return Calendar;
 }]);

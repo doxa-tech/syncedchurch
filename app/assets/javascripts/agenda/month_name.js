@@ -28,8 +28,20 @@ module.directive("monthName", [function() {
 
 function updateMonthName(scope, element) {
   scope.$apply(function() {
-    scope.currentMonth = element.getElementsByClassName("month-name")[0].innerHTML;
+    var monthName = element.getElementsByClassName("month-name")[0].innerHTML;
+    if(monthName !== scope.currentMonth) {
+      updateYear(scope, monthName)
+      scope.currentMonth = monthName;
+    }
   });
+}
+
+function updateYear(scope, monthName) {
+  if(monthName === "Janvier" && scope.currentMonth === "Décembre") {
+    scope.currentYear++;
+  } else if(monthName === "Décembre" && scope.currentMonth === "Janvier") {
+    scope.currentYear--;
+  }
 }
 
 function updateSelectors($, mainSelector, secondSelector, callback) {

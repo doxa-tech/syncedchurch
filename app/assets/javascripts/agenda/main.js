@@ -14,6 +14,7 @@ app.controller("MainController", ["$scope", "Calendar", function($scope, Calenda
   $scope.today = $scope.calendar.todayKey;
 
   $scope.currentMonth = $scope.calendar.currentMonth;
+  $scope.currentYear = $scope.calendar.currentYear;
 
   $scope.calendar.generateFirstMonth(function() {
     $scope.weeks = $scope.calendar.weeks;
