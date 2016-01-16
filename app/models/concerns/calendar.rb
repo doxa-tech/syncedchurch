@@ -28,9 +28,6 @@ class Calendar
   def monthly(event)
     if event.recurrence.byday.blank?
       @range.months.each do |month, year|
-        puts "HERE"
-        puts month
-        puts year
         @finder.add(event, year: year, month: month)
       end
     else

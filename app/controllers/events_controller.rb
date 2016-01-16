@@ -27,7 +27,9 @@ class EventsController < ApplicationController
   end
 
   def update
-    if @event.update_attributes(event_params)
+    @event.assign_attributes(event_params)
+    @event.recurrence_attributes = recurrence_params
+    if @event.save
       redirect_to edit_event_path(@event), success: t("events.edit.success")
     else
       render 'new'
