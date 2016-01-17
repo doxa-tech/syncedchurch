@@ -25,9 +25,11 @@
         <li ng-repeat="(date, day) in week" ng-if="$index < 7" day-attributes
           day="{{ day.number }}" date="{{ date }}" month="{{ week.month }}">
           <p class="day-number"><span>{{ day.number }}</span></p>
-          <p ng-repeat="event in day.events" class="event">
-            {{ event.description }}
-          </p>
+          <div ng-repeat="event in day.events">
+            <button class="event">
+              {{ event.title }}
+            </button>
+          </div>
         </li>
       </ul>
       <div class="month-name">{{ week.month }}</div>
