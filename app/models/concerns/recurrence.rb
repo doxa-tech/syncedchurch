@@ -19,7 +19,7 @@ class Recurrence
   # create a recurrence from a form
   def create(opts)
     @frequence = opts[:frequence] if opts[:frequence].in? Recurrence::FREQUENCES
-    @monthly = to_integer(opts[:monthly])
+    @monthly = array_to_integer(opts[:monthly])
     @count = to_integer(opts[:count])
     @until = string_to_date(opts[:until])
     self
@@ -90,6 +90,14 @@ class Recurrence
       Integer(object) rescue nil
     elsif object.is_a? Array
       object.map { |n| Integer(n) rescue nil }
+    end
+  end
+
+  def array_to_integer(object)
+    if object.is_a?(Array)
+      object.map{ |n| Integer(n) rescue nil }.compact
+    else
+      []
     end
   end
 
