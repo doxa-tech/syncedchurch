@@ -1,14 +1,30 @@
 $(document).on("ready page:load", function() {
-  $('.time.picker').timepicker({
-    timeFormat: 'H:i'
+
+  dateTimePicker();
+
+});
+
+function dateTimePicker() {
+  $(".time.picker").timepicker({
+    timeFormat: "H:i"
   });
-  $('.date.picker').datepicker({
-    language: 'fr-CH',
-    autoclose: 'true'
+  var datePicker = $(".date.picker").datepicker({
+    language: "fr-CH",
+    autoclose: "true"
+  });
+  datePicker.on("show", function() {
+    $(document).on("mousewheel scroll", updateCalendarPosition)
+  });
+  datePicker.on("hide", function() {
+    $(document).off("mousewheel scroll", updateCalendarPosition)
   });
 
-  var picker = document.getElementById('picker');
+  var picker = document.getElementById("picker");
   if(picker !== null) {
     var datepair = new Datepair(picker);
   }
-});
+}
+
+function updateCalendarPosition() {
+  $(".date.picker").datepicker("place")
+}
