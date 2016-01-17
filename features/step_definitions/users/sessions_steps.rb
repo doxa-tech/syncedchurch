@@ -10,10 +10,14 @@ When(/^I login$/) do
   step 'I complete the form with "bruce@wayne.com" and "12341"'
 end
 
-Then(/^I should see my name in the sidebar$/) do
-  expect(find "#sidebar").to have_content "Bruce Wayne"
+Then(/^I should see my name in the topbar$/) do
+  expect(find "#topbar").to have_content "Bruce Wayne"
 end
 
-Then(/^I should not see my name in the sidebar$/) do
-  expect(find "#sidebar").not_to have_content "Bruce Wayne"
+Then(/^I should not see my name in the topbar$/) do
+  expect(find "#topbar").not_to have_content "Bruce Wayne"
+end
+
+Then(/^I should not be logged in$/) do
+  expect(page).not_to have_selector "#topbar"
 end

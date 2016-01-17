@@ -58,9 +58,10 @@ FactoryGirl.define do
   end
 
   factory :event do
-    description "Soirée vision"
+    title "Soirée vision"
     dtstart { DateTime.parse("26 novembre 2015 20h00") }
     dtend { dtstart + 2.hours }
+    location "EEBulle"
   end
 
 end

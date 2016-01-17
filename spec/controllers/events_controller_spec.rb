@@ -3,13 +3,25 @@ require 'rails_helper'
 RSpec.describe EventsController, type: :controller, permission: "events" do
 
   describe "POST #create" do
+    before do
+      @attributes = {
+        title: "Nice event !",
+        dstart: "01.01.2016",
+        tstart: "20:00",
+        dend: "01.01.2016",
+        tend: "22:00",
+        location: "EEBulle",
+        visibility: "everyone",
+        recurrence: {frequence: ""}
+      }
+    end
 
     it "creates a new event" do
-      expect { post :create, event: attributes_for(:event) }.to change { Event.count }.by(1)
+      expect { post :create, event: @attributes }.to change { Event.count }.by(1)
     end
 
     it "generates an uid" do
-      post :create, event: attributes_for(:event)
+      post :create, event: @attributes
       expect(assigns(:event).uid).not_to be_blank
     end
 

@@ -14,7 +14,6 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def timepicker_field(method, position=nil)
-    puts object
     value = object.send(method)
     value = I18n.l(object.send(method), format: :timepicker) if value && datetime?(value)
     text_field method, class: "time picker #{position}", value: value

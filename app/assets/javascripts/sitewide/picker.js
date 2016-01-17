@@ -8,5 +8,7 @@ $(document).on("ready page:load", function() {
   });
 
   var picker = document.getElementById('picker');
-  var datepair = new Datepair(picker);
+  if(picker !== null) {
+    var datepair = new Datepair(picker);
+  }
 });

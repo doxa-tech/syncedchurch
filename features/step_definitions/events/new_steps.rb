@@ -1,7 +1,9 @@
 When(/^I complete the event's form with the required fields$/) do
   fill_in "Description", with: "Soirée vision"
-  select_datetime "26 novembre 2015 20h00", from: "event_dtstart"
-  select_datetime "26 novembre 2015 22h00", from: "event_dtend"
+  fill_in "event_dstart", with: "26.11.2015"
+  fill_in "event_tstart", with: "20:00"
+  fill_in "event_dend", with: "26.11.2015"
+  fill_in "event_tend", with: "22:00"
   click_button "Créer"
 end
 

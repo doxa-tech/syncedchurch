@@ -25,9 +25,9 @@ RSpec.describe Recurrence do
 
   it "saves an event happening until a given date" do
     event.recurrence_attributes = {
-      frequence: "DAILY", until_1i: "2015", until_2i: "11", until_3i: "6", until_4i: "20", until_5i: "30"
+      frequence: "DAILY", until: "06.11.2015"
     }
-    expect(event.rrule).to eq "FREQ=DAILY;UNTIL=20151106T203000Z"
+    expect(event.rrule).to eq "FREQ=DAILY;UNTIL=20151106T235959Z"
   end
 
 end

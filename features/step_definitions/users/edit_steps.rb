@@ -20,5 +20,5 @@ Then(/^I should be able to log in with my new password$/) do
   step "I logout"
   visit "/login"
   step 'I complete the form with "bruce@wayne.com" and "rainbow_dash"'
-  step "I should see my name in the sidebar"
+  step "I should see my name in the topbar"
 end
