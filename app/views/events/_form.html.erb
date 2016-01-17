@@ -24,18 +24,13 @@
       <% end %>
     </div>
 
-    <div>
-      <%= f.label :dtstart do |label| %>
-        <%= label %>
-        <%= f.datetime_select :dtstart %>
-      <% end %>
-    </div>
-
-    <div>
-      <%= f.label :dtend do |label| %>
-        <%= label %>
-        <%= f.datetime_select :dtend %>
-      <% end %>
+    <div id="picker">
+      De:
+      <%= f.datepicker_field :dstart, :start %>
+      <%= f.timepicker_field :tstart, :start %>
+      A:
+      <%= f.datepicker_field :dend, :end %>
+      <%= f.timepicker_field :tend, :end %>
     </div>
 
     <div>
@@ -78,7 +73,7 @@
       <div>
         <%= recurrence_f.label :until do |label| %>
           <%= label %>
-          <%= recurrence_f.datetime_select :until, { include_blank: true, default: nil } %>
+          <%= recurrence_f.datepicker_field :until %>
         <% end %>
       </div>
 

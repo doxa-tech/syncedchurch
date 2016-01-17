@@ -1,7 +1,12 @@
 fr:
+  date:
+    formats:
+      datepicker: "%-d.%-m.%Y"
   time:
     formats:
       api: "%Y-%-m-%-d"
+      datepicker: "%-d.%-m.%Y"
+      timepicker: "%H:%M"
   application:
     error: "erreur"
     back: "Retour"

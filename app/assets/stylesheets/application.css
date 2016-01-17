@@ -12,6 +12,7 @@
  *
  *= require selectize
  *= require selectize.default
+ //= require_tree ../../../vendor/assets/stylesheets
  *= require_tree ./base
  *= require_tree ./components
  *= require_tree ./themes

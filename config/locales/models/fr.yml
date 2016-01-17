@@ -64,8 +64,10 @@ fr:
         attending_member_ids: "Membres présents"
         external_member_ids: "Participants externes"
       event:
-        dtstart: "Début"
-        dtend: "Fin"
+        tstart: "Heure de début"
+        tend: "Heure de fin"
+        dstart: "Date de début"
+        dend: "Date de fin"
         location: "Lieu"
   member:
     roles:

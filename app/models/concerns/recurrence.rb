@@ -19,9 +19,9 @@ class Recurrence
   # create a recurrence from a form
   def create(opts)
     @frequence = opts[:frequence] if opts[:frequence].in? Recurrence::FREQUENCES
-    @monthly = opts[:monthly] if opts[:monthly].is_a? Array
+    @monthly = opts[:monthly].is_a?(Array) ? opts[:monthly] : []
     @count = opts[:count] if is_numeric?(opts[:count])
-    @until = select_to_datetime(opts)
+    @until = string_to_date(opts[:until])
     self
   end
 
@@ -34,23 +34,23 @@ class Recurrence
     @frequence = value_from_option("FREQ")
     @monthly = value_from_option_byday
     @count = value_from_option("COUNT")
-    @until = datetime_to_select value_from_option("UNTIL")
+    @until = string_to_date value_from_option("UNTIL")
     self
   end
 
   def to_rule
-    values, until_value = Array.new, datetime_to_iso(@until)
-    values << "FREQ=#{frequence}" unless frequence.nil?
-    values << "BYDAY=#{byday_value}" unless monthly.nil?
-    values << "COUNT=#{count}" unless count.nil?
-    values << "UNTIL=#{until_value}Z" unless until_value.nil?
+    values, until_value = Array.new, date_to_iso(@until)
+    values << "FREQ=#{frequence}" unless frequence.blank?
+    values << "BYDAY=#{byday_value}" unless monthly.blank?
+    values << "COUNT=#{count}" unless count.blank?
+    values << "UNTIL=#{until_value}Z" unless until_value.blank?
     values.join(";")
   end
 
   ## Handy attributes
 
   def byday
-    { monthly: @monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless @monthly.blank?
+    { monthly: monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless monthly.blank?
   end
 
   ## Handy methods
@@ -73,7 +73,7 @@ class Recurrence
     if self.blank?
       event.dtend.to_date
     elsif @count.present?
-      event.dtstart + @count.send(FREQUENCES_METHODS[@frequence])
+      event.dtstart + count.send(FREQUENCES_METHODS[frequence])
     elsif @until.present?
       @until
     end
@@ -89,20 +89,14 @@ class Recurrence
     Integer(string).present? rescue false
   end
 
-  def select_to_datetime(opts)
-    DateTime.new(
-      opts[:until_1i].to_i, opts[:until_2i].to_i, opts[:until_3i].to_i, opts[:until_4i].to_i, opts[:until_5i].to_i
-    )
+  def string_to_date(string)
+    Date.parse(string) if string
   rescue ArgumentError
     return nil
   end
 
-  def datetime_to_select(string)
-    DateTime.parse(string) if string
-  end
-
-  def datetime_to_iso(datetime)
-    datetime.strftime("%Y%m%dT%H%M%S") if datetime
+  def date_to_iso(date)
+    date.strftime("%Y%m%dT235959") if date
   end
 
   def value_from_option(option)
@@ -114,11 +108,7 @@ class Recurrence
 
   def value_from_option_byday
     match = event.rrule.match(/BYDAY=(.+);?/) if event.rrule
-    if match.nil?
-      []
-    else
-      match[1].split(",").map { |n| n.first.to_i }
-    end
+    match.nil? ? [] : match[1].split(",").map { |n| n.first.to_i }
   end
 
   def byday_value

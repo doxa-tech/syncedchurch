@@ -15,4 +15,7 @@
 //= require turbolinks
 //= require selectize
 //= require snaptable
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker.fr-CH
+//= require_tree ../../../vendor/assets/javascripts
 //= require_tree ./sitewide

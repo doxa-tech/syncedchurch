@@ -1,10 +1,9 @@
 class Event < ActiveRecord::Base
-  attr_writer :recurrence
+  attr_writer :recurrence, :dstart, :tstart, :dend, :tend
   enum visibility: [:everyone, :leaders]
 
   validates :description, presence: true
-  validates :dtstart, presence: true
-  validates :dtend, presence: true
+  validates_presence_of :tstart, :dstart, :tend, :dend
   validates :uid, uniqueness: true
   validates :visibility, presence: true
 
@@ -12,7 +11,7 @@ class Event < ActiveRecord::Base
   validates_with RecurrenceValidator
 
   before_validation :create_uid, on: :create
-  before_save :set_max_date
+  before_save :set_dates, :set_max_date
 
   def recurrence_attributes=(attributes)
     attributes = attributes.to_h.symbolize_keys!
@@ -22,6 +21,22 @@ class Event < ActiveRecord::Base
 
   def recurrence
     @recurrence ||= Recurrence.build(self)
+  end
+
+  def dend
+    @dend || dtend
+  end
+
+  def dstart
+    @dstart || dtstart
+  end
+
+  def tend
+    @tend || dtend
+  end
+
+  def tstart
+    @tstart || dtstart
   end
 
   def max_date
@@ -41,6 +56,11 @@ class Event < ActiveRecord::Base
 
   def set_max_date
     self.max_date = recurrence.new_max_date
+  end
+
+  def set_dates
+    self.dtstart = DateTime.parse("#{dstart} #{tstart}")
+    self.dtend = DateTime.parse("#{dend} #{tend}")
   end
 
 end
