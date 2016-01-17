@@ -19,7 +19,7 @@ class Recurrence
   # create a recurrence from a form
   def create(opts)
     @frequence = opts[:frequence] if opts[:frequence].in? Recurrence::FREQUENCES
-    @monthly = opts[:monthly] if opts[:monthly].in? %w(1 2 3 4 5)
+    @monthly = opts[:monthly] if opts[:monthly].is_a? Array
     @count = opts[:count] if is_numeric?(opts[:count])
     @until = select_to_datetime(opts)
     self
@@ -41,7 +41,7 @@ class Recurrence
   def to_rule
     values, until_value = Array.new, datetime_to_iso(@until)
     values << "FREQ=#{frequence}" unless frequence.nil?
-    values << "BYDAY=#{monthly}#{dayname_abbr}" unless monthly.nil?
+    values << "BYDAY=#{byday_value}" unless monthly.nil?
     values << "COUNT=#{count}" unless count.nil?
     values << "UNTIL=#{until_value}Z" unless until_value.nil?
     values.join(";")
@@ -50,7 +50,7 @@ class Recurrence
   ## Handy attributes
 
   def byday
-    { n: @monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless @monthly.blank?
+    { monthly: @monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless @monthly.blank?
   end
 
   ## Handy methods
@@ -82,7 +82,7 @@ class Recurrence
   private
 
   def dayname_abbr
-    event.dtstart.strftime("%^a").first(2)
+    @dayname_abbr ||= event.dtstart.strftime("%^a").first(2)
   end
 
   def is_numeric?(string)
@@ -113,7 +113,15 @@ class Recurrence
   end
 
   def value_from_option_byday
-    match = event.rrule.match(/BYDAY=([0-9])/) if event.rrule
-    match[1].to_i unless match.nil?
+    match = event.rrule.match(/BYDAY=(.+);?/) if event.rrule
+    if match.nil?
+      []
+    else
+      match[1].split(",").map { |n| n.first.to_i }
+    end
+  end
+
+  def byday_value
+    monthly.map{ |n| "#{n}#{dayname_abbr}" }.join(",")
   end
 end

@@ -14,8 +14,8 @@ RSpec.describe Recurrence do
   end
 
   it "saves an event with a monthly recurrence" do
-    event.recurrence_attributes = { frequence: "MONTHLY", monthly: "2" }
-    expect(event.rrule).to eq "FREQ=MONTHLY;BYDAY=2TH"
+    event.recurrence_attributes = { frequence: "MONTHLY", monthly: ["2", "4"] }
+    expect(event.rrule).to eq "FREQ=MONTHLY;BYDAY=2TH,4TH"
   end
 
   it "saves an event with a count" do

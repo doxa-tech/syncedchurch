@@ -21,7 +21,7 @@ class RecurrenceFinder
     wday = event.dtstart.wday
     date = @from.beginning_of_week(:sunday) + wday.days
     while date <= @to && date <= event.max_date
-      if date.wday == wday && (!byday || (date.day - 1) / 7 == (event.recurrence.monthly - 1))
+      if date.wday == wday && (!byday || byday?(date, event.recurrence.monthly))
         insert(event, date)
       end
       date = date + 7.days
@@ -60,6 +60,10 @@ class RecurrenceFinder
   def insert(event, date)
     @events[date] ||= []
     @events[date] << event
+  end
+
+  def byday?(date, monthly)
+    monthly.any? { |n| (date.day - 1) / 7 == (n - 1) }
   end
 
 end

@@ -52,6 +52,6 @@ class EventsController < ApplicationController
   end
 
   def recurrence_params
-    params.require(:event).require(:recurrence).permit(:frequence, :monthly, :until, :count)
+    params.require(:event).require(:recurrence).permit(:frequence, :until, :count, monthly: [])
   end
 end

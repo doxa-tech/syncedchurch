@@ -64,7 +64,9 @@
       <div>
         <%= recurrence_f.label :monthly do |label| %>
           <%= label %>
-          <%= recurrence_f.select :monthly, %w(1 2 3 4 5), { include_blank: true } %>
+          <% (1..5).each do |n| %>
+            <%= recurrence_f.check_box :monthly, { :multiple => true, checked: n.in?(@event.recurrence.monthly) }, n, nil %>
+          <% end %>
         <% end %>
       </div>
       <div>
