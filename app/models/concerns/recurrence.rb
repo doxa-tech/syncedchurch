@@ -19,8 +19,8 @@ class Recurrence
   # create a recurrence from a form
   def create(opts)
     @frequence = opts[:frequence] if opts[:frequence].in? Recurrence::FREQUENCES
-    @monthly = opts[:monthly].is_a?(Array) ? opts[:monthly] : []
-    @count = opts[:count] if is_numeric?(opts[:count])
+    @monthly = to_integer(opts[:monthly])
+    @count = to_integer(opts[:count])
     @until = string_to_date(opts[:until])
     self
   end
@@ -72,8 +72,8 @@ class Recurrence
   def new_max_date
     if self.blank?
       event.dtend.to_date
-    elsif @count.present?
-      event.dtstart + count.send(FREQUENCES_METHODS[frequence])
+    elsif count.present?
+      event.dtstart.to_date + count.send(FREQUENCES_METHODS[frequence])
     elsif @until.present?
       @until
     end
@@ -85,8 +85,12 @@ class Recurrence
     @dayname_abbr ||= event.dtstart.strftime("%^a").first(2)
   end
 
-  def is_numeric?(string)
-    Integer(string).present? rescue false
+  def to_integer(object)
+    if object.is_a? String
+      Integer(object) rescue nil
+    elsif object.is_a? Array
+      object.map { |n| Integer(n) rescue nil }
+    end
   end
 
   def string_to_date(string)

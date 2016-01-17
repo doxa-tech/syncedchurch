@@ -16,9 +16,8 @@ Feature: Create an event
   Scenario: I add a new event without the required fields
     When I visit "/events/new"
     And I do not complete the form
-    Then I should see errors for the fields "Description"
+    Then I should see errors for the fields "Titre, Lieu, Heure de début, Date de fin"
 
-  @wip
   Scenario: I add a new event with a recurrence
     When I visit "/events/new"
     And I set a monthly recurrence for ten times

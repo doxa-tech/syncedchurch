@@ -1,5 +1,6 @@
 When(/^I complete the event's form with the required fields$/) do
-  fill_in "Description", with: "Soirée vision"
+  fill_in "Titre", with: "Soirée vision"
+  fill_in "Lieu", with: "EEBulle"
   fill_in "event_dstart", with: "26.11.2015"
   fill_in "event_tstart", with: "20:00"
   fill_in "event_dend", with: "26.11.2015"

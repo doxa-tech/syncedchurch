@@ -30,4 +30,30 @@ RSpec.describe Recurrence do
     expect(event.rrule).to eq "FREQ=DAILY;UNTIL=20151106T235959Z"
   end
 
+  it "set the max date according to the UNTIL option" do
+    event.recurrence_attributes = {
+      frequence: "DAILY", until: "06.11.2015"
+    }
+    event.save
+    expect(event.max_date).to eq Date.new(2015, 11, 6)
+  end
+
+  it "set the max date according to the COUNT option" do
+    event.recurrence_attributes = {
+      frequence: "DAILY", count: "10"
+    }
+    event.save
+    expect(event.max_date).to eq event.dtstart.to_date + 10.days
+  end
+
+  it "set the max date to ininity if no limit is provided" do
+    event.recurrence_attributes = { frequence: "DAILY" }
+    event.save
+    expect(event.max_date).to eq DateTime::Infinity.new
+  end
+
+  it "set the max date to the end of the event if there is no recurrence rule" do
+    expect(event.max_date).to eq event.dtend.to_date
+  end
+
 end
