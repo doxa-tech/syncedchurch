@@ -71,18 +71,17 @@
             border-radius: 3px;
             font-size: 12px;
           }
+          $border_size: 2px;
+          $border_color: #9B96B3;
           &.first-of-month {
-            box-shadow: inset 0px 7px 7px -7px rgba(0, 0, 0, 0.32), inset 7px 0 7px -7px rgba(0, 0, 0, 0.48);
+            border-left: $border_size solid $border_color;
+            border-top: $border_size solid $border_color;
           }
           &.start-of-month {
-            box-shadow: inset 0px 7px 7px -7px rgba(0, 0, 0, 0.32);
+            border-top: $border_size solid $border_color;
           }
           &.end-of-month {
-            box-shadow: 0 -1px 0 #C7C7C7,
-                        7px 0 0 0px rgb(255, 255, 255),
-                        0 -7px 0 0px rgb(255, 255, 255),
-                        -7px 0 0 0px rgb(255, 255, 255),
-                        0 1px 7px #929292
+            border-bottom: $border_size solid $border_color;
           }
           &:nth-last-child(-n+2) {
             background: rgba(0,0,0,.05);
@@ -91,6 +90,10 @@
         li.current {
           background: #777;
           color: #f3f3f3;
+          .event {
+            background: none;
+            border: 1px solid #E0E0E0;
+          }
         }
       }
       .month-name {
@@ -101,6 +104,10 @@
         background: #fff;
       }
     }
+  }
+  button {
+    background: none;
+    border: none;
   }
 }
 
