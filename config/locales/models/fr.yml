@@ -110,3 +110,10 @@ fr:
     visibilities:
       everyone: "Public"
       leaders: "Leaders"
+    categories:
+      worship: "Louange"
+      homegroup: "Groupe de maison"
+      youth: "Jeunesse"
+      church: "Eglise"
+      training: "Formation"
+      event: "Evénement"
