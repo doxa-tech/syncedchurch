@@ -26,7 +26,7 @@
           day="{{ day.number }}" date="{{ date }}" month="{{ week.month }}">
           <p class="day-number"><span>{{ day.number }}</span></p>
           <div ng-repeat="event in day.events">
-            <button class="event">
+            <button class="entry {{ event.category }}">
               {{ event.title }}
             </button>
           </div>

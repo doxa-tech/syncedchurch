@@ -63,13 +63,19 @@
           .day-number {
             margin-bottom: 7px;
           }
-          .event {
+          .entry {
             display: inline-block;
             padding: 3px;
             margin: 2px;
             background-color: #E0E0E0;
             border-radius: 3px;
             font-size: 12px;
+            &.worship   { background: rgba(255, 0,   0,   0.15); }
+            &.event     { background: rgba(0,   255, 0,   0.15); }
+            &.youth     { background: rgba(0,   0,   255, 0.15); }
+            &.training  { background: rgba(255, 255, 0,   0.15); }
+            &.church    { background: rgba(255, 0,   255, 0.15); }
+            &.homegroup { background: rgba(0,   255, 255, 0.15); }
           }
           $border_size: 2px;
           $border_color: #9B96B3;
@@ -90,7 +96,7 @@
         li.current {
           background: #777;
           color: #f3f3f3;
-          .event {
+          .entry {
             background: none;
             border: 1px solid #E0E0E0;
           }
