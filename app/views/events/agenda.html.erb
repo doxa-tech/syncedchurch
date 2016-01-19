@@ -27,7 +27,7 @@
           <p class="day-number"><span>{{ day.number }}</span></p>
           <div ng-repeat="event in day.events">
             <button class="entry {{ event.category }}">
-              {{ event.title }}
+              <%= image_tag image_url('agenda/category/reccurent.svg') %> {{ event.title }}
             </button>
           </div>
         </li>
