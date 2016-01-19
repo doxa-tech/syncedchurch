@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   enum visibility: [:everyone, :leaders]
   enum category: [:worship, :event, :youth, :training, :church, :homegroup]
 
-  validates :title, presence: true, length: { maximum: 30 }
+  validates :title, presence: true, length: { maximum: 34 }
   validates_presence_of :tstart, :dstart, :tend, :dend
   validates :uid, uniqueness: true
   validates :visibility, presence: true

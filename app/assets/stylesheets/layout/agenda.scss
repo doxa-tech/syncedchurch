@@ -129,8 +129,28 @@
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.75);
 }
+/*
+ * Print handling
+ */
+ #agenda {
+   .header-print {
+     display: none;
+     position: fixed;
+     z-index: 100;
+     top: 0;
+     font-size: 8px;
+     img {
+       width: 80px;
+       vertical-align: middle;
+       padding: 5px;
+     }
+   }
+ }
 @media print {
   #agenda {
+    .header-print {
+      display: block;
+    }
     .entry {
       font-size: 8pt !important;
     }
