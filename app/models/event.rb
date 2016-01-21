@@ -1,7 +1,8 @@
 class Event < ActiveRecord::Base
   attr_writer :recurrence, :dstart, :tstart, :dend, :tend
   enum visibility: [:everyone, :leaders]
-  enum category: [:worship, :event, :youth, :training, :church, :homegroup]
+  enum category: [:worship, :event, :youth, :training, :church, :homegroup,
+                  :organization]
 
   validates :title, presence: true, length: { maximum: 34 }
   validates_presence_of :tstart, :dstart, :tend, :dend

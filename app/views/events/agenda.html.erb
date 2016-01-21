@@ -30,7 +30,9 @@
           <p class="day-number"><span>{{ day.number }}</span></p>
           <div ng-repeat="event in day.events">
             <button class="entry {{ event.category }}">
-              <img ng-if="event.rrule.length" src="<%= image_url('agenda/category/reccurent.svg') %>"> {{ event.title }}
+              <img ng-if="event.category === 'organization'" src="<%= image_url('agenda/category/organization.svg') %>">
+              <img ng-if="event.rrule.length" src="<%= image_url('agenda/category/reccurent.svg') %>">
+              {{ event.title }}
             </button>
           </div>
         </li>
