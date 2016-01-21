@@ -13,12 +13,11 @@ class Event < ActiveRecord::Base
   validates_with RecurrenceValidator
 
   before_validation :create_uid, on: :create
-  before_save :set_dates, :set_max_date
+  before_save :set_dates, :set_rrule, :set_max_date
 
   def recurrence_attributes=(attributes)
     attributes = attributes.to_h.symbolize_keys!
     self.recurrence = Recurrence.create(self, **attributes)
-    self.rrule = recurrence.to_rule
   end
 
   def recurrence
@@ -63,6 +62,10 @@ class Event < ActiveRecord::Base
   def set_dates
     self.dtstart = DateTime.parse("#{dstart} #{tstart}")
     self.dtend = DateTime.parse("#{dend} #{tend}")
+  end
+
+  def set_rrule
+    self.rrule = recurrence.to_rule
   end
 
 end

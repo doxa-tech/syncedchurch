@@ -26,7 +26,7 @@ class Calendar
   end
 
   def monthly(event)
-    if event.recurrence.byday.blank?
+    unless event.recurrence.has_option?(:BYDAY)
       @range.months.each do |month, year|
         @finder.add(event, year: year, month: month)
       end

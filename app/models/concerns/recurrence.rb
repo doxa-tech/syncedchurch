@@ -47,16 +47,14 @@ class Recurrence
     values.join(";")
   end
 
-  ## Handy attributes
-
-  def byday
-    { monthly: monthly, day: event.dtstart.strftime("%A"), wday: event.dtstart.wday } unless monthly.blank?
-  end
-
   ## Handy methods
 
   def blank?
-    @event.rrule.blank?
+    event.rrule.blank?
+  end
+
+  def has_option?(option)
+    event.rrule.match(/#{option}=[A-Z0-9,]+;?/).present?
   end
 
   ## Max date
@@ -85,12 +83,10 @@ class Recurrence
     @dayname_abbr ||= event.dtstart.strftime("%^a").first(2)
   end
 
-  def to_integer(object)
-    if object.is_a? String
-      Integer(object) rescue nil
-    elsif object.is_a? Array
-      object.map { |n| Integer(n) rescue nil }
-    end
+  def to_integer(string)
+    Integer(string)
+  rescue ArgumentError, TypeError
+    return nil
   end
 
   def array_to_integer(object)
@@ -102,8 +98,8 @@ class Recurrence
   end
 
   def string_to_date(string)
-    Date.parse(string) if string
-  rescue ArgumentError
+    Date.parse(string)
+  rescue ArgumentError, TypeError
     return nil
   end
 
@@ -112,14 +108,14 @@ class Recurrence
   end
 
   def value_from_option(option)
-    match = event.rrule.match(/#{option}=([A-Z0-9]*)/) if event.rrule
+    match = event.rrule.match(/#{option}=([A-Z0-9,]+);?/) if event.rrule
     unless match.nil?
       Integer(match[1]) rescue match[1]
     end
   end
 
   def value_from_option_byday
-    match = event.rrule.match(/BYDAY=(.+);?/) if event.rrule
+    match = event.rrule.match(/BYDAY=([A-Z0-9,]+);?/) if event.rrule
     match.nil? ? [] : match[1].split(",").map { |n| n.first.to_i }
   end
 
