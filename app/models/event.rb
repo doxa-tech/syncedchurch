@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.calendar(from, to)
-    events = Event.where("dtstart <= ? AND (max_date is NULL OR max_date >= ?)", to, from)
+    events = Event.where("dtstart <= ? AND (max_date is NULL OR max_date >= ?)", to, from).order(:dtstart)
     Calendar.new(from, to).generate(events)
   end
 
