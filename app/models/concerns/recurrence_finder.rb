@@ -58,8 +58,12 @@ class RecurrenceFinder
   end
 
   def insert(event, date)
-    @events[date] ||= []
-    @events[date] << event
+    duration = (event.dtend.to_date - event.dtstart.to_date).to_i + 1
+    duration.times do
+      @events[date] ||= []
+      @events[date] << event
+      date = date + 1.day
+    end
   end
 
   def byday?(date, monthly)

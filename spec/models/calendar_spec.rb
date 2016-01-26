@@ -63,6 +63,15 @@ RSpec.describe Calendar do
         expect(calendar).not_to be_nil
       end
 
+      it "handles multi-days events" do
+        event = create(:event, dtstart: @from, dtend: @from + 1.day)
+        calendar = @calendar.generate([event]).first
+        first_day_key = key(event)
+        second_day_key = key(event, day: event.dtend.day, month: event.dtend.month, year: event.dtend.year)
+        expect(calendar).to contain(first_day_key, event)
+        expect(calendar).to contain(second_day_key, event)
+      end
+
     end
 
     context "with longer time intervals" do
