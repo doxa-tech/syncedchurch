@@ -17,5 +17,6 @@
  *= require_tree ./components
  *= require_tree ./themes
  *= require_tree ./layout
+ *= require_tree ./vendors
  *= require_self
  */

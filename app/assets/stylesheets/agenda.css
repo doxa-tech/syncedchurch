@@ -13,5 +13,6 @@
  *= require_tree ./base
  *= require_tree ./components
  *= require ./layout/agenda
+ *= require_tree ./vendors
  *= require_self
  */

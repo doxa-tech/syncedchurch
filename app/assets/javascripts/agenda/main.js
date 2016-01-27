@@ -1,13 +1,13 @@
 /* global angular */
 "use strict";
 
-var app = angular.module("Agenda", ["filters", "services", "directives"]);
+var app = angular.module("Agenda", ["filters", "services", "directives","ngDialog"]);
 
 angular.module("filters", []);
 angular.module("services", []);
 angular.module("directives", []);
 
-app.controller("MainController", ["$scope", "Calendar", function($scope, Calendar) {
+app.controller("MainController", ["$scope", "Calendar", "ngDialog", function($scope, Calendar, ngDialog) {
 
   $scope.calendar = new Calendar();
 
@@ -19,4 +19,11 @@ app.controller("MainController", ["$scope", "Calendar", function($scope, Calenda
   $scope.calendar.generateFirstMonth(function() {
     $scope.weeks = $scope.calendar.weeks;
   });
+
+  $scope.open = function () {
+    ngDialog.open({
+        template: '<p>my template</p>',
+        plain: true
+    });
+  };
 }]);
