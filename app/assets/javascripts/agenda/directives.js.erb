@@ -47,12 +47,22 @@ module.directive("popUp", function() {
 
 });
 
-module.directive("popUpOpen", function() {
+module.directive("openPopUp", function() {
 
   return function(scope, element) {
-    element.bind("click", function() {
-      element.toggleClass("pop-up-open");
+    var className = "pop-up-open";
+
+    element.bind("click", function(e) {
+      var clicked = e.target;
+      if(scope.openedPopUp !== undefined) {
+        scope.openedPopUp.classList.remove(className);
+        scope.openedPopUp = undefined;
+      }
+      if(clicked.classList.contains("entry")) {
+        clicked.classList.add(className);
+        scope.openedPopUp = clicked;
+      }
     });
   };
 
-});
+})
