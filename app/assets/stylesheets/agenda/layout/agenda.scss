@@ -64,9 +64,9 @@
             margin-bottom: 7px;
           }
           div {
-            position: relative;
             .entry {
               display: inline-block;
+              position: relative;
               padding: 3px;
               margin: 2px;
               background-color: #E0E0E0;
@@ -85,53 +85,11 @@
               &:not(.pop-up-open) .pop-up {
                 display: none;
               }
-              .pop-up {
-                position: absolute;
-                left: calc(100% + 5px);
-                top: -5px;
-                background: #fff;
-                padding: 0 6px;
-                z-index: 1;
-                border: 1px solid #C7C7C7;
-                border-radius: 3px;
-                width: 100%;
-                box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
-                &:after {
-                  content: "";
-                  width: 0;
-                	height: 0;
-                	border-top: 8px solid transparent;
-                	border-bottom: 8px solid transparent;
-                	border-right:8px solid #C7C7C7;
-                  position: absolute;
-                  left: -8px;
-                  top: 7px;
-                  z-index: 2;
-                }
-                h4 {
-                  padding: 8px 0 5px 0;
-                }
-                p.date {
-                  text-align: left;
-                  padding: 0 0 5px 0;
-                  img {
-                    width: 12px;
-                  }
-                }
-                p.description {
-                  padding: 3px 0 8px 0;
-                  text-align: justify;
-                }
-                p.location {
-                  padding: 8px 0;
-                  border-top: 1px solid #C7C7C7;
-                  text-align: left;
-                }
-                p.url {
-                  padding: 0 0 8px 0;
-                }
-              }
               &:focus {outline:0;}
+            }
+            @import '../components/popup';
+            .pop-up {
+              @include pop-up();
             }
           }
           $border_size: 2px;
@@ -155,6 +113,28 @@
             .entry {
               background: none;
               border: 1px solid #E0E0E0;
+            }
+          }
+          // popup for sundays
+          &.last-of-week {
+            div {
+              .entry {
+                .pop-up {
+                  right: calc(100% + 7px);
+                  left: initial;
+                  &:after {
+                    border-top: 8px solid transparent;
+                    border-bottom: 8px solid transparent;
+                    border-left:8px solid #C7C7C7;
+                    border-right: none;
+                    position: absolute;
+                    right: -8px;
+                    top: 7px;
+                    z-index: 2;
+                    left: initial;
+                  }
+                }
+              }
             }
           }
         } // li
