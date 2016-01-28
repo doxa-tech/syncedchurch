@@ -58,8 +58,9 @@ class RecurrenceFinder
   end
 
   def insert(event, date)
-    duration = (event.dtend.to_date - event.dtstart.to_date).to_i + 1
-    duration.times do
+    duration = (event.dtend.to_date - event.dtstart.to_date).to_i
+    (duration + 1).times do
+      event = event.humanize_dates(date, duration)
       @events[date] ||= []
       @events[date] << event
       date = date + 1.day
