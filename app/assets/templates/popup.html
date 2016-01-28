@@ -1,1 +1,4 @@
-<div class="pop-up">{{ event.description }}</div>
+<h4>{{ event.title }}</h4>
+<p class="description" ng-if="event.description.length">{{ event.description }}</p>
+<p class="location"><b>Lieu</b>: {{ event.location }}</p>
+<p class="url" ng-if="event.url.length"><a target="_blank" href="{{ event.url }}">Lien externe</a></p>
