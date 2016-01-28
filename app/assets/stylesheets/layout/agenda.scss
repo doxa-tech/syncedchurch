@@ -105,6 +105,9 @@
             border: 1px solid #E0E0E0;
           }
         }
+        .entry:not(.pop-up-open) .pop-up {
+          display: none;
+        }
       }
       .month-name {
         position: absolute;

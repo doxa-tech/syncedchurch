@@ -29,7 +29,8 @@
           day="{{ day.number }}" date="{{ date }}" month="{{ week.month }}">
           <p class="day-number"><span>{{ day.number }}</span></p>
           <div ng-repeat="event in day.events">
-            <button ng-click="open()" class="entry {{ event.category }}">
+            <button pop-up-open class="entry {{ event.category }}">
+              <div pop-up="event"></div>
               <img ng-if="event.category === 'organization'" src="<%= image_url('agenda/category/organization.svg') %>">
               <img ng-if="event.rrule.length" src="<%= image_url('agenda/category/reccurent.svg') %>">
               {{ event.title }}

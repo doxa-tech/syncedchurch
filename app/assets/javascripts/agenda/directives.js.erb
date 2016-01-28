@@ -34,3 +34,22 @@ module.directive("dayAttributes", function() {
   };
 
 });
+
+module.directive("popUp", function() {
+
+  return {
+    restrict: "A",
+    templateUrl: '<%= asset_path("popup.html") %>'
+  };
+
+});
+
+module.directive("popUpOpen", function() {
+
+  return function(scope, element) {
+    element.bind("click", function() {
+      element.toggleClass("pop-up-open");
+    });
+  };
+
+});
