@@ -31,6 +31,9 @@ module.directive("dayAttributes", function() {
     if(attrs.date == scope.today) {
       element[0].classList.add("current");
     }
+    if(attrs.index === "6") {
+      element[0].classList.add("last-of-week");
+    }
   };
 
 });

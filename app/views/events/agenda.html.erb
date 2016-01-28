@@ -26,7 +26,7 @@
     <div ng-repeat="week in weeks" month-attributes="{{ week.month }}" class="week">
       <ul>
         <li ng-repeat="(date, day) in week" ng-if="$index < 7" day-attributes
-          day="{{ day.number }}" date="{{ date }}" month="{{ week.month }}">
+          day="{{ day.number }}" date="{{ date }}" month="{{ week.month }}" index="{{ $index }}">
           <p class="day-number"><span>{{ day.number }}</span></p>
           <div ng-repeat="event in day.events">
             <button pop-up-open class="entry {{ event.category }}">
