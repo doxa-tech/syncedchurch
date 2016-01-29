@@ -27,8 +27,12 @@
   p.date {
     text-align: left;
     padding: 0 0 5px 0;
+    display: flex;
+    flex-direction: row;
     img {
       width: 12px;
+      height: 12px;
+      margin: 10px 5px 0 0;
     }
   }
   p.description {

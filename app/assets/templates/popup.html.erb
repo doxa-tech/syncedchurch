@@ -1,5 +1,8 @@
 <h4>{{ event.title }}</h4>
-<p class="date"><%= image_tag image_url "agenda/popup/time.svg" %> Du {{ event.starts_at }}<br>au {{ event.ends_at }} </p>
+<p class="date">
+  <%= image_tag image_url "agenda/popup/time.svg" %>
+  <span>Du {{ event.starts_at }}<br>Au {{ event.ends_at }}</span>
+</p>
 <p class="description" ng-if="event.description.length">{{ event.description }}</p>
 <p class="location"><b>Lieu</b>: {{ event.location }}</p>
 <p class="url" ng-if="event.url.length"><a target="_blank" href="{{ event.url }}">Lien externe</a></p>
