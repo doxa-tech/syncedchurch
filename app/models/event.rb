@@ -63,8 +63,8 @@ class Event < ActiveRecord::Base
   end
 
   def set_dates
-    self.dtstart = DateTime.parse("#{dstart} #{tstart}")
-    self.dtend = DateTime.parse("#{dend} #{tend}")
+    self.dtstart = Time.zone.parse("#{dstart} #{tstart}")
+    self.dtend = Time.zone.parse("#{dend} #{tend}")
   end
 
   def set_rrule
