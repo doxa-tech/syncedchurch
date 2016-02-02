@@ -18,7 +18,7 @@
       <% end if rights? :read, "members" %>
 
       <%= active_block("followups") do %>
-        <%= image_tag image_url "layout/sidenav/groups.svg" %>
+        <%= image_tag image_url "layout/sidenav/followups.svg" %>
         <%= link_to t("header.followups"), followups_path %>
       <% end if rights? :read, "followups" %>
 
