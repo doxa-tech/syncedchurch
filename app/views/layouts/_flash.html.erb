@@ -2,7 +2,7 @@
   <% flash.each do |key, value| %>
     <%= content_tag(:div, id: "flash", class: "flash-#{key}") do %>
       <%= value %>
-      <span class="close">fermer</span>
+      <span class="close"><%= image_tag image_url "layout/close.svg" %></span>
     <% end %>
   <% end %>
 <% end %>

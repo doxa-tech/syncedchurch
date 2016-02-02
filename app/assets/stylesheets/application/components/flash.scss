@@ -1,0 +1,25 @@
+#flash {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10px;
+  padding: 5px;
+  max-width: 300px;
+  background: #91E6FF;
+  border-radius: 5px;
+  z-index: 3;
+  .close {
+    cursor: pointer;
+    padding: 0 0 0 3px;
+    img {
+      width: 9px;
+      height: 9px;
+    }
+  }
+  .flash-success {
+    color: green;
+  }
+  .flash-error {
+    color: red;
+  }
+}
