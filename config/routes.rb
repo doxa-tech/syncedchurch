@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   mount Adeia::Engine => "/adeia"
 
+  get "/", to: "events#agenda", constraints: { subdomain: 'agenda' }
+
   root to: "pages#dashboard"
 
   get "list", to: "members#list"
-  get "agenda", to: "events#agenda"
 
   %w[dashboard].each do |page|
     get "#{page}", to: "pages##{page}"
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   resources :sessions, only: :create
   delete "logout", to: "sessions#destroy"
   get "login", to: "sessions#new"
-  
+
   resources :followups
   resources :events
 

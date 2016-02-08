@@ -3,7 +3,7 @@
 <h2>Derniers membres inscrits</h2>
 
 <% @last_members.each do |member| %>
-  
+
   <p><%= link_to member.full_name, member %></p>
 
 <% end %>
@@ -11,7 +11,7 @@
 <h2>Dernières réunions</h2>
 
 <% @last_meetings.each do |meeting| %>
-  
+
   <%= link_to meeting do %>
     <% meeting.group.name + " le " + l(meeting.date, format: :long) %>
   <% end %>
@@ -21,7 +21,7 @@
 <h2>Derniers suivis</h2>
 
 <% @last_followups.each do |followup| %>
-  
+
   <%= link_to followup do %>
     <% followup.member.full_name + " le " + l(followup.date, format: :long) %>
   <% end %>
@@ -31,7 +31,7 @@
 <h2>Evénements à venir</h2>
 
 <% @upcoming_events.each do |event| %>
-  
+
   <p><%= link_to event.title, event %></p>
 
 <% end %>
