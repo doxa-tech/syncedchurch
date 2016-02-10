@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
   respond_to :json
+  include ActionController::MimeResponds # text/calendar
 
   def members
     authorize! controller: "members", action: :read
@@ -18,6 +19,17 @@ class ApiController < ApplicationController
     to = Date.parse(params[:to])
     @events = Event.calendar(from, to)
     respond_with @events
+  end
+
+  def icalendar
+    events = Event.all
+    calendar = Icalendar::Calendar.new
+    events.each do |event|
+      calendar.add_event(event.to_ics)
+    end
+    respond_to do |format|
+      format.ics { render text: calendar.to_ical }
+    end
   end
 
 end

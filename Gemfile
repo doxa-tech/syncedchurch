@@ -83,3 +83,6 @@ gem 'adeia'
 gem 'angularjs-rails'
 
 gem 'responders'
+
+# agenda
+gem 'icalendar'

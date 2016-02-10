@@ -52,6 +52,21 @@ class Event < ActiveRecord::Base
     return self.clone
   end
 
+  def to_ics
+    event               = Icalendar::Event.new
+    event.dtstart       = dstart
+    event.dtend         = dtend
+    event.description   = description
+    event.created       = created_at
+    event.last_modified = updated_at
+    event.uid           = uid
+    event.url           = url
+    event.rrule         = rrule
+    event.summary       = title
+    event.location      = location
+    event
+  end
+
   private
 
   def create_uid
