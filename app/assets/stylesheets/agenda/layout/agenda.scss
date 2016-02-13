@@ -184,13 +184,37 @@
     .header-print {
       display: block;
     }
-    .entry {
-      font-size: 8pt !important;
-    }
     #fixed {
       overflow: hidden;
       .header {
         padding: 5px 0 !important;
+        box-shadow: none;
+        border-bottom: 3px solid #000;
+      }
+    }
+    .week-container {
+      .week {
+        ul {
+          li {
+            div {
+              .entry {
+                font-size: 8pt !important;
+                padding: 2px;
+              }
+            }
+            &:nth-last-child(-n+2) {
+              background: rgba(0,0,0,.05) !important;
+            }
+            &.current {
+              background: inherit;
+              color: inherit;
+              .entry {
+                background: inherit;
+                border: inherit;
+              }
+            }
+          }
+        }
       }
     }
   }
