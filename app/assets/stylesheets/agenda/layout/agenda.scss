@@ -196,6 +196,9 @@
       .week {
         ul {
           li {
+            .day-number {
+              margin-bottom: 3px;
+            }
             div {
               .entry {
                 font-size: 8pt !important;
