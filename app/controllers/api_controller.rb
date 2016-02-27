@@ -17,7 +17,10 @@ class ApiController < ApplicationController
   def events
     from = Date.parse(params[:from])
     to = Date.parse(params[:to])
-    @events = Event.calendar(from, to)
+    categories = params[:categories].map(&:to_i) & Event.categories.values
+    visibilities = [ Event.visibilities["everyone"] ]
+    visibilities.push(Event.visibilities["leaders"]) if can?(:read, "events")
+    @events = Event.calendar(from, to, categories, visibilities)
     respond_with @events
   end
 

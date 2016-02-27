@@ -42,6 +42,7 @@ class EventsController < ApplicationController
   end
 
   def agenda
+    @categories = Event.categories
     render layout: "agenda"
   end
 

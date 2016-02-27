@@ -5,14 +5,15 @@ var module = angular.module("services");
 
 module.factory("Calendar", ["$http", function($http) {
 
-  var Calendar = function() {
+  var Calendar = function(categories) {
 
     var dateKey = function(day) {
       return day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
     };
 
     var loadEvents = function(callback, from, to) {
-      $http.get("api/events.json", { params: { from: from, to: to }}).then(function(response) {
+      var options = { params: { "from": from, "to": to, "categories[]": categories }}
+      $http.get("api/events.json", options).then(function(response) {
         callback(response.data);
       });
     };

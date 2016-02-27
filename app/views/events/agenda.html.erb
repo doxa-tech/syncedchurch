@@ -2,7 +2,18 @@
   <p><%= image_tag image_url("agenda/header-logo.png") %> Edité par le service communication</p>
 </div>
 <div id="fixed" infinite-scroll-up infinite-scroll-down month-name open-pop-up>
+
   <div class="header">
+    <div>
+      <form id="categories-form" data-values="<%= @categories.values %>">
+        <% @categories.each do |key, value| %>
+          <%= label_tag t("event.categories.#{key}") %>
+          <input ng-click="updateCategories($event)" type="checkbox" value="<%= value %>" checked>
+        <% end %>
+        <button ng-click="updateCalendar()">Mettre à jour</button>
+      </form>
+    </div>
+
     <div class="first-row">
       <div id="loading-events" ng-show="loading">
         <%= image_tag image_url "layout/loading_gears.svg" %>

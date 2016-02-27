@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount Adeia::Engine => "/adeia"
 
   get "/", to: "events#agenda", constraints: { subdomain: 'agenda' }
+  get "/agenda", to: "events#agenda"
 
   root to: "pages#dashboard"
 

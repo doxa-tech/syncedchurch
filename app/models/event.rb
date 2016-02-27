@@ -20,8 +20,8 @@ class Event < ActiveRecord::Base
   before_validation :create_uid, on: :create
   before_save :set_dates, :set_rrule, :set_max_date
 
-  def self.calendar(from, to)
-    events = Event.where("dtstart <= ? AND (max_date is NULL OR max_date >= ?)", to, from).order('"time"(DTSTART)')
+  def self.calendar(from, to, categories, visibilities)
+    events = Event.where("category IN (?) AND visibility IN (?) AND dtstart <= ? AND (max_date is NULL OR max_date >= ?)", categories, visibilities, to, from).order('"time"(DTSTART)')
     Calendar.new(from, to).generate(events)
   end
 

@@ -6,21 +6,30 @@ var module = angular.module("directives");
 module.directive("monthName", [function() {
 
   return function(scope, element) {
+
     var $ = { "currentMonth": null, "nextMonth": null, "previousMonth": null };
 
     element.bind("scroll", function() {
-      $.currentMonth = $.currentMonth || document.getElementById("current-month");
-      $.nextMonth = $.nextMonth || document.getElementById("next-month") || nextMonthElement($.currentMonth);
-      $.previousMonth = $.previousMonth || document.getElementById("previous-month") || previousMonthElement($.currentMonth);
+      if(scope.ready) {
 
-      if($.nextMonth !== null && offset($.nextMonth).top < 100) {
-        updateMonthName(scope, $.nextMonth);
-        $ = updateSelectors($, "nextMonth", "previousMonth", nextMonthElement);
-      }
+        $.currentMonth = $.currentMonth || document.getElementById("current-month");
+        $.nextMonth = $.nextMonth || document.getElementById("next-month") || nextMonthElement($.currentMonth);
+        $.previousMonth = $.previousMonth || document.getElementById("previous-month") || previousMonthElement($.currentMonth);
 
-      if($.previousMonth !== null && offset($.previousMonth).top > -200) {
-        updateMonthName(scope, $.previousMonth);
-        $ = updateSelectors($, "previousMonth", "nextMonth", previousMonthElement);
+        if($.nextMonth !== null && offset($.nextMonth).top < 100) {
+          updateMonthName(scope, $.nextMonth);
+          $ = updateSelectors($, "nextMonth", "previousMonth", nextMonthElement);
+        }
+
+        if($.previousMonth !== null && offset($.previousMonth).top > -200) {
+          updateMonthName(scope, $.previousMonth);
+          $ = updateSelectors($, "previousMonth", "nextMonth", previousMonthElement);
+        }
+
+      } else {
+
+        $ = { "currentMonth": null, "nextMonth": null, "previousMonth": null };
+        
       }
     });
   };
