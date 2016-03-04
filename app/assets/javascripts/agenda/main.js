@@ -7,18 +7,14 @@ angular.module("filters", []);
 angular.module("services", []);
 angular.module("directives", []);
 
-app.controller("MainController", ["$scope", "Calendar", function($scope, Calendar) {
-
-  $scope.ready = false;
+app.controller("MainController", ["$scope", "$timeout", "Calendar", function($scope, $timeout, Calendar) {
 
   $scope.categories = JSON.parse(document.getElementById("categories-form").getAttribute("data-values"));
 
-  initCalendar($scope, Calendar);
+  initCalendar($scope, $timeout, Calendar);
 
   $scope.updateCalendar = function() {
-    $scope.ready = false;
-    $scope.weeks = [];
-    initCalendar($scope, Calendar);
+    initCalendar($scope, $timeout, Calendar);
   };
 
   $scope.updateCategories = function(e) {
@@ -34,7 +30,10 @@ app.controller("MainController", ["$scope", "Calendar", function($scope, Calenda
 
 }]);
 
-function initCalendar($scope, Calendar) {
+function initCalendar($scope, $timeout, Calendar) {
+  $scope.ready = false;
+  $scope.weeks = [];
+
   $scope.calendar = new Calendar($scope.categories);
 
   $scope.today = $scope.calendar.todayKey;
@@ -42,8 +41,11 @@ function initCalendar($scope, Calendar) {
   $scope.currentMonth = $scope.calendar.currentMonth;
   $scope.currentYear = $scope.calendar.currentYear;
 
-  $scope.calendar.generateFirstMonth(function() {
-    $scope.weeks = $scope.calendar.weeks;
-    $scope.ready = true;
+  $timeout(function() {
+    $scope.calendar.generateFirstMonth(function() {
+      $scope.weeks = $scope.calendar.weeks;
+      $scope.ready = true;
+    });
   });
-}
+
+};
