@@ -44,7 +44,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    adeia (0.11.9)
+    adeia (0.11.10)
       rails (~> 4.2.4)
       snaptable
     angularjs-rails (1.5.0)
