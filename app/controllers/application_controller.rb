@@ -12,9 +12,13 @@ class ApplicationController < ActionController::Base
   private
 
   def require_confirmed_user
-    if signed_in? && !current_user.confirmed && current_page?(controller: :sessions, action: :destroy)
+    if signed_in? && !current_user.confirmed && !current_page?(controller: "sessions", action: "destroy")
       redirect_to user_password_edit_path, error: t("application.require_confirmed_user")
     end
+  end
+
+  def current_page?(**args)
+    params[:controller] == args[:controller] && params[:action] == args[:action]
   end
 
 end
