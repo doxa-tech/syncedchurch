@@ -94,7 +94,7 @@ RSpec.describe Calendar do
       end
 
       it "works when the time interval is between three months" do
-        @to = @from + 2.months
+        @to = @from.advance(months: 2, days: 1)
         @calendar = Calendar.new(@from, @to)
         event = create(:event, dtstart: @from, rrule: "FREQ=MONTHLY;")
         calendar = @calendar.generate([event]).inject { |h1, h2| h1.merge(h2) }
@@ -104,7 +104,7 @@ RSpec.describe Calendar do
       end
 
       it "works when the time interval is between two years" do
-        @to = @from + 1.year
+        @to = @from.advance(years: 1, days: 1)
         @calendar = Calendar.new(@from, @to)
         event = create(:event, dtstart: @from, rrule: "FREQ=YEARLY;")
         calendar = @calendar.generate([event]).inject { |h1, h2| h1.merge(h2) }
