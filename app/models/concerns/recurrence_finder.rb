@@ -5,7 +5,7 @@ class RecurrenceFinder
 
   def initialize(from, to)
     @from, @to = from, to
-    @dates = (from..to).to_a
+    @dates = (from...to).to_a
     @events = Hash.new
   end
 

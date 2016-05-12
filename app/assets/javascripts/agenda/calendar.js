@@ -33,7 +33,7 @@ module.factory("Calendar", ["$http", function($http) {
     this.loadNextEvents = function(callback, n) {
       n = n || 4;
       var from = dateKey(lastMonday),
-          to = dateKey(angular.copy(lastMonday).add(n*7 - 1).days());
+          to = dateKey(angular.copy(lastMonday).add(n * 7).days());
 
       lastMonday.add(n).weeks();
       loadEvents(function(events) {
