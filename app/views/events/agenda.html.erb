@@ -22,7 +22,6 @@
     <div class="login">
       <% if signed_in? %>
         <%= current_user.name %>
-        <%= link_to t("header.user.logout"), logout_path, method: :delete %>
       <% else %>
         <%= link_to t("header.user.login"), login_path %>
       <% end %>
