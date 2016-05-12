@@ -12,7 +12,7 @@ module.factory("Calendar", ["$http", function($http) {
     };
 
     var loadEvents = function(callback, from, to) {
-      var options = { params: { "from": from, "to": to, "categories[]": categories }}
+      var options = { params: { "from": from, "to": to, "categories[]": categories , "token": GET('token')}}
       $http.get("api/events.json", options).then(function(response) {
         callback(response.data);
       });
@@ -68,6 +68,20 @@ module.factory("Calendar", ["$http", function($http) {
 
     this.currentMonth = monthNames[today.getMonth()];
     this.currentYear = today.getFullYear();
+
+
+    var GET = function(parameter) {
+      var params = window.location.search.substr(1).split('&');
+
+      for (var i = 0; i < params.length; i++) {
+        var p=params[i].split('=');
+      	if (p[0] == parameter) {
+      	  return decodeURIComponent(p[1]);
+      	}
+      }
+      return false;
+    }
   };
+
   return Calendar;
 }]);
