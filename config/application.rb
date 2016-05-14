@@ -37,7 +37,5 @@ module Syncedchurch
       g.helper          false
       g.factory_girl    false
     end
-
-    config.force_ssl = true
   end
 end
