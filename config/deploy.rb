@@ -8,6 +8,8 @@ set :url, 'gestion.eebulle.ch'
 
 set :side_app, true
 
+set :ssl, true
+
 set :scm, "git"
 set :repo_url, 'git@github.com:khcr/syncedchurch.git'
 

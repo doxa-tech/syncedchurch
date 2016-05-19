@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/JS-Tech/capistrano-server.git
-  revision: d0aa637bd540d60d10f7e96d815f82115701456e
+  revision: 766babf0eefbe611a39318811ceeb4e15d5a9829
   specs:
-    capistrano-server (0.5.1)
+    capistrano-server (0.5.2)
       capistrano (~> 3.1)
 
 GEM
@@ -53,7 +53,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (9.0.0)
+    byebug (9.0.3)
     capistrano (3.4.1)
       i18n
       rake (>= 10.0.0)
@@ -142,8 +142,8 @@ GEM
     mime-types-data (3.2016.0221)
     mimemagic (0.3.1)
     mini_portile2 (2.0.0)
-    minitest (5.8.4)
-    multi_json (1.12.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
     multi_test (0.1.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -235,7 +235,7 @@ GEM
       net-ssh (>= 2.8.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.3)
+    tilt (2.0.4)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
