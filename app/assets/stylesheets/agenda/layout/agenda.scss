@@ -55,6 +55,15 @@
         border-radius: 2px;
         font-size: .9em;
       }
+      .left {
+
+      }
+      .right {
+        text-align: right;
+        div {
+          padding: 0 0 5px 0;
+        }
+      }
     }
   }
   .header {

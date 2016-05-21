@@ -8,7 +8,7 @@
     <a href="#options-menu"><%= image_tag 'agenda/settings.svg', class: 'settings' %></a>
   </div>
   <div class="wrapper">
-    <div class="categories">
+    <div class="left">
       <h3>Catégories</h3>
       <form id="categories-form" data-values="<%= @categories.values %>">
         <% @categories.each do |key, value| %>
@@ -19,12 +19,18 @@
       <h3>Actions</h3>
       <button ng-click="updateCalendar()">Mettre à jour</button>
     </div>
-    <div class="login">
-      <% if signed_in? %>
-        <%= current_user.name %>
-      <% else %>
-        <%= link_to t("header.user.login"), login_path %>
-      <% end %>
+    <div class="right">
+      <div>
+        <% if signed_in? %>
+          <%= current_user.name %>
+        <% else %>
+          <%= link_to t("header.user.login"), login_path %>
+        <% end %>
+      </div>
+      <div>
+        Ajoutez l'agenda de l'église dans votre propre agenda :<br>
+        https://agenda.eebulle.ch/api/icalendar
+      </div>
     </div>
   </div>
 </div>
