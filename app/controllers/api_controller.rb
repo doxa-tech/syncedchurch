@@ -25,7 +25,9 @@ class ApiController < ApplicationController
   end
 
   def icalendar
-    events = Event.all
+    visibilities = [:everyone]
+    visibilities.push(:leaders) if can?(:read, "events")
+    events = Event.where(visibility: visibilities)
     calendar = Icalendar::Calendar.new
     events.each do |event|
       calendar.add_event(event.to_ics)
