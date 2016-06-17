@@ -4,7 +4,8 @@ lock '3.4.1'
 set :application, 'syncedchurch'
 set :deploy_user, 'eebulle'
 
-set :url, 'gestion.eebulle.ch'
+set :url, 'eebulle.ch'
+set :subdomains, ["agenda", "gestion"]
 
 set :side_app, true
 
