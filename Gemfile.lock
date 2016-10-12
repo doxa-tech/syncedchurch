@@ -1,8 +1,9 @@
 GIT
-  remote: git://github.com/JS-Tech/capistrano-server.git
-  revision: d859eadfe657a7fbc4828f13f6f389b5c2c3d0d9
+  remote: https://github.com/JS-Tech/capistrano-server
+  revision: 7d66c3cc267385d21d1112dcf95379a3bc406835
+  tag: v0.7
   specs:
-    capistrano-server (0.6.1)
+    capistrano-server (0.7.0)
       capistrano (~> 3.1)
 
 GEM
@@ -294,4 +295,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.13.2
