@@ -20,7 +20,7 @@ module.factory("Calendar", ["$http", function($http) {
 
     this.loadPreviousEvents = function(callback, n) {
       n = n || -4;
-      var to = dateKey(angular.copy(firstMonday).add(6).days()),
+      var to = dateKey(angular.copy(firstMonday).add(1).weeks()),
           from = dateKey(angular.copy(firstMonday).add(n + 1).weeks());
 
       firstMonday.add(n).weeks();
