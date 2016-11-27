@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.7'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -75,7 +75,7 @@ gem 'capistrano-server', git: 'https://github.com/JS-Tech/capistrano-server', ta
 
 gem 'puma'
 
-gem 'snaptable'
+gem 'snaptable', "<= 2.0"
 
 gem 'carrierwave'
 
@@ -87,3 +87,6 @@ gem 'responders'
 
 # agenda
 gem 'icalendar'
+
+# Mailgun
+gem 'mailgun_list_manager'

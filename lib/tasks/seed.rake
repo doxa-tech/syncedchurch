@@ -1,7 +1,7 @@
 namespace :seed do
 
   desc "Setup the environment"
-  task :all => []
+  task :all => [:superuser]
 
   task superuser: :environment do
     puts "Firstname:"
