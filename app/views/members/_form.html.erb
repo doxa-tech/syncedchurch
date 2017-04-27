@@ -111,10 +111,10 @@
 
           <%= phone_f.hidden_field :_destroy, identifier: "destroy" %>
 
-          <button class="remove-fields grey-button" data-type="phones">Supprimer</button>
+          <button type="button" class="remove-fields grey-button" data-type="phones">Supprimer</button>
         </div>
 
-        <button class="add-fields grey-button" data-type="phones" data-count="<%= @member.phones.count %>">
+        <button  type="button" class="add-fields grey-button" data-type="phones" data-count="<%= @member.phones.size %>">
           Ajouter un numéro
         </button>
       </div>
