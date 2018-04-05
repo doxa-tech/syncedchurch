@@ -5,7 +5,7 @@ RSpec.describe FollowupsController, type: :controller, permission: "followups" d
   describe "POST #create" do
 
     it "creates a new follow up" do
-      expect { post :create, followup: build(:followup).attributes.merge({place: "home", reason: "friendly"}) }.to change { Followup.count }.by(1)
+      expect { post :create, params: { followup: build(:followup).attributes.merge({place: "home", reason: "friendly"}) }}.to change { Followup.count }.by(1)
     end
 
   end
@@ -14,7 +14,7 @@ RSpec.describe FollowupsController, type: :controller, permission: "followups" d
 
     it "deletes a record" do
       followup = create(:followup)
-      expect { delete :destroy, id: followup.id }.to change { Followup.count }.by(-1)
+      expect { delete :destroy, params: { id: followup.id }}.to change { Followup.count }.by(-1)
     end
 
   end

@@ -17,11 +17,11 @@ RSpec.describe EventsController, type: :controller, permission: "events" do
     end
 
     it "creates a new event" do
-      expect { post :create, event: @attributes }.to change { Event.count }.by(1)
+      expect { post :create, params: { event: @attributes }}.to change { Event.count }.by(1)
     end
 
     it "generates an uid" do
-      post :create, event: @attributes
+      post :create, params: { event: @attributes }
       expect(assigns(:event).uid).not_to be_blank
     end
 
@@ -31,7 +31,7 @@ RSpec.describe EventsController, type: :controller, permission: "events" do
 
     it "deletes a record" do
       event = create(:event)
-      expect { delete :destroy, id: event.id }.to change { Event.count }.by(-1)
+      expect { delete :destroy, params: { id: event.id }}.to change { Event.count }.by(-1)
     end
 
   end

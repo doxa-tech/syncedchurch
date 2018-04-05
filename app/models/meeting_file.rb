@@ -11,7 +11,7 @@ class MeetingFile < ApplicationRecord
   private
 
   def set_file_attributes
-    if file.present? && file_changed?
+    if file.present? && saved_change_to_file?
       self.extension = file.file.extension.downcase
       self.size = file.size
     end

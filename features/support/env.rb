@@ -63,4 +63,3 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.javascript_driver = :webkit
 
 World(FactoryBot::Syntax::Methods)
-World(ShowMeTheCookies)

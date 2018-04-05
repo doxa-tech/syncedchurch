@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller, permission: "users" do
   describe "POST #create" do
 
     it "creates an user" do
-      expect { post :create, member_id: create(:member).id }.to change { User.count }.by(1)
+      expect { post :create, params: { member_id: create(:member).id }}.to change { User.count }.by(1)
     end
 
   end
@@ -14,7 +14,7 @@ RSpec.describe UsersController, type: :controller, permission: "users" do
 
     it "destroys an user" do
       user = create(:user)
-      expect { delete :destroy, id: user.id }.to change { User.count }.by(-1)
+      expect { delete :destroy, params: { id: user.id }}.to change { User.count }.by(-1)
     end
 
   end

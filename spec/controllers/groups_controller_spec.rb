@@ -5,7 +5,7 @@ RSpec.describe GroupsController, type: :controller, permission: "groups" do
   describe "POST #create" do
 
     it "creates a new group" do
-      expect { post :create, group: attributes_for(:group) }.to change { Group.count }.by(1)
+      expect { post :create, params: { group: attributes_for(:group) }}.to change { Group.count }.by(1)
     end
 
   end
@@ -14,7 +14,7 @@ RSpec.describe GroupsController, type: :controller, permission: "groups" do
 
     it "deletes a record" do
       group = create(:group)
-      expect { delete :destroy, id: group.id }.to change { Group.count }.by(-1)
+      expect { delete :destroy, params: { id: group.id }}.to change { Group.count }.by(-1)
     end
 
   end

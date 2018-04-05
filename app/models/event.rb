@@ -26,7 +26,7 @@ class Event < ApplicationRecord
   end
 
   def recurrence_attributes=(attributes)
-    attributes = attributes.to_h.symbolize_keys!
+    attributes = attributes.to_hash.symbolize_keys!
     self.recurrence = Recurrence.create(self, **attributes)
   end
 

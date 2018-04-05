@@ -55,6 +55,7 @@ FactoryBot.define do
   factory :meeting_file do
     name "PV"
     file { fixture_file_upload(File.join(Rails.root, '/spec/fixtures/files/projet.pdf'), 'text/pdf') }
+    meeting
   end
 
   factory :event do
