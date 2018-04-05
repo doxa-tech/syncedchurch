@@ -40,6 +40,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'capybara-webkit'
   gem 'rails-controller-testing'
+  gem 'show_me_the_cookies'
 end
 
 group :development do
