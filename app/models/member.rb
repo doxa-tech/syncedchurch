@@ -1,4 +1,4 @@
-class Member < ActiveRecord::Base
+class Member < ApplicationRecord
   enum gender: [:male, :female]
   enum role: [:father, :mother, :son, :daughter]
 
@@ -7,7 +7,7 @@ class Member < ActiveRecord::Base
   has_one :user, dependent: :destroy
 
   has_many :phones, dependent: :destroy
-  belongs_to :family
+  belongs_to :family, optional: true
 
   has_many :group_members, dependent: :destroy
   has_many :groups, through: :group_members

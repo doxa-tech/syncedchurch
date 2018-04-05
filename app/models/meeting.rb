@@ -1,4 +1,4 @@
-class Meeting < ActiveRecord::Base
+class Meeting < ApplicationRecord
 
   validates :date, presence: true
   validates :group_id, presence: true

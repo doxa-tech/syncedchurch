@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   mount Adeia::Engine => "/adeia"
-  mount MailgunListManager::Engine => "/mailing"
 
   get "/", to: "events#agenda", constraints: { subdomain: 'agenda' }
   # get "/agenda", to: "events#agenda"

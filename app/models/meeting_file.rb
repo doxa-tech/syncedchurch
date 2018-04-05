@@ -1,4 +1,4 @@
-class MeetingFile < ActiveRecord::Base
+class MeetingFile < ApplicationRecord
   belongs_to :meeting
 
   mount_uploader :file, FileUploader

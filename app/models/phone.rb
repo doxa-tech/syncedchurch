@@ -1,4 +1,4 @@
-class Phone < ActiveRecord::Base
+class Phone < ApplicationRecord
   belongs_to :member
 
   enum phone_type: [:home, :mobile, :work, :other]

@@ -1,4 +1,4 @@
-class Followup < ActiveRecord::Base
+class Followup < ApplicationRecord
   belongs_to :member
   belongs_to :counselor, class_name: :Member
 

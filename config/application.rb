@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'csv'
 require 'rails/all'
@@ -9,6 +9,9 @@ Bundler.require(*Rails.groups)
 
 module Syncedchurch
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -35,7 +38,7 @@ module Syncedchurch
       g.stylesheets     false
       g.javascripts     false
       g.helper          false
-      g.factory_girl    false
+      g.factory_bot    false
     end
   end
 end

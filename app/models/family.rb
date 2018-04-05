@@ -1,4 +1,4 @@
-class Family < ActiveRecord::Base
+class Family < ApplicationRecord
   has_many :members
 
   validates :lastname, presence: true

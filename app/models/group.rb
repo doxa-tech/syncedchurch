@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Group < ApplicationRecord
   enum group_type: [:concil, :service, :homegroup]
   enum place: [:church, :member, :other]
 
